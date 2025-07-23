@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Staff\AuthController as StaffAuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// スタッフ用のルーティング
+
+    // 未ログイン時（ゲスト）
+    Route::middleware('guest')->group(function () {
+        Route::get('/register', [StaffAuthController::class, 'register'])->name('register');
+    });

@@ -35,19 +35,13 @@
 
             <!-- ナビゲーション -->
             <div class="header__nav">
-                @auth
-                <!-- ログイン後 -->
+                <a href="{{ route('staff.attendance.work') }}">勤怠</a>
+                <a href="{{ route('staff.attendance.staff_list') }}">勤怠一覧</a>
+                <a href="{{ route('staff.request.staff_request') }}">申請</a>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="logout-button">ログアウト</button>
                 </form>
-                @else
-                <!-- ログイン前 -->
-                <a href="{{ route('login') }}">ログイン</a>
-                @endauth
-
-                <a href="{{ route('mypage') }}">マイページ</a>
-                <a href="{{ route('sell') }}" class="nav-button">出品</a>
             </div>
             @endunless
         </div>
