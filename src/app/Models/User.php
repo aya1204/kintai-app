@@ -41,4 +41,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // works(出勤・退勤)と１対多の関係
+    public function works()
+    {
+        return $this->hasMany(Work::class, 'user_id');
+    }
+
+    // request_works(出勤・退勤の修正申請)と１対多の関係
+    public function request_works()
+    {
+        return $this->hasMany(RequestWork::class, 'user_id');
+    }
 }
