@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\RegisterRequest;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\LoginRequest;
 
 /**
  * 会員登録、ログイン、ログアウト用のコントローラー
@@ -25,11 +27,17 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password,
+            'password' =>  Hash::make($request->password),
         ]);
 
-        Auth::login($user);
+        Auth::guard('web')->login($user);
 
         return redirect('/attendance');
+    }
+
+    // ログイン画面を表示
+    public function index(Request $request)
+    {
+        return view('staff.auth.login');
     }
 }
