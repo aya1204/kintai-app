@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Work extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'date',
+        'start_time',
+        'end_time'
+    ];
 
     // user(スタッフ)と多対1の関係
     public function user()
