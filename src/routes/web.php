@@ -18,31 +18,38 @@ use Illuminate\Support\Facades\Route;
 
 // スタッフ用のルーティング
 
-    // 未ログイン時（ゲスト）
-    Route::middleware('guest')->group(function () {
+// 未ログイン時（ゲスト）
+Route::middleware('guest:web')->group(function () {
 
-        // 会員登録画面表示
-        Route::get('/register', [StaffAuthController::class, 'register'])->name('register');
-        //会員登録処理
-        Route::post('/register', [StaffAuthController::class, 'create']);
-    });
+    // 会員登録画面表示
+    Route::get('/register', [StaffAuthController::class, 'register'])->name('register');
+    //会員登録処理
+    Route::post('/register', [StaffAuthController::class, 'create']);
+
+    // ログイン画面表示
+    Route::get('/login', [StaffAuthController::class, 'index'])->name('login');
+    // ログイン処理
+    Route::post('/login', [StaffAuthController::class, 'login']);
+});
 
 
-    // 認証のみ必要なページ
-    Route::middleware(['auth'])->group(function () {
+// 認証のみ必要なページ
+Route::middleware('auth:web')->name('staff.')->group(function () {
 
-        // 出勤登録画面表示
-        Route::get('/attendance', [StaffAttendanceController::class, 'index'])->name('staff.attendance.work');
+    // 出勤登録画面表示
+    Route::get('/attendance', [StaffAttendanceController::class, 'index'])->name('attendance.work');
 
-        // 勤怠一覧画面表示
-        Route::get('/attendance/list', [StaffAttendanceController::class, 'attendance'])->name('staff.attendance.staff_list');
+    // 勤怠一覧画面表示
+    Route::get('/attendance/list', [StaffAttendanceController::class, 'attendance'])->name('attendance.staff_list');
 
-        // 勤怠詳細画面表示
-        Route::get('/attendance/list/{work}', [StaffAttendanceController::class, 'show'])->name('staff.attendance.staff_detail');
+    // 勤怠詳細画面表示
+    Route::get('/attendance/list/{work}', [StaffAttendanceController::class, 'show'])->name('attendance.staff_detail');
+    // // 勤怠修正
+    // Route::post('/attendance/list/{work}', [StaffAttendanceController::class, 'request'])->name('attendance.staff_detail');
 
-        // 申請一覧画面表示
-        Route::get('/stamp_correction_request/list', [StaffRequestController::class, 'applicationList'])->name('staff.request.staff_request');
+    // 申請一覧画面表示
+    Route::get('/stamp_correction_request/list', [StaffRequestController::class, 'applicationList'])->name('request.staff_request');
 
-        //ログアウト機能
-        Route::post('/logout', [StaffAuthController::class, 'logout'])->name('logout');
-    });
+    //ログアウト機能
+    Route::post('/logout', [StaffAuthController::class, 'logout'])->name('logout');
+});
