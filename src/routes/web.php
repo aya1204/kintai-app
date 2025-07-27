@@ -37,7 +37,7 @@ Route::middleware('guest:web')->group(function () {
 Route::middleware('auth:web')->name('staff.')->group(function () {
 
     // 出勤登録画面表示
-    Route::get('/attendance', [StaffAttendanceController::class, 'index'])->name('attendance.work');
+    Route::get('/attendance', [StaffAttendanceController::class, 'index'])->name('attendance.index');
 
     // 勤怠一覧画面表示
     Route::get('/attendance/list', [StaffAttendanceController::class, 'attendance'])->name('attendance.staff_list');
