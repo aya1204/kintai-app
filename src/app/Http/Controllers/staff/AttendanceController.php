@@ -45,4 +45,15 @@ class AttendanceController extends Controller
         // 上の結果に応じて「休憩中」か「勤務中」か判断して返す
         return $onBreak ? 'on_break' : 'working';
     }
+
+    /**
+     * 出勤登録画面の表示
+     */
+    public function index()
+    {
+        // 仮のステータス判定
+        $status = $this->getCurrentStatus();
+
+        return view('staff.attendance.work', compact('status'));
+    }
 }
