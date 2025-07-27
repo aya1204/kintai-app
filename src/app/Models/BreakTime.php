@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class BreakTime extends Model
 {
     use HasFactory;
+    protected $table = 'breaks'; // breaksテーブルを使用していると明示
 
     // work(出勤・退勤)と多対1の関係
     public function work()
