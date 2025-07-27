@@ -56,4 +56,32 @@ class AttendanceController extends Controller
 
         return view('staff.attendance.work', compact('status'));
     }
+
+    /**
+     * 出勤ボタン処理
+     */
+    public function workStart(Request $request)
+    {
+        $user = Auth::user();
+
+        $today = now()->toDateString();
+
+        // すでに出勤済みか確認
+        $alreadyWorking = Work::where('user_id', $user->id)
+            ->whereDate('date', $today)
+            ->exists();
+
+        if ($alreadyWorking) {
+            return redirect()->route('staff.attendance.index')->with('error', 'すでに出勤済みです。');
+        }
+
+        // 出勤登録処理
+        Work::create([
+            'user_id' => $user->id,
+            'date' => $today,
+            'start_time' => now(),
+        ]);
+
+        return redirect()->route('staff.attendance.index')->with('success', '出勤しました。');
+    }
 }
