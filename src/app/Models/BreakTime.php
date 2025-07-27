@@ -9,6 +9,11 @@ class BreakTime extends Model
 {
     use HasFactory;
     protected $table = 'breaks'; // breaksテーブルを使用していると明示
+    protected $fillable = [
+        'work_id',
+        'start_time',
+        'end_time'
+    ];
 
     // work(出勤・退勤)と多対1の関係
     public function work()
