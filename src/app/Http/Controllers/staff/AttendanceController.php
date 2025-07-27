@@ -84,4 +84,39 @@ class AttendanceController extends Controller
 
         return redirect()->route('staff.attendance.index')->with('success', '出勤しました。');
     }
+
+    /**
+     * 休憩入ボタン処理
+     */
+    public function takeBreak(Request $request)
+    {
+        $user = Auth::user();
+
+        // 今日出勤しているか確認
+        $todayWork = Work::where('user_id', $user->id)
+            ->whereDate('start_time', today())
+            ->latest('start_time')
+            ->first();
+
+        // もし出勤登録していないか退勤済みの場合
+        if (!$todayWork || $todayWork->end_time) {
+            return redirect()->route('staff.attendance.index')->with('error', '出勤記録が見つかりません。');
+        }
+
+        // 休憩中ではないことを確認（直近のbreakにend_timeがないなら中断する）
+        $alreadyOnBreak = BreakTime::where('work_id', $todayWork->id)
+            ->whereNull('end_time')->exists();
+
+        if ($alreadyOnBreak) {
+            return redirect()->route('staff.attendance.index')->with('error', 'すでに休憩中です。');
+        }
+
+        // 休憩登録処理
+        BreakTime::create([
+            'work_id' => $todayWork->id,
+            'start_time' => now(),
+        ]);
+
+        return redirect()->route('staff.attendance.index')->with('success', '休憩に入りました。');
+    }
 }
