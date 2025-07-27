@@ -40,4 +40,20 @@ class AuthController extends Controller
     {
         return view('staff.auth.login');
     }
+
+    // ログイン処理
+    public function login(LoginRequest $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::guard('web')->attempt($credentials)) {
+            $request->session()->regenerate();
+
+        return redirect('/attendance');
+    }
+
+    return back()->withErrors([
+        'email' => 'ログイン情報が登録されていません',
+    ]);
+    }
 }
