@@ -156,4 +156,31 @@ class AttendanceController extends Controller
 
         return redirect()->route('staff.attendance.index')->with('success', '休憩から戻りました。');
     }
+
+    /**
+     * 退勤ボタン処理
+     */
+    public function workEnd(Request $request)
+    {
+        $user = Auth::user();
+
+        // すでに出勤済みか、退勤済みではないか確認
+        $todayWork = Work::where('user_id', $user->id)
+            ->whereDate('start_time', today())
+            ->whereNull('end_time')
+            ->latest('start_time')
+            ->first();
+
+        // もし勤務記録がなかったら中断
+        if (!$todayWork) {
+            return redirect()->route('staff.attendance.index')->with('error', '勤務記録が見つかりません。');
+        }
+
+        // 退勤登録処理
+        $todayWork->update([
+            'end_time' => now(),
+        ]);
+
+        return redirect()->route('staff.attendance.index')->with('success', '退勤しました。');
+    }
 }
