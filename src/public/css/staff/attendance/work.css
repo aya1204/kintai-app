@@ -1,0 +1,127 @@
+/* 勤怠登録画面用のCSS */
+body {
+    max-width: 1512px;
+    max-height: 982px;
+    height: 100%;
+    margin: 0;
+    background-color: #F0EFF2;
+}
+
+/* 勤務ステータスからボタンまで */
+.attendance-form {
+    padding-top: 209px;
+    width: 100%;
+    height: 100%;
+}
+
+/* 勤務状況のステータスのフォーム */
+.work-status-form {
+    width: 100px;
+    height: 40px;
+    angle: 0 deg;
+    opacity: 1;
+    border-radius: 50px;
+    background: #C8C8C8;
+    text-align: center;
+    display: flex;
+    margin: 0 auto;
+}
+
+/* 勤務状況のステータス */
+.work-status {
+    color: #696969;
+    width: 60px;
+    height: 22px;
+    top: 298px;
+    left: 726px;
+    angle: 0 deg;
+    opacity: 1;
+    margin: auto;
+}
+
+/* 日付 */
+.date {
+    font-family: Inter;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 40px;
+    leading-trim: NONE;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #000000;
+    margin: 32px auto 0 auto;
+}
+
+/* 時間 */
+.time {
+    font-family: Inter;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 80px;
+    leading-trim: NONE;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #000000;
+    margin: 64px auto 0 auto;
+}
+
+/* 休憩入・退勤ボタンのフォーム */
+.attendance-button {
+    display: flex;
+    margin-top: 74px;
+    justify-content: center;
+    gap: 41px;
+}
+
+/* 休憩入・退勤ボタン・休憩戻ボタン */
+.work-start,
+.take-break,
+.work-end,
+.break-return {
+    text-align: center;
+    width: 221px;
+    height: 77px;
+    angle: 0 deg;
+    opacity: 1;
+    border-radius: 20px;
+    font-family: Inter;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 32px;
+    leading-trim: NONE;
+    line-height: 100%;
+    letter-spacing: 15%;
+    text-align: center;
+    display: inline-block;
+    border: none;
+}
+
+/* 休憩入・休憩戻ボタン */
+.take-break,
+.break-return {
+    color: #000000;
+    background: #FFFFFF;
+}
+
+/* 退勤ボタン */
+.work-start,
+.work-end {
+    color: #FFFFFF;
+    background: #000000;
+}
+
+/* お疲れ様でした。 */
+.good-job {
+    color: #000000;
+    font-family: Inter;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 26px;
+    leading-trim: NONE;
+    line-height: 100%;
+    letter-spacing: 15%;
+    text-align: center;
+    margin: 166px auto 0 auto;
+}
