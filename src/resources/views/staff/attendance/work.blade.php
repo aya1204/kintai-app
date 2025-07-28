@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/attendance/work.css') }}">
+<link rel="stylesheet" href="{{ asset('css/staff/attendance/work.css') }}">
 @endsection
 
 @section('content')
@@ -18,7 +18,7 @@
             @elseif ($status === 'after_work')
             退勤済
             @endif
-    </span>
+        </span>
     </div>
 
     <div class="date-time">
@@ -33,13 +33,13 @@
             <button type="submit" class="work-start">出勤</button>
         </form>
         @elseif ($status === 'working')
-        <form method="POST" action="{{ route('staff.attendance.takeBreak') }}">
-            @csrf
-            <button type="submit" class="take-break">休憩入</button>
-        </form>
         <form method="POST" action="{{ route('staff.attendance.workEnd') }}">
             @csrf
             <button type="submit" class="work-end">退勤</button>
+        </form>
+        <form method="POST" action="{{ route('staff.attendance.takeBreak') }}">
+            @csrf
+            <button type="submit" class="take-break">休憩入</button>
         </form>
         @elseif ( $status === 'on_break')
         <form method="POST" action="{{ route('staff.attendance.breakReturn') }}">
@@ -47,7 +47,7 @@
             <button type="submit" class="break-return">休憩戻</button>
         </form>
         @elseif ( $status === 'after_work')
-        <p class="good-job">お疲れ様でした</p>
+        <p class="good-job">お疲れ様でした。</p>
         @endif
     </div>
 </div>
