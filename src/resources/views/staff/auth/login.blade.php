@@ -1,4 +1,4 @@
-<!-- ログイン画面用のbladeファイル -->
+{{-- ログイン画面用のbladeファイル --}}
 @extends('layouts.app')
 
 @section('css')
@@ -15,7 +15,7 @@
     <form class="form" action="/login" method="post">
         @csrf
 
-        <!-- メールアドレス -->
+        {{-- メールアドレス --}}
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">メールアドレス</span>
@@ -25,7 +25,7 @@
                     <input type="email" name="email" value="{{ old('email') }}" />
                 </div>
                 <div class="form__error">
-                    <!-- 上部で表示した「ログイン情報〜」はここには表示しない -->
+                    {{-- 上部で表示した「ログイン情報〜」はここには表示しない --}}
                     @if ($errors->has('email') && $errors->first('email') !== 'ログイン情報が登録されていません')
                     {{ $errors->first('email') }}
                     @endif
@@ -33,7 +33,7 @@
             </div>
         </div>
 
-        <!-- パスワード -->
+        {{-- パスワード --}}
         <div class="form__group">
             <div class="form__group-title">
                 <span class="form__label--item">パスワード</span>
