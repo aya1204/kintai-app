@@ -25,7 +25,7 @@ class Work extends Model
     // breaks(休憩)と１対多の関係
     public function breaks()
     {
-        return $this->hasMany(BreakTime::class, 'work_id', 'break_id');
+        return $this->hasMany(BreakTime::class, 'work_id');
     }
 
     // requests(修正申請)テーブルと多対1の関係
