@@ -1,4 +1,4 @@
-<!-- ヘッダー部分のbladeファイル -->
+{{-- ヘッダー部分のbladeファイル --}}
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -15,7 +15,7 @@
 <body>
     <header class="header {{ Route::is('login') || Route::is('register') || Route::is('verification.notice') ? 'header--centered' : ''}}">
         <div class="header__container">
-            <!-- ロゴ -->
+            {{-- ロゴ --}}
             <div class="header__logo">
                 <a href="/">
                     <img src="{{ asset('storage/images/logo.svg') }}" alt="COACHTECH">
@@ -33,7 +33,19 @@
 
             @unless ($hideHeaderElements)
 
-            <!-- ナビゲーション -->
+            {{-- ナビゲーション --}}
+            @if (isset($status) && $status === 'after_work')
+            {{-- 退勤済みのときだけのヘッダー --}}
+            <div class="header__nav">
+                <a href="{{ route('staff.attendance.staff_list') }}">今月の勤怠一覧</a>
+                <a href="{{ route('staff.attendance.staff_list') }}">申請一覧</a>
+                <form action="{{ route('staff.logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="logout-button">ログアウト</button>
+                </form>
+            </div>
+            @else
+            {{-- 通常のヘッダー --}}
             <div class="header__nav">
                 <a href="{{ route('staff.attendance.index') }}">勤怠</a>
                 <a href="{{ route('staff.attendance.staff_list') }}">勤怠一覧</a>
@@ -43,6 +55,7 @@
                     <button type="submit" class="logout-button">ログアウト</button>
                 </form>
             </div>
+            @endif
             @endunless
         </div>
     </header>
