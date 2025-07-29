@@ -68,7 +68,7 @@ body {
 }
 
 /* 休憩入・退勤ボタンのフォーム */
-.attendance-button {
+.attendance-button-form {
     display: flex;
     margin-top: 74px;
     justify-content: center;
@@ -76,10 +76,10 @@ body {
 }
 
 /* 休憩入・退勤ボタン・休憩戻ボタン */
-.work-start,
-.take-break,
-.work-end,
-.break-return {
+.work-start-button,
+.take-break-button,
+.work-end-button,
+.break-return-button {
     text-align: center;
     width: 221px;
     height: 77px;
@@ -99,15 +99,15 @@ body {
 }
 
 /* 休憩入・休憩戻ボタン */
-.take-break,
-.break-return {
+.take-break-button,
+.break-return-button {
     color: #000000;
     background: #FFFFFF;
 }
 
 /* 退勤ボタン */
-.work-start,
-.work-end {
+.work-start-button,
+.work-end-button {
     color: #FFFFFF;
     background: #000000;
 }
@@ -124,4 +124,48 @@ body {
     letter-spacing: 15%;
     text-align: center;
     margin: 166px auto 0 auto;
+}
+
+@media screen and (max-width: 767px) {
+    /* 勤怠状況〜勤怠登録ボタンまで */
+    .attendance-form {
+        padding-top: 190px;
+    }
+
+    /* 勤務状況のフォーム */
+    .work-status-form{
+        width: 40px;
+        height: 16px;
+    }
+
+    /* 勤務状況 */
+    .work-status {
+        font-size: 10px;
+    }
+
+    /* 日付 */
+    .date {
+        font-size: 16px;
+        margin: 13px auto 0 auto;
+    }
+
+    /* 時間 */
+    .time {
+        font-size: 32px;
+        margin: 26px auto 0 auto;
+    }
+
+    /* 勤務登録ボタンのフォーム */
+    .attendance-button-form {
+        margin-top: 30px;
+    }
+    .work-start-button,
+    .take-break-button,
+    .break-return-button,
+    .work-end-button {
+        width: 88px;
+        height: 31px;
+        border-radius: 8px;
+        font-size: 13px;
+    }
 }
