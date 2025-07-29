@@ -1,4 +1,4 @@
-<!-- 新規登録画面用のbladeファイル -->
+{{-- 新規登録画面用のbladeファイル --}}
 @extends('layouts.app')
 
 @section('css')
@@ -52,7 +52,7 @@
                 </div>
                 <div class="form__error">
                     @error('password')
-                    <!-- 「パスワードと一致しません」以外（必須、8文字以上）ここに表示 -->
+                    {{-- 「パスワードと一致しません」以外（必須、8文字以上）ここに表示 --}}
                     @if ($message !== 'パスワードと一致しません')
                     {{ $message }}
                     @endif
@@ -70,7 +70,7 @@
                 </div>
                 <div class="form__error">
                     @error('password')
-                    <!-- 「パスワードと一致しません」エラーだけここに表示 -->
+                    {{-- 「パスワードと一致しません」エラーだけここに表示 --}}
                     @if ($message === 'パスワードと一致しません')
                     {{ $message }}
                     @endif
