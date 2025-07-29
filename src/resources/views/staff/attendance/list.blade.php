@@ -32,12 +32,12 @@
     </div>
     <div class="attendance-date-list-form">
         <div class="attendance-date-list-title-form">
-            <p class="date">日付</p>
-            <p class="work-start">出勤</p>
-            <p class="work-end">退勤</p>
-            <p class="breaks">休憩</p>
-            <p class="total">合計</p>
-            <p class="detail">詳細</p>
+            <p class="date-title">日付</p>
+            <p class="work-start-title">出勤</p>
+            <p class="work-end-title">退勤</p>
+            <p class="breaks-title">休憩</p>
+            <p class="total-title">合計</p>
+            <p class="detail-title">詳細</p>
         </div>
         {{-- 勤怠データの表示 --}}
         @php
@@ -46,46 +46,52 @@
         @endphp
 
         @for ($date = $startOfMonth->copy(); $date->lte($endOfMonth); $date->addDay())
+        @php
+        $attendance = $attendances->firstWhere('date', $date->toDateString());
+
+        // 休憩時間合計
+        $breakMinutes = $attendance && $attendance->breaks
+        ? $attendance->breaks->sum(function ($break) {
+        return \Carbon\Carbon::parse($break->start_time)->diffInMinutes(\Carbon\Carbon::parse($break->end_time));
+        }) : 0;
+
+        // 勤務時間合計
+        $workMinutes = ($attendance && $attendance->start_time && $attendance->end_time)
+        ? \Carbon\Carbon::parse($attendance->start_time)->diffInMinutes(\Carbon\Carbon::parse($attendance->end_time)) - $breakMinutes
+        : 0;
+
+        // 勤務時間・休憩時間をhh:mm形式で表示
+        $workHours = $workMinutes > 0
+        ? floor($workMinutes / 60) . ':' . str_pad($workMinutes % 60, 2, '0', STR_PAD_LEFT)
+        : '';
+
+        $breakHours = $breakMinutes > 0
+        ? floor($breakMinutes / 60) . ':' . str_pad($breakMinutes % 60, 2, '0', STR_PAD_LEFT)
+        : '';
+        @endphp
+
+        <div class="work-date-list-form">
+            {{-- 各勤怠データの表示 --}}
             @php
-            $attendance = $attendances->firstWhere('date', $date->toDateString());
-
-            // 休憩時間合計
-            $breakMinutes = $attendance && $attendance->breaks
-            ? $attendance->breaks->sum(function ($break) {
-                return \Carbon\Carbon::parse($break->start_time)->diffInMinutes(\Carbon\Carbon::parse($break->end_time));
-            }) : 0;
-
-            // 勤務時間合計
-            $workMinutes = ($attendance && $attendance->start_time && $attendance->end_time)
-                ? \Carbon\Carbon::parse($attendance->start_time)->diffInMinutes(\Carbon\Carbon::parse($attendance->end_time)) - $breakMinutes
-                : 0;
-
-            // 勤務時間・休憩時間をhh:mm形式で表示
-            $workHours = $workMinutes > 0
-                ? floor($workMinutes / 60) . ':' . str_pad($workMinutes % 60, 2, '0', STR_PAD_LEFT)
-                : '';
-
-            $breakHours = $breakMinutes > 0
-                ? floor($breakMinutes / 60) . ':' . str_pad($breakMinutes % 60, 2, '0', STR_PAD_LEFT)
-                : '';
+            $weekdays = ['日', '月', '火', '水', '木', '金', '土'];
+            $dayOfWeek= $weekdays[$date->dayOfWeek];
             @endphp
-
-            <div class="work-date-list-form">
-                {{-- 各勤怠データの表示 --}}
-                <div class="date">{{ $date->format('m/d(D)')}}</div>
-                <div class="work-start">{{ $attendance && $attendance->start_time ? \Carbon\Carbon::parse($attendance->start_time)->format('H:i') : '' }}</div>
-                <div class="work-end">{{ $attendance && $attendance->end_time ? \Carbon\Carbon::parse($attendance->end_time)->format('H:i') : '' }}</div>
-                <div class="breaks">{{ $attendance ? $breakHours : '' }}</div>
-                <div class="total">{{ $attendance ? $workHours : '' }}</div>
-                <div class="detail">
-                    @if ($attendance)
-                    <a href="{{ route('staff.attendance.detail', ['work' => $attendance ? $attendance->id : '0', 'date' => $date->toDateString()]) }}" class="detail-link">詳細</a>
-                    @else
-                    <span class="no-detail">詳細</span>
-                    @endif
-                </div>
+            <div class="date">
+                {{ $date->format('m/d')}} ({{ $dayOfWeek }})
             </div>
-            @endfor
+            <div class="work-start">{{ $attendance && $attendance->start_time ? \Carbon\Carbon::parse($attendance->start_time)->format('H:i') : '' }}</div>
+            <div class="work-end">{{ $attendance && $attendance->end_time ? \Carbon\Carbon::parse($attendance->end_time)->format('H:i') : '' }}</div>
+            <div class="breaks">{{ $attendance ? $breakHours : '' }}</div>
+            <div class="total">{{ $attendance ? $workHours : '' }}</div>
+            <div class="detail">
+                @if ($attendance)
+                <a href="{{ route('staff.attendance.detail', ['work' => $attendance ? $attendance->id : '0', 'date' => $date->toDateString()]) }}" class="detail-link">詳細</a>
+                @else
+                <span class="no-detail">詳細</span>
+                @endif
+            </div>
+        </div>
+        @endfor
     </div>
 </div>
 @endsection
