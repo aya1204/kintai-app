@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\BreakTime;
 
 class Work extends Model
 {
@@ -24,7 +25,7 @@ class Work extends Model
     // breaks(休憩)と１対多の関係
     public function breaks()
     {
-        return $this->hasMany(BreakTime::class, 'break_id');
+        return $this->hasMany(BreakTime::class, 'work_id', 'break_id');
     }
 
     // requests(修正申請)テーブルと多対1の関係
