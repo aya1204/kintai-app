@@ -23,7 +23,7 @@
 
     <div class="date-time">
         <p class="date">{{ date('Y年m月d日') }}</p>
-        <p class="time">{{ date('H:i') }}</p>
+        <p class="time" id="real-time-clock"></p>
     </div>
 
     <div class="attendance-button-form">
@@ -51,4 +51,21 @@
         @endif
     </div>
 </div>
+@endsection
+
+@section('js')
+<script>
+    function updateClock() {
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const currentTime = `${hours}:${minutes}`;
+        document.getElementById('real-time-clock').textContent = currentTime;
+    }
+
+    // 初回即時実行
+    updateClock();
+    // 毎秒更新
+    setInterval(updateClock, 1000);
+</script>
 @endsection
