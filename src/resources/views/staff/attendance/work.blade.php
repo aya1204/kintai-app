@@ -1,4 +1,4 @@
-<!-- 出勤・退勤・休憩時間登録のbladeファイル -->
+{{-- 出勤・退勤・休憩時間登録のbladeファイル --}}
 @extends('layouts.app')
 
 @section('css')
@@ -26,25 +26,25 @@
         <p class="time">{{ date('H:i') }}</p>
     </div>
 
-    <div class="attendance-button">
+    <div class="attendance-button-form">
         @if ($status === 'before_work')
         <form method="POST" action="{{ route('staff.attendance.workStart') }}">
             @csrf
-            <button type="submit" class="work-start">出勤</button>
+            <button type="submit" class="work-start-button">出勤</button>
         </form>
         @elseif ($status === 'working')
         <form method="POST" action="{{ route('staff.attendance.workEnd') }}">
             @csrf
-            <button type="submit" class="work-end">退勤</button>
+            <button type="submit" class="work-end-button">退勤</button>
         </form>
         <form method="POST" action="{{ route('staff.attendance.takeBreak') }}">
             @csrf
-            <button type="submit" class="take-break">休憩入</button>
+            <button type="submit" class="take-break-button">休憩入</button>
         </form>
         @elseif ( $status === 'on_break')
         <form method="POST" action="{{ route('staff.attendance.breakReturn') }}">
             @csrf
-            <button type="submit" class="break-return">休憩戻</button>
+            <button type="submit" class="break-return-button">休憩戻</button>
         </form>
         @elseif ( $status === 'after_work')
         <p class="good-job">お疲れ様でした。</p>
