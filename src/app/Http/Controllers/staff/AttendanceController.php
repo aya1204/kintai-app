@@ -183,4 +183,22 @@ class AttendanceController extends Controller
 
         return redirect()->route('staff.attendance.index')->with('success', '退勤しました。');
     }
+
+    /**
+     * 勤怠一覧画面表示
+     */
+    public function attendance(Request $request)
+    {
+        $user = Auth::user();
+        $currentMonth = $request->input('month') ?? now()
+->format('Y-m');
+
+        $attendances = Work::with('breaks')
+        ->where('user_id', $user->id)
+        ->where('date', 'like', "{$currentMonth}%")
+        ->orderBy('date')
+        ->get();
+
+        return view('staff.attendance.list', compact('attendances', 'currentMonth'));
+    }
 }
