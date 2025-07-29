@@ -241,7 +241,6 @@
         align-items: center;
         justify-content: center;
         gap: 3px;
-        width: 30%;
         flex-wrap: nowrap;
     }
 
