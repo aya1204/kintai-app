@@ -70,7 +70,8 @@
         : '';
         @endphp
 
-        <div class="work-date-list-form">
+        {{-- 月末日を判定して月末日だけクラスメイをつける --}}
+        <div class="work-date-list-form {{ $date->isSameDay($endOfMonth) ? 'last-day' : ''}}">
             {{-- 各勤怠データの表示 --}}
             @php
             $weekdays = ['日', '月', '火', '水', '木', '金', '土'];
