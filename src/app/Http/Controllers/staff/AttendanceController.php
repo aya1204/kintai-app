@@ -21,9 +21,11 @@ class AttendanceController extends Controller
     {
         $user = Auth::user();
 
+        $today = now()->toDateString();
+
         // 今日すでに出勤済みか確認
         $todayWork = Work::where('user_id', $user->id)
-            ->whereDate('start_time', today())
+            ->whereDate('date', today())
             ->latest('start_time')
             ->first();
 
@@ -91,10 +93,11 @@ class AttendanceController extends Controller
     public function takeBreak(Request $request)
     {
         $user = Auth::user();
+        $today = now()->toDateString();
 
         // 今日出勤しているか確認
         $todayWork = Work::where('user_id', $user->id)
-            ->whereDate('start_time', today())
+            ->whereDate('date', $today)
             ->latest('start_time')
             ->first();
 
@@ -126,10 +129,11 @@ class AttendanceController extends Controller
     public function breakReturn(Request $request)
     {
         $user = Auth::user();
+        $today = now()->toDateString();
 
         // 今日出勤しているか確認
         $todayWork = Work::where('user_id', $user->id)
-            ->whereDate('start_time', today())
+            ->whereDate('date', $today)
             ->latest('start_time')
             ->first();
 
@@ -163,10 +167,11 @@ class AttendanceController extends Controller
     public function workEnd(Request $request)
     {
         $user = Auth::user();
+        $today = now()->toDateString();
 
         // すでに出勤済みか、退勤済みではないか確認
         $todayWork = Work::where('user_id', $user->id)
-            ->whereDate('start_time', today())
+            ->whereDate('date', $today)
             ->whereNull('end_time')
             ->latest('start_time')
             ->first();
@@ -201,4 +206,19 @@ class AttendanceController extends Controller
 
         return view('staff.attendance.list', compact('attendances', 'currentMonth'));
     }
+
+    /**
+     * 
+     */
+    public function show($workId)
+    {
+        if ($workId === '0') {
+            $work = null;
+            $name = '';
+        } else {
+            $work = Work::with(['breaks', 'user'])->findOrFail($workId);
+            $name = $work->user->name ?? '';
+        }
+            return view('staff.attendance.detail', compact('work', 'name'));
+        }
 }
