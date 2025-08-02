@@ -100,7 +100,7 @@
 - users ↔︎ works：１対多
 - users ↔︎ request_works：１対多
 - works ↔︎ breaks：１対多
-- breaks ↔︎ request_breaks：１対１
+- request_works ↔︎ request_breaks：１対多
 - works ↔︎ requests：１対0または１
 - managers ↔︎ requests：１対多
 
