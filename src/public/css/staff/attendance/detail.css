@@ -1,0 +1,413 @@
+/* 勤怠詳細画面のCSSファイル */
+
+body {
+    max-width: 1512px;
+    background-color: #F0EFF2;
+}
+
+/* 勤怠詳細〜各日にちの詳細までの全体フォーム */
+.attendance-detail-form {
+    width: 900px;
+    height: 732px;
+    margin: 173px auto;
+}
+
+/* 勤怠詳細の「｜」を左寄せ */
+.detail-title-form {
+    padding-left: 0;
+}
+
+/* 勤怠詳細画面のフォーム */
+.detail-title-form li {
+    list-style-type: none;
+    position: relative;
+    padding-left: 10px;
+}
+
+/* 勤怠詳細画面のフォーム：「・」を「｜」に変更 */
+.detail-title-form li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: black;
+}
+
+/* 「｜」と勤怠詳細のフォーム */
+.detail-title {
+    width: 141px;
+    height: 36px;
+    opacity: 1;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+
+
+/* 名前・日付・出勤・退勤・休憩・備考のフォーム */
+.detail-list-form {
+    background-color: #FFFFFF;
+    margin-top: 46px;
+    color: #737373;
+    width: 900px;
+    max-height: 1506px;
+    height: auto;
+    opacity: 1;
+    border-radius: 10px;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 100%;
+}
+
+/* 名前・日付・出勤退勤・休憩１・休憩2〜・備考の各フォーム */
+.name-form,
+.date-form,
+.work-form,
+.break-form,
+.remark-form {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    border-bottom: 3px solid #E1E1E1;
+    justify-content: left;
+    align-items: center;
+    padding-left: 64px;
+}
+
+.name-form {
+    height: 79px;
+}
+
+.date-form {
+    height: 89px;
+}
+
+.work-form {
+    height: 91px;
+}
+
+.break-form {
+    height: 95px;
+}
+
+/* 備考のアンダーラインだけなし */
+.remark-form {
+    border-bottom: none;
+    height: 106px;
+}
+
+/* 名前・日付・出勤退勤・休憩１・休憩２〜・備考のタイトル */
+.name-title,
+.date-title,
+.work-title,
+.break-title,
+.remark-title {
+    width: 120px;
+    text-align: left;
+    margin-right: 158px;
+}
+
+.user-name,
+.date-year,
+.date-month-day,
+.work-start-time,
+.work-end-time,
+.take-break-time,
+.break-return-time {
+    width: 103px;
+    font-family: Inter;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 15%;
+    color: #000000;
+    gap: 10px;
+    text-align: center;
+}
+
+.wavy-line {
+    width: 69px;
+    font-family: Inter;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 15%;
+    color: #000000;
+    gap: 10px;
+    text-align: center;
+}
+
+/* 月日だけ位置調整 */
+.date-month-day {
+    margin-left: 88px;
+}
+
+/* 備考 */
+.remark {
+    font-family: Inter;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 15%;
+    color: #000000;
+    width: 316px;
+    height: 72px;
+    border: 1px solid #D9D9D9;
+    border-radius: 4px;
+}
+
+
+
+/* タブレット（768-850px）対応 */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+
+    /* 勤怠一覧〜各日にちの詳細までの全体のフォーム */
+    .attendance-list-form {
+        margin: 94px auto;
+        width: 495px;
+    }
+
+    /* | 勤怠一覧のフォーム */
+    .list-title-form {
+        width: 495px;
+    }
+
+    /* 「｜」と勤怠一覧のフォーム */
+    .list-title {
+        font-size: 17px;
+    }
+
+    /* 勤怠一覧の「｜」 */
+    .list-title-form li::before {
+        height: 55%;
+        width: 2px;
+    }
+
+    /* 選択月のフォーム */
+    .month-list-form {
+        width: 495px;
+        height: 33px;
+    }
+
+    /* ←と→ */
+    .left-arrow-icon,
+    .right-arrow-icon {
+        width: 11px;
+        height: 8px;
+        margin: 0 6px;
+    }
+
+    /* 前月と翌月 */
+    .previous-month,
+    .next-month {
+        height: 10px;
+        font-size: 9px;
+        margin: 0 6px;
+    }
+
+    /* カレンダーアイコンと選択された月のフォーム */
+    .calender-title {
+        height: 14px;
+    }
+
+    /* カレンダーアイコン */
+    .calender-icon {
+        width: 14px;
+        height: 14px;
+    }
+
+    /* 選択された月 */
+    .selected-month {
+        width: 68px;
+        height: 13px;
+        font-size: 11px;
+    }
+
+    /* 日付・出勤・退勤・休憩・合計・詳細のフォーム */
+    .attendance-date-list-form {
+        width: 495px;
+        margin-top: 25px;
+        font-size: 8px;
+    }
+
+    /* 勤怠一覧の各タイトル */
+    .attendance-date-list-title-form {
+        gap: 11px;
+        border-bottom: 2px solid #E1E1E1;
+        margin: 0 6px;
+    }
+
+    /* 日付のタイトル */
+    .date-title {
+        width: 66px;
+        padding-left: 6px;
+    }
+
+    /* 出勤・退勤・休憩・合計のタイトル */
+    .work-start-title,
+    .work-end-title,
+    .breaks-title,
+    .total-title {
+        width: 66px;
+    }
+
+    /* 詳細のタイトル */
+    .detail-title {
+        width: 55px;
+    }
+
+    /* 勤怠一覧の各日付ごとのフォーム */
+    .work-date-list-form {
+        border-bottom: 2px solid #E1E1E1;
+        height: 18px;
+        gap: 11px;
+        margin: 8px 6px;
+        align-items: normal;
+    }
+
+    /* 日付のデータ */
+    .date {
+        width: 67px;
+        padding-left: 21px;
+    }
+
+    .work-start,
+    .work-end,
+    .breaks,
+    .total {
+        width: 67px;
+        padding-left: 40px;
+    }
+
+}
+
+/* スマホ（767px以下）対応 */
+@media screen and (max-width: 767px) {
+
+    /* 勤怠一覧〜各日にちの詳細までの全体のフォーム */
+    .attendance-list-form {
+        margin: 60px auto;
+        width: 240px;
+    }
+
+    /* | 勤怠一覧のフォーム */
+    .list-title-form {
+        width: 240px;
+    }
+
+    /* 「｜」と勤怠一覧のフォーム */
+    .list-title {
+        font-size: 16px;
+    }
+
+    /* 勤怠一覧の「｜」 */
+    .list-title-form li::before {
+        height: 53%;
+        width: 2px;
+    }
+
+    /* 選択月のフォーム */
+    .month-list-form {
+        width: 240px;
+        height: 21px;
+        border-radius: 6px;
+    }
+
+    /* ←と→ */
+    .left-arrow-icon,
+    .right-arrow-icon {
+        width: 10px;
+        height: 8px;
+        margin: 0 6px;
+    }
+
+    /* 前月と翌月 */
+    .previous-month,
+    .next-month {
+        height: 10px;
+        font-size: 9px;
+        margin: 0 6px;
+    }
+
+    /* カレンダーアイコンと選択された月のフォーム */
+    .calender-title {
+        height: 13px;
+    }
+
+    /* カレンダーアイコン */
+    .calender-icon {
+        width: 13px;
+        height: 13px;
+    }
+
+    /* 選択された月 */
+    .selected-month {
+        width: 50px;
+        height: 8px;
+        font-size: 10px;
+    }
+
+    /* 日付・出勤・退勤・休憩・合計・詳細のフォーム */
+    .attendance-date-list-form {
+        width: 240px;
+        margin-top: 16px;
+        font-size: 6px;
+        border-radius: 6px;
+    }
+
+    /* 勤怠一覧の各タイトル */
+    .attendance-date-list-title-form {
+        gap: 10px;
+        border-bottom: 2px solid #E1E1E1;
+        margin: 0 6px;
+    }
+
+    /* 日付のタイトル */
+    .date-title {
+        width: 42px;
+        padding-left: 4px;
+    }
+
+    /* 出勤・退勤・休憩・合計のタイトル */
+    .work-start-title,
+    .work-end-title,
+    .breaks-title,
+    .total-title {
+        width: 42px;
+    }
+
+    /* 詳細のタイトル */
+    .detail-title {
+        width: 55px;
+    }
+
+    /* 勤怠一覧の各日付ごとのフォーム */
+    .work-date-list-form {
+        border-bottom: 2px solid #E1E1E1;
+        height: 12px;
+        gap: 7px;
+        margin: 5px 4px;
+        align-items: normal;
+    }
+
+    /* 日付のデータ */
+    .date {
+        width: 77px;
+    }
+
+    /* 出勤、退勤、休憩、合計のデータ */
+    .work-start,
+    .work-end,
+    .breaks,
+    .total {
+        width: 67px;
+    }
+}

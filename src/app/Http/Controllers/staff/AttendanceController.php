@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Staff;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\AttendanceRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Work;
 use App\Models\BreakTime;
-use Carbon\Carbon;
-
+use App\Models\RequestWork;
+use App\Models\RequestBreak;
+use App\Models\Request as RequestModel;
 /**
  * 出勤・休憩・退勤登録、勤怠一覧、勤怠詳細のコントローラー
  */
@@ -208,7 +210,7 @@ class AttendanceController extends Controller
     }
 
     /**
-     * 
+     * 勤怠一覧画面表示
      */
     public function show($workId)
     {
@@ -220,5 +222,47 @@ class AttendanceController extends Controller
             $name = $work->user->name ?? '';
         }
             return view('staff.attendance.detail', compact('work', 'name'));
+        }
+
+        /**
+         * 勤怠修正申請
+         */
+        public function requestCorrection(AttendanceRequest $request,$workId)
+        {
+            $user = auth()->user();
+            // 申請対象の勤怠データ
+            $work = Work::with('breaks', 'user')->findOrFail(($workId));
+
+            $requestWork = RequestWork::updateOrCreate([
+                'user_id' => $user->id,
+                'date' => $work->date, //勤務日
+            ],
+            [
+                'start_time' => $request->input('start_time'),
+                'end_time' => $request->input('end_time'),
+            ]);
+
+            foreach ($request->input('breaks', []) as $break) {
+                if (!empty($break['start_time']) && !empty($break['end_time'])) {
+                    RequestBreak::create([
+                        'request_work_id' => $requestWork->id,
+                        'date' => $work->date, //勤務日
+                        'start_time' => $break['start_time'],
+                        'end_time' => $break['end_time'],
+                    ]);
+                }
+            }
+
+            // requestsテーブルに保存（承認状態は仮でfalse、備考も記入）
+            RequestModel::create([
+                'work_id' => $work->id,
+                'manager_id' => 1,
+                //todo 'manager_id' => auth()->guard('admin')->id(),
+                'approved' => false,
+                'staff_remarks' => $request->input('remark'),
+                'admin_remarks' => '', // 管理者が後で記入
+            ]);
+
+            return redirect()->route('staff.attendance.detail', ['work' => $work->id])->with('success', '修正申請が送信されました');
         }
 }

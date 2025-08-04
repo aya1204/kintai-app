@@ -52,8 +52,8 @@ Route::middleware('auth:web')->name('staff.')->group(function () {
 
     // 勤怠詳細画面表示
     Route::get('/attendance/list/{work}', [StaffAttendanceController::class, 'show'])->name('attendance.detail');
-    // // 勤怠修正
-    // Route::post('/attendance/list/{work}', [StaffAttendanceController::class, 'request'])->name('attendance.detail');
+    // 勤怠修正
+    Route::post('/attendance/list/{work}', [StaffAttendanceController::class, 'requestCorrection'])->name('attendance.request');
 
     // 申請一覧画面表示
     Route::get('/stamp_correction_request/list', [StaffRequestController::class, 'applicationList'])->name('request');
