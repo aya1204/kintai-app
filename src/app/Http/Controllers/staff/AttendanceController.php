@@ -215,11 +215,15 @@ class AttendanceController extends Controller
     public function show($workId)
     {
         if ($workId === '0') {
-            $work = null;
+            $work = new Work();
+            $work->id = 0;
+            $work->start_time = null;
+            $work->end_time = null;
+            $work->breaks = collect();
             $name = '';
         } else {
             $work = Work::with(['breaks', 'user'])->findOrFail($workId);
-            $name = $work->user->name ?? '';
+            $name = $work->user ? $work->user->name: '';
         }
             return view('staff.attendance.detail', compact('work', 'name'));
         }

@@ -85,11 +85,7 @@
             <div class="breaks">{{ $attendance ? $breakHours : '' }}</div>
             <div class="total">{{ $attendance ? $workHours : '' }}</div>
             <div class="detail">
-                @if ($attendance)
                 <a href="{{ route('staff.attendance.detail', ['work' => $attendance ? $attendance->id : '0', 'date' => $date->toDateString()]) }}" class="detail-link">詳細</a>
-                @else
-                <span class="no-detail">詳細</span>
-                @endif
             </div>
         </div>
         @endfor

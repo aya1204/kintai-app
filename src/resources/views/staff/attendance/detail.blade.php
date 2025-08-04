@@ -15,8 +15,14 @@
         <div class="detail-list-form">
             <div class="name-form">
                 <p class="name-title">名前</p>
-                <p class="user-name">{{$work->user->name}}</p>
-                <input class="user_id" type="hidden" value="{{ $work->user->id }}">
+                <p class="user-name">
+                    @if($work->user)
+                        {{$work->user->name}}
+                    @else
+                        {{-- ユーザー名なしの場合の表示 --}}
+                    @endif
+                </p>
+                <input class="user_id" type="hidden" value="{{ $work->user ? $work->user->id : '' }}">
             </div>
             <div class="date-form">
                 <p class="date-title">日付</p>
