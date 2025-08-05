@@ -28,7 +28,6 @@
                 <p class="user-name">
                     {{ $user->name }}
                 </p>
-                {{-- <input class="user_id" type="hidden" value="{{ $work->user ? $work->user->id : '' }}"> --}}
                 <input class="user_id" type="hidden" value="{{ $user->id }}">
             </div>
 
