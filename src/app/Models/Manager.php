@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Request as RequestModel;
 
 class Manager extends Model
 {
@@ -12,6 +13,6 @@ class Manager extends Model
     // requests(修正申請)と１対多の関係
     public function requests()
     {
-        return $this->hasMany(Request::class, 'manager_id');
+        return $this->hasMany(RequestModel::class, 'manager_id');
     }
 }
