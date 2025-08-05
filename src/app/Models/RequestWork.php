@@ -23,10 +23,10 @@ class RequestWork extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // request(修正申請)と多対1の関係
+    // request(修正申請)と1対1の関係
     public function request()
     {
-        return $this->belongsTo(RequestModel::class);
+        return $this->hasOne(RequestModel::class, 'request_work_id');
     }
 
     // requestBreaks(休憩時間の修正申請)と1対多の関係
@@ -34,9 +34,9 @@ class RequestWork extends Model
         return $this->hasMany(RequestBreak::class);
     }
 
-    // work（出勤・退勤）と1対1の関係
+    // work（出勤・退勤）と多対1の関係
     public function work()
     {
-        return $this->hasOne(RequestModel::class, 'work_id', 'work_id');
+        return $this->belongsTo(Work::class, 'work_id');
     }
 }
