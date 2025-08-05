@@ -278,7 +278,7 @@ class AttendanceController extends Controller
         $user = auth()->user();
 
         // 勤務日を取得(hiddenでフォームに渡している日付または現在の日付)
-        $date = now()->toDateString();
+        $date = $request->input('date', now()->toDateString());
 
         $requestWork = RequestWork::Create([
             'user_id' => $user->id,
