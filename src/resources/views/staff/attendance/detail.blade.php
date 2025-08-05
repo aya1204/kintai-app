@@ -6,6 +6,13 @@
 @endsection
 
 @section('content')
+
+@if(session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
+
 <div class="attendance-detail-form">
     <ul class="detail-title-form">
         <li class="detail-title">勤怠詳細</li>
@@ -39,9 +46,19 @@
             {{-- 出勤・退勤 --}}
             <div class="work-form">
                 <p class="work-title">出勤・退勤</p>
-                <input class="work-start-time" type="text" name="start_time" value="{{ old('start_time', $work && $work->start_time ? \Carbon\Carbon::parse($work->start_time)->format('H:i') : '')}}">
+                <div class="work-start-time-form">
+                    <input class="work-start-time" type="text" name="start_time" value="{{ old('start_time', $work && $work->start_time ? \Carbon\Carbon::parse($work->start_time)->format('H:i') : '')}}">
+                    @error('start_time')
+                    <div class="error-messages">{{ $message }}</div>
+                    @enderror
+                </div>
                 <p class="wavy-line">〜</p>
-                <input class="work-end-time" type="text" name="end_time" value="{{ old('end_time', $work && $work->end_time ? \Carbon\Carbon::parse($work->end_time)->format('H:i') : '')}}">
+                <div class="work-end-time-form">
+                    <input class="work-end-time" type="text" name="end_time" value="{{ old('end_time', $work && $work->end_time ? \Carbon\Carbon::parse($work->end_time)->format('H:i') : '')}}">
+                    @error('end_time')
+                    <div class="error-messages">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
 
 
@@ -62,9 +79,19 @@
             @if ($start || $end)
             <div class="break-form">
                 <p class="break-title">休憩{{ $breakIndex}}</p>
-                <input class="take-break-time" type="text" name="breaks[{{ $breakIndex }}][start_time]" value="{{ old('breaks.' . $breakIndex . '.start_time', $start) }}">
+                <div class="take-break-time-form">
+                    <input class="take-break-time" type="text" name="breaks[{{ $breakIndex }}][start_time]" value="{{ old('breaks.' . $breakIndex . '.start_time', $start) }}">
+                    @error('breaks.' . $breakIndex . '.start_time')
+                    <div class="error-messages">{{ $message }}</div>
+                    @enderror
+                </div>
                 <p class="wavy-line">〜</p>
-                <input class="break-return-time" type="text" name="breaks[{{ $breakIndex }}][end_time]" value="{{ old('breaks.' . $breakIndex . '.end_time', $end) }}">
+                <div class="break-return-time-form">
+                    <input class="break-return-time" type="text" name="breaks[{{ $breakIndex }}][end_time]" value="{{ old('breaks.' . $breakIndex . '.end_time', $end) }}">
+                    @error('breaks.' . $breakIndex . '.end_time')
+                    <div class="error-messages">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
             @php
             $breakIndex++;
@@ -76,19 +103,31 @@
             @if (!$hasEmptyBreak)
             <div class="break-form">
                 <p class="break-title">休憩{{ $breakIndex}}</p>
-                <input class="take-break-time" type="text" name="breaks[{{ $breakIndex }}][start_time]" value="">
+                <div class="take-break-time-form">
+                    <input class="take-break-time" type="text" name="breaks[{{ $breakIndex }}][start_time]" value="">
+                    @error('breaks.' . $breakIndex . '.start_time')
+                    <div class="error-messages">{{ $message }}</div>
+                    @enderror
+                </div>
                 <p class="wavy-line">〜</p>
-                <input class="break-return-time" type="text" name="breaks[{{ $breakIndex }}][end_time]" value="">
+                <div class="break-return-time-form">
+                    <input class="break-return-time" type="text" name="breaks[{{ $breakIndex }}][end_time]" value="">
+                    @error('breaks.' . $breakIndex . '.end_time')
+                    <div class="error-messages">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
             @endif
 
             {{-- 備考 --}}
             <div class="remark-form">
                 <p class="remark-title">備考</p>
-                <textarea class="remark" name="remark">{{ old('remark', $work->remarks ?? '')}}</textarea>
-                @error('remark')
-                <div class="text-danger">{{ $message }}</div>
-                @enderror
+                <div class="remark-input-form">
+                    <textarea class="remark" name="remark">{{ old('remark', $work->remarks ?? '')}}</textarea>
+                    @error('remark')
+                    <div class="error-messages">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
         </div>
 

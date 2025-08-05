@@ -77,6 +77,13 @@ body {
     padding-left: 64px;
 }
 
+/* バリデーションメッセージ */
+.error-messages {
+    color: #FF000080;
+    position: absolute;
+    font-size: 10px;
+}
+
 /* 名前フォーム */
 .name-form {
     height: 79px;
@@ -251,6 +258,11 @@ body {
         padding-left: 23px;
     }
 
+    /* バリデーションメッセージ */
+    .error-messages {
+        font-size: 5px;
+    }
+
     /* 名前・日付・出勤退勤・休憩１・休憩２〜・備考のタイトル */
     .name-title,
     .date-title,
@@ -371,6 +383,11 @@ body {
         border-bottom: 2px solid #E1E1E1;
         margin: 0 5px;
         padding-left: 18px;
+    }
+
+    /* バリデーションメッセージ */
+    .error-messages {
+        font-size: 3px;
     }
 
     /* 名前・日付・出勤退勤・休憩１・休憩２〜・備考のタイトル */
