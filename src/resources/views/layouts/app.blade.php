@@ -49,7 +49,7 @@
             <div class="header__nav">
                 <a href="{{ route('staff.attendance.index') }}">勤怠</a>
                 <a href="{{ route('staff.attendance.list') }}">勤怠一覧</a>
-                <a href="{{ route('staff.request') }}">申請</a>
+                <a href="{{ route('staff.request.list') }}">申請</a>
                 <form action="{{ route('staff.logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="logout-button">ログアウト</button>
