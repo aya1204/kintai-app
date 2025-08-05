@@ -212,61 +212,106 @@ class AttendanceController extends Controller
     /**
      * 勤怠一覧画面表示
      */
-    public function show($workId)
+    public function show($id, Request $request)
     {
-        if ($workId === '0') {
-            $work = new Work();
-            $work->id = 0;
-            $work->start_time = null;
-            $work->end_time = null;
-            $work->breaks = collect();
-            $name = '';
-        } else {
-            $work = Work::with(['breaks', 'user'])->findOrFail($workId);
-            $name = $work->user ? $work->user->name: '';
-        }
-            return view('staff.attendance.detail', compact('work', 'name'));
+        $work = Work::with(['user', 'breaks'])->find($id);
+
+        // $workがあればそのuser、なければ認証中のユーザー
+        $user = $work ? $work->user : Auth::user();
+        // URLのクエリから ?date=2025-08-01 のような日付を取得（なければnull）
+        $date = $request->input('date');
+            return view('staff.attendance.detail', compact('work', 'user', 'date'));
         }
 
-        /**
-         * 勤怠修正申請
-         */
-        public function requestCorrection(AttendanceRequest $request,$workId)
-        {
-            $user = auth()->user();
-            // 申請対象の勤怠データ
-            $work = Work::with('breaks', 'user')->findOrFail(($workId));
+    /**
+     * 勤怠修正申請
+     */
+    public function requestCorrection(AttendanceRequest $request,$workId)
+    {
+        $date = $request->input('date');
+        $user = auth()->user();
+        // 申請対象の勤怠データ
+        $work = Work::with('breaks', 'user')->findOrFail(($workId));
 
-            $requestWork = RequestWork::updateOrCreate([
-                'user_id' => $user->id,
-                'date' => $work->date, //勤務日
-            ],
-            [
-                'start_time' => $request->input('start_time'),
-                'end_time' => $request->input('end_time'),
-            ]);
+        $requestWork = RequestWork::updateOrCreate([
+            'user_id' => $user->id,
+            'date' => $work->date, //勤務日
+        ],
+        [
+            'start_time' => $request->input('start_time'),
+            'end_time' => $request->input('end_time'),
+        ]);
 
-            foreach ($request->input('breaks', []) as $break) {
-                if (!empty($break['start_time']) && !empty($break['end_time'])) {
-                    RequestBreak::create([
-                        'request_work_id' => $requestWork->id,
-                        'date' => $work->date, //勤務日
-                        'start_time' => $break['start_time'],
-                        'end_time' => $break['end_time'],
-                    ]);
-                }
+        foreach ($request->input('breaks', []) as $break) {
+            if (!empty($break['start_time']) && !empty($break['end_time'])) {
+                RequestBreak::create([
+                    'request_work_id' => $requestWork->id,
+                    'date' => $work->date, //勤務日
+                    'start_time' => $break['start_time'],
+                    'end_time' => $break['end_time'],
+                ]);
             }
-
-            // requestsテーブルに保存（承認状態は仮でfalse、備考も記入）
-            RequestModel::create([
-                'work_id' => $work->id,
-                'manager_id' => 1,
-                //todo 'manager_id' => auth()->guard('admin')->id(),
-                'approved' => false,
-                'staff_remarks' => $request->input('remark'),
-                'admin_remarks' => '', // 管理者が後で記入
-            ]);
-
-            return redirect()->route('staff.attendance.detail', ['work' => $work->id])->with('success', '修正申請が送信されました');
         }
+
+        // requestsテーブルに保存（承認状態は仮でfalse、備考も記入）
+        RequestModel::create([
+            'work_id' => $work->id,
+            'manager_id' => 1,
+            //todo 'manager_id' => auth()->guard('admin')->id(),
+            'approved' => false,
+            'staff_remarks' => $request->input('remark'),
+            'admin_remarks' => '', // 管理者が後で記入
+        ]);
+
+        return redirect()->route('staff.attendance.detail', [
+            'user' => $user,
+            'work' => $work->id,
+            'date' => $date,
+            ])->with('success', '修正申請が送信されました');
+        }
+
+    /**
+     * 勤怠新規作成申請
+     */
+    public function createCorrection(AttendanceRequest $request)
+    {
+        $user = auth()->user();
+
+        // 勤務日を取得(hiddenでフォームに渡している日付または現在の日付)
+        $date = now()->toDateString();
+
+        $requestWork = RequestWork::Create([
+            'user_id' => $user->id,
+            'date' => $date, //勤務日
+            'start_time' => $request->input('start_time'),
+            'end_time' => $request->input('end_time'),
+        ]);
+
+        // 休憩データの作成
+        foreach ($request->input('breaks', []) as $break) {
+            if (!empty($break['start_time']) && !empty($break['end_time'])) {
+                RequestBreak::create([
+                    'request_work_id' => $requestWork->id,
+                    'date' => $date, //勤務日
+                    'start_time' => $break['start_time'],
+                    'end_time' => $break['end_time'],
+                ]);
+            }
+        }
+
+        // requestsテーブルに保存（承認状態は仮でfalse、備考も記入）
+        RequestModel::create([
+            'request_work_id' => $requestWork->id,
+            'manager_id' => 1,
+            //todo 'manager_id' => auth()->guard('admin')->id(),
+            'approved' => false,
+            'staff_remarks' => $request->input('remark'),
+            'admin_remarks' => '', // 管理者が後で記入
+        ]);
+
+        // 勤怠一覧画面へ遷移
+        return redirect()->route('staff.attendance.list',[
+            'date' => $date,
+        ])->with('success', '新規修正申請が送信されました');
+    }
 }
