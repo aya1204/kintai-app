@@ -45,7 +45,7 @@ body {
     opacity: 1;
     font-size: 30px;
     line-height: 100%;
-    letter-spacing: 0%;
+    letter-spacing: 0em;
 }
 
 
@@ -130,9 +130,9 @@ body {
 .take-break-time,
 .break-return-time {
     width: 103px;
-    font-style: Bold;
+    font-weight: bold;
     font-size: 16px;
-    letter-spacing: 15%;
+    letter-spacing: 0.15em;
     color: #000000;
     gap: 10px;
     text-align: center;
@@ -150,9 +150,9 @@ body {
 /* 〜のフォーム */
 .wavy-line {
     width: 69px;
-    font-style: Bold;
+    font-weight: bold;
     font-size: 16px;
-    letter-spacing: 15%;
+    letter-spacing: 0.15em;
     color: #000000;
     gap: 10px;
     text-align: center;
@@ -165,9 +165,9 @@ body {
 
 /* 備考 */
 .remark {
-    font-style: Bold;
+    font-weight: bold;
     font-size: 14px;
-    letter-spacing: 15%;
+    letter-spacing: 0.15em;
     color: #000000;
     width: 316px;
     height: 72px;
@@ -188,7 +188,7 @@ body {
     font-style: Bold;
     font-size: 22px;
     line-height: 100%;
-    letter-spacing: 15%;
+    letter-spacing: 0.15em;
     color: #FFFFFF;
     background-color: #000000;
     width: 130px;
@@ -208,7 +208,7 @@ body {
     font-weight: 800;
     font-style: Extra Bold;
     font-size: 18px;
-    letter-spacing: 15%;
+    letter-spacing: 0.15em;
     color: #FF000080;
 }
 
