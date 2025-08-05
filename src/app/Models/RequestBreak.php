@@ -14,13 +14,7 @@ class RequestBreak extends Model
         'end_time',
     ];
 
-    // break(休憩)と１対１の関係
-    public function break()
-    {
-        return $this->belongsTo(BreakTime::class, 'break_id');
-    }
-
-    // request(休憩修正申請)と１対１の関係
+    // request(休憩修正申請)と多対1の関係
     public function request()
     {
         return $this->belongsTo(Request::class);
