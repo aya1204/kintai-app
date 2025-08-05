@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\BreakTime;
+use App\Models\Request as RequestModel;
 
 class Work extends Model
 {
@@ -31,6 +32,6 @@ class Work extends Model
     // requests(修正申請)テーブルと多対1の関係
     public function request()
     {
-        return $this->hasOne(Request::class, 'work_id');
+        return $this->hasOne(RequestModel::class);
     }
 }
