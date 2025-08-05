@@ -29,7 +29,7 @@ class Request extends Model
         return $this->belongsTo(Work::class);
     }
 
-    // requestWorks(出勤・退勤の修正申請)と多対1の関係
+    // requestWorks(出勤・退勤の修正申請)と1対1の関係
     public function requestWork()
     {
         return $this->belongsTo(RequestWork::class, 'request_work_id');
