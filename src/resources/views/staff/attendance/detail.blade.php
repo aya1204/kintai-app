@@ -17,12 +17,12 @@
     <ul class="detail-title-form">
         <li class="detail-title">勤怠詳細</li>
     </ul>
-    {{-- <form class="correction-form" action="{{ route('staff.attendance.request', ['work' => $work->id]) }}" method="POST"> --}}
+    {{-- 勤怠修正申請フォーム(新規 or 更新で分岐) --}}
     <form class="correction-form" action="{{ $work ? route('staff.attendance.request', ['work' => $work->id]) : route('staff.attendance.create') }}" method="POST">
         @csrf
         <div class="detail-list-form">
 
-            {{-- 名前 --}}
+            {{-- 名前表示 --}}
             <div class="name-form">
                 <p class="name-title">名前</p>
                 <p class="user-name">
@@ -32,7 +32,7 @@
                 <input class="user_id" type="hidden" value="{{ $user->id }}">
             </div>
 
-            {{-- 日付 --}}
+            {{-- 日付表示 --}}
             <div class="date-form">
                 <p class="date-title">日付</p>
                 @php
@@ -43,16 +43,21 @@
                 <input type="hidden" name="date" value="{{ $workDate->format('Y-m-d') }}">
             </div>
 
-            {{-- 出勤・退勤 --}}
+            {{-- 出勤・退勤時間入力 --}}
             <div class="work-form">
                 <p class="work-title">出勤・退勤</p>
+
+                {{-- 出勤時間 --}}
                 <div class="work-start-time-form">
                     <input class="work-start-time" type="text" name="start_time" value="{{ old('start_time', $work && $work->start_time ? \Carbon\Carbon::parse($work->start_time)->format('H:i') : '')}}">
                     @error('start_time')
                     <div class="error-messages">{{ $message }}</div>
                     @enderror
                 </div>
+
                 <p class="wavy-line">〜</p>
+
+                {{-- 退勤時間 --}}
                 <div class="work-end-time-form">
                     <input class="work-end-time" type="text" name="end_time" value="{{ old('end_time', $work && $work->end_time ? \Carbon\Carbon::parse($work->end_time)->format('H:i') : '')}}">
                     @error('end_time')
@@ -62,15 +67,17 @@
             </div>
 
 
-            {{-- 休憩 --}}
+            {{-- 休憩時間入力 --}}
             @php
-            $breakIndex = 1;
-            $hasEmptyBreak = false;
-            $breaks = $work ? $work->breaks : collect();
+            $breakIndex = 1; // 何番目の休憩か
+            $hasEmptyBreak = false; // 空の休憩が存在するか
+            $breaks = $work ? $work->breaks : collect(); // 勤怠データが存在すれば登録済みの休憩時間を取得、なければ空のコレクションを代入
             @endphp
 
             @foreach ($breaks as $break)
             @php
+            // 休憩開始・終了時刻があればH:i(例:13:15)の形式で表示
+            // 空の休憩枠が1つでもあれば$hasEmptyBreakをtrueにする
             $start = $break->start_time ? \Carbon\Carbon::parse($break->start_time)->format('H:i') : null;
             $end = $break->end_time ? \Carbon\Carbon::parse($break->end_time)->format('H:i') : null;
             $hasEmptyBreak = $hasEmptyBreak|| (!$start && !$end);
@@ -79,13 +86,18 @@
             @if ($start || $end)
             <div class="break-form">
                 <p class="break-title">休憩{{ $breakIndex}}</p>
+
+                {{-- 休憩開始 --}}
                 <div class="take-break-time-form">
                     <input class="take-break-time" type="text" name="breaks[{{ $breakIndex }}][start_time]" value="{{ old('breaks.' . $breakIndex . '.start_time', $start) }}">
                     @error('breaks.' . $breakIndex . '.start_time')
                     <div class="error-messages">{{ $message }}</div>
                     @enderror
                 </div>
+
                 <p class="wavy-line">〜</p>
+
+                {{-- 休憩終了 --}}
                 <div class="break-return-time-form">
                     <input class="break-return-time" type="text" name="breaks[{{ $breakIndex }}][end_time]" value="{{ old('breaks.' . $breakIndex . '.end_time', $end) }}">
                     @error('breaks.' . $breakIndex . '.end_time')
@@ -119,7 +131,7 @@
             </div>
             @endif
 
-            {{-- 備考 --}}
+            {{-- 備考欄 --}}
             <div class="remark-form">
                 <p class="remark-title">備考</p>
                 <div class="remark-input-form">
@@ -131,7 +143,7 @@
             </div>
         </div>
 
-        {{-- 修正ボタン表示 --}}
+        {{-- 修正ボタンエリア --}}
         <div class="correction-button-form">
             {{-- 未承認の間は修正ボタンを非表示、コメント表示 --}}
             @if ($work && $work->request && $work->request->approved !== 1)
