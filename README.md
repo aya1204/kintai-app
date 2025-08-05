@@ -100,8 +100,10 @@
 - users ↔︎ works：１対多
 - users ↔︎ request_works：１対多
 - works ↔︎ breaks：１対多
-- request_works ↔︎ request_breaks：１対多
 - works ↔︎ requests：１対0または１
+- request_works ↔︎ request_breaks：１対多
+- request_works ↔︎ requests：１対１
+- request_breaks ↔︎ requests：多対１
 - managers ↔︎ requests：１対多
 
 ![ER図](docs/kintai-app-er.png)
