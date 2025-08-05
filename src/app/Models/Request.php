@@ -10,6 +10,7 @@ class Request extends Model
     use HasFactory;
     protected $fillable = [
         'work_id',
+        'request_work_id',
         'manager_id',
         'approved',
         'staff_remarks',
@@ -29,7 +30,7 @@ class Request extends Model
     }
 
     // requestWorks(出勤・退勤の修正申請)と多対1の関係
-    public function requestWorks()
+    public function requestWork()
     {
         return $this->belongsTo(RequestWork::class, 'request_work_id');
     }
