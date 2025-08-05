@@ -29,9 +29,9 @@ class Work extends Model
         return $this->hasMany(BreakTime::class, 'work_id');
     }
 
-    // requests(修正申請)テーブルと多対1の関係
+    // requests(修正申請)テーブルと1対1の関係
     public function request()
     {
-        return $this->hasOne(RequestModel::class);
+        return $this->hasOne(RequestModel::class, 'work_id');
     }
 }
