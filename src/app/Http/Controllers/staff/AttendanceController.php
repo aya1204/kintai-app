@@ -196,21 +196,27 @@ class AttendanceController extends Controller
      */
     public function attendance(Request $request)
     {
+        // 認証済みのユーザー情報を取得
         $user = Auth::user();
+
+        // 「month」という入力があったらそれを使う(例:2025-08)
+        // 入力がなければ今の年月を自動で設定
         $currentMonth = $request->input('month') ?? now()
 ->format('Y-m');
 
+        // ユーザーが指定した月の勤務データを取得
+        // 勤務ごとの休憩情報もまとめて一緒に読み込み
         $attendances = Work::with('breaks')
         ->where('user_id', $user->id)
-        ->where('date', 'like', "{$currentMonth}%")
-        ->orderBy('date')
+        ->where('date', 'like', "{$currentMonth}%") // 指定月の全日付にマッチ(8月なら31日、9月なら30日分表示)
+        ->orderBy('date') // 日付順で並べる
         ->get();
 
         return view('staff.attendance.list', compact('attendances', 'currentMonth'));
     }
 
     /**
-     * 勤怠一覧画面表示
+     * 勤怠詳細画面表示
      */
     public function show($id, Request $request)
     {
@@ -228,11 +234,18 @@ class AttendanceController extends Controller
      */
     public function requestCorrection(AttendanceRequest $request,$workId)
     {
+        // フォームから送られてきた勤務日を取得
         $date = $request->input('date');
+
+        // ログイン済みユーザー情報を取得
         $user = auth()->user();
-        // 申請対象の勤怠データ
+
+        // 修正申請対象の勤怠データをIDから取得
+        // その勤怠の休憩情報とユーザー情報も一緒に取得
         $work = Work::with('breaks', 'user')->findOrFail(($workId));
 
+        // request_worksテーブルに修正申請データを保存
+        // 同じユーザーと同じ勤務日なら更新、なければ新規作成
         $requestWork = RequestWork::updateOrCreate([
             'user_id' => $user->id,
             'date' => $work->date, //勤務日
@@ -242,10 +255,12 @@ class AttendanceController extends Controller
             'end_time' => $request->input('end_time'),
         ]);
 
+        // 休憩時間の修正申請があれば、1件ずつrequest_breaksテーブルに保存
         foreach ($request->input('breaks', []) as $break) {
+            // 休憩開始・休憩終了が両方とも空じゃない場合のみ登録
             if (!empty($break['start_time']) && !empty($break['end_time'])) {
                 RequestBreak::create([
-                    'request_work_id' => $requestWork->id,
+                    'request_work_id' => $requestWork->id, // 修正申請の勤怠IDと紐付ける
                     'date' => $work->date, //勤務日
                     'start_time' => $break['start_time'],
                     'end_time' => $break['end_time'],
@@ -275,23 +290,26 @@ class AttendanceController extends Controller
      */
     public function createCorrection(AttendanceRequest $request)
     {
+        // ログイン中のユーザー情報を取得
         $user = auth()->user();
 
         // 勤務日を取得(hiddenでフォームに渡している日付または現在の日付)
         $date = $request->input('date', now()->toDateString());
 
+        // request_worksテーブルに新しい修正申請レコードを作成
         $requestWork = RequestWork::Create([
-            'user_id' => $user->id,
+            'user_id' => $user->id, // ユーザーIDをセット
             'date' => $date, //勤務日
             'start_time' => $request->input('start_time'),
             'end_time' => $request->input('end_time'),
         ]);
 
-        // 休憩データの作成
+        // 休憩時間の修正申請データを作成
         foreach ($request->input('breaks', []) as $break) {
+            // 休憩開始・終了時間が両方とも空でなければ処理
             if (!empty($break['start_time']) && !empty($break['end_time'])) {
                 RequestBreak::create([
-                    'request_work_id' => $requestWork->id,
+                    'request_work_id' => $requestWork->id, // 修正申請の勤怠IDと紐付け
                     'date' => $date, //勤務日
                     'start_time' => $break['start_time'],
                     'end_time' => $break['end_time'],
