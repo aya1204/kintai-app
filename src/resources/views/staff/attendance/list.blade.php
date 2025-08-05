@@ -6,6 +6,13 @@
 @endsection
 
 @section('content')
+
+@if(session('success'))
+<div class="alert-success">
+    {{ session('success') }}
+</div>
+@endif
+
 <div class="attendance-list-form">
     <ul class="list-title-form">
         <li class="list-title">勤怠一覧</li>
