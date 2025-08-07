@@ -1,0 +1,433 @@
+/* 申請一覧画面用のCSS */
+
+body {
+    max-width: 1512px;
+    background-color: #F0EFF2;
+}
+
+/* 申請一覧〜申請の詳細までの全体フォーム */
+.request-form {
+    width: 900px;
+    height: 732px;
+    margin: 173px auto;
+    font-family: Inter;
+    font-style: Bold;
+    line-height: 100%;
+    font-weight: 700;
+}
+
+/* 申請一覧の「｜」を左寄せ */
+.list-title-form {
+    padding-left: 0;
+}
+
+/* 申請一覧画面のフォーム */
+.list-title-form li {
+    list-style-type: none;
+    position: relative;
+    padding-left: 10px;
+}
+
+/* 申請一覧画面のフォーム：「・」を「｜」に変更 */
+.list-title-form li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: black;
+}
+
+/* 「｜」と申請一覧のフォーム */
+.list-title {
+    width: 141px;
+    height: 36px;
+    opacity: 1;
+    font-size: 30px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+
+/* タブのフォーム */
+.tab-buttons {
+    border-bottom: 1px solid #000000;
+    margin: 61px 0 45px 0;
+    height: 39px;
+}
+
+/* 承認待ち、承認済み */
+.button-submit {
+    font-size: 16px;
+    letter-spacing: 15%;
+    color: #000000;
+    text-decoration: none;
+    padding: 17px;
+    margin: 0 49px 0 57px;
+}
+
+/* 状態・名前・対象日時・申請理由・申請日時・詳細のフォーム */
+.request-list-form {
+    background-color: #FFFFFF;
+    margin-top: 45px;
+    color: #737373;
+    width: 900px;
+    max-height: 1506px;
+    height: auto;
+    opacity: 1;
+    border-radius: 10px;
+    font-size: 16px;
+    margin: auto;
+}
+
+/* 申請一覧の各タイトルと各データ */
+.request-list-title-form,
+.request-list-item {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    border-bottom: 3px solid #E1E1E1;
+    align-items: center;
+    margin: 30px 0;
+    padding: 0 20px;
+    justify-content: space-between;
+}
+
+/* 状態〜詳細までのタイトルフォーム */
+.request-list-title-form {
+    height: 46px;
+    padding-top: 14px;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+/* 承認待ち〜詳細リンクまでのフォーム */
+.request-list-item {
+    height: 47px;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+/* 状態 */
+.status-title,
+.status {
+    width: 80px;
+    text-align: center;
+    margin-right: 15px;
+    font-size: 16px;
+    letter-spacing: 0.15em;
+}
+
+/* 名前 */
+.name-title,
+.user-name {
+    width: 120px;
+    text-align: left;
+    font-size: 16px;
+    letter-spacing: 0.15em;
+    margin: 0 15px;
+}
+
+/* 対象日時 */
+.work-date-title,
+.work-date {
+    width: 110px;
+    text-align: left;
+    margin-right: 15px;
+    font-size: 16px;
+}
+/* 対象日時のタイトル */
+.work-date-title {
+    letter-spacing: 0.15em;
+}
+/* 対象日時のデータ */
+.work-date {
+    letter-spacing: 0em;
+}
+
+/* 申請理由 */
+.request-reason-title,
+.reason {
+    width: 173px;
+    text-align: left;
+    margin-left: 15px;
+    font-size: 16px;
+    letter-spacing: 0.15em;
+}
+
+/* 申請日時 */
+.request-date-title,
+.request-date {
+    width: 110px;
+    text-align: left;
+    font-size: 16px;
+}
+/* 申請日時のタイトル */
+.request-date-title {
+    letter-spacing: 0.15em;
+}
+/* 申請日時のデータ */
+.request-date {
+    letter-spacing: 0em;
+}
+
+/* 詳細 */
+.detail-title,
+.detail {
+    width: 60px;
+    text-align: center;
+    margin-left: 15px;
+    font-size: 16px;
+    letter-spacing: 0.15em;
+}
+/* 詳細リンク */
+.detail {
+    text-decoration: none;
+    color: #000000;
+}
+
+.request-list-item:last-child {
+    border-bottom: none;
+}
+
+/* タブレット（768-850px）対応 */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    /* 申請一覧〜申請の詳細までの全体フォーム */
+    .request-form {
+        width: 495px;
+        height: 403px;
+        margin: 95px auto;
+    }
+
+
+    /* 申請一覧画面のフォーム */
+    .list-title-form li {
+        padding-left: 6px;
+    }
+
+    /* 申請一覧画面のフォーム：「・」を「｜」に変更 */
+    .list-title-form li::before {
+        width: 3px;
+    }
+
+    /* 「｜」と申請一覧のフォーム */
+    .list-title {
+        width: 76px;
+        height: 20px;
+        font-size: 17px;
+    }
+
+    /* タブのフォーム */
+    .tab-buttons {
+        border-bottom: 1px solid #000000;
+        margin: 34px 0 25px 0;
+        height: 21px;
+    }
+
+    /* 承認待ち、承認済み */
+    .button-submit {
+        font-size: 9px;
+        letter-spacing: 0.15em;
+        padding: 9px;
+        margin: 0 27px 0 31px;
+    }
+
+    /* 状態・名前・対象日時・申請理由・申請日時・詳細のフォーム */
+    .request-list-form {
+        margin-top: 25px;
+        width: 495px;
+        border-radius: 6px;
+        font-size: 9px;
+    }
+
+    /* 申請一覧の各タイトルと各データ */
+    .request-list-title-form,
+    .request-list-item {
+        gap: 11px;
+        border-bottom: 2px solid #E1E1E1;
+        margin: 17px 0;
+        padding: 0 11px;
+    }
+
+    /* 状態〜詳細までのタイトルフォーム */
+    .request-list-title-form {
+        height: 25px;
+        padding-top: 8px;
+        margin-left: 6px;
+        margin-right: 11px;
+    }
+
+    /* 承認待ち〜詳細リンクまでのフォーム */
+    .request-list-item {
+        height: 26px;
+        margin-left: 6px;
+        margin-right: 11px;
+    }
+
+    /* 状態 */
+    .status-title,
+    .status {
+        width: 44px;
+        margin-right: 8px;
+        font-size: 9px;
+    }
+
+    /* 名前 */
+    .name-title,
+    .user-name {
+        width: 66px;
+        font-size: 9px;
+        margin: 0 8px;
+    }
+
+    /* 対象日時 */
+    .work-date-title,
+    .work-date {
+        width: 61px;
+        margin-right: 8px;
+        font-size: 8px;
+    }
+
+    /* 申請理由 */
+    .request-reason-title,
+    .reason {
+        width: 95px;
+        margin-left: 8px;
+        font-size: 9px;
+    }
+
+    /* 申請日時 */
+    .request-date-title,
+    .request-date {
+        width: 61px;
+        font-size: 8px;
+    }
+
+    /* 詳細 */
+    .detail-title,
+    .detail {
+        width: 33px;
+        margin-left: 8px;
+        font-size: 9px;
+    }
+}
+
+/* スマホ（767px以下）対応 */
+@media screen and (max-width: 767px) {
+    /* 申請一覧〜申請の詳細までの全体フォーム */
+    .request-form {
+        width: 297px;
+        height: 242px;
+        margin: 57px auto;
+    }
+
+
+    /* 申請一覧画面のフォーム */
+    .list-title-form li {
+        padding-left: 4px;
+    }
+
+    /* 申請一覧画面のフォーム：「・」を「｜」に変更 */
+    .list-title-form li::before {
+        width: 2px;
+    }
+
+    /* 「｜」と申請一覧のフォーム */
+    .list-title {
+        width: 46px;
+        height: 12px;
+        font-size: 10px;
+    }
+
+    /* タブのフォーム */
+    .tab-buttons {
+        border-bottom: 0.5px solid #000000;
+        margin: 20px 0 15px 0;
+        height: 17px;
+    }
+
+    /* 承認待ち、承認済み */
+    .button-submit {
+        font-size: 5px;
+        padding: 5px;
+        margin: 0 16px 0 19px;
+    }
+
+    /* 状態・名前・対象日時・申請理由・申請日時・詳細のフォーム */
+    .request-list-form {
+        margin-top: 15px;
+        width: 297px;
+        border-radius: 4px;
+        font-size: 5px;
+    }
+
+    /* 申請一覧の各タイトルと各データ */
+    .request-list-title-form,
+    .request-list-item {
+        gap: 7px;
+        border-bottom: 1px solid #E1E1E1;
+        margin: 10px 0;
+        padding: 0 7px;
+    }
+
+    /* 状態〜詳細までのタイトルフォーム */
+    .request-list-title-form {
+        height: 15px;
+        padding-top: 5px;
+        margin-left: 4px;
+        margin-right: 7px;
+    }
+
+    /* 承認待ち〜詳細リンクまでのフォーム */
+    .request-list-item {
+        height: 16px;
+        margin-left: 4px;
+        margin-right: 7px;
+    }
+
+    /* 状態 */
+    .status-title,
+    .status {
+        width: 26px;
+        margin-right: 5px;
+        font-size: 5px;
+    }
+
+    /* 名前 */
+    .name-title,
+    .user-name {
+        width: 40px;
+        font-size: 5px;
+        margin: 0 5px;
+    }
+
+    /* 対象日時 */
+    .work-date-title,
+    .work-date {
+        width: 37px;
+        margin-right: 5px;
+        font-size: 5px;
+    }
+
+    /* 申請理由 */
+    .request-reason-title,
+    .reason {
+        width: 57px;
+        margin-left: 5px;
+        font-size: 5px;
+    }
+
+    /* 申請日時 */
+    .request-date-title,
+    .request-date {
+        width: 37px;
+        font-size: 5px;
+    }
+
+    /* 詳細 */
+    .detail-title,
+    .detail {
+        width: 20px;
+        margin-left: 5px;
+        font-size: 5px;
+    }}

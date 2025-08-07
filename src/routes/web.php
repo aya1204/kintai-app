@@ -58,7 +58,7 @@ Route::middleware('auth:web')->name('staff.')->group(function () {
     Route::post('/attendance/correction', [StaffAttendanceController::class, 'createCorrection'])->name('attendance.create');
 
     // 申請一覧画面表示
-    Route::get('/stamp_correction_request/list', [StaffRequestController::class, 'applicationList'])->name('request');
+    Route::get('/stamp_correction_request/list', [StaffRequestController::class, 'requestList'])->name('request.list');
 
     //ログアウト機能
     Route::post('/logout', [StaffAuthController::class, 'logout'])->name('logout');
