@@ -38,7 +38,7 @@
                 $workDate = $work ? \Carbon\Carbon::parse($work->date) : \Carbon\Carbon::parse($date);
                 @endphp
                 <p class="date-year">{{ $workDate->format('Y年') }}</p>
-                <p class="date-month-day">{{ $workDate->format('m月d日') }}</p>
+                <p class="date-month-day">{{ $workDate->format('n月j日') }}</p>
                 <input type="hidden" name="date" value="{{ $workDate->format('Y-m-d') }}">
             </div>
 
@@ -84,7 +84,7 @@
 
             @if ($start || $end)
             <div class="break-form">
-                <p class="break-title">休憩{{ $breakIndex}}</p>
+                <p class="break-title">{{ $breakIndex === 1 ? '休憩' : '休憩' . $breakIndex }}</p>
 
                 {{-- 休憩開始 --}}
                 <div class="take-break-time-form">
