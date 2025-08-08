@@ -1,0 +1,124 @@
+/* 管理者用ログイン画面のCSS */
+
+/* ログインから会員登録はこちらまで */
+.login-form__content {
+    margin: 0 auto;
+    padding: 30px 15px;
+    max-width: 680px;
+    width: 100%;
+}
+
+/* ログイン */
+.login-form__heading {
+    margin-bottom: 70px;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* メールアドレスからログインするボタンまで */
+.form {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+/* メールアドレスと入力欄、パスワードと入力欄 */
+.form__group {
+    margin-bottom: 5px;
+}
+
+/* メールアドレスとパスワード */
+.form__group-title {
+    text-align: left;
+    margin-bottom: 10px;
+
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0%;
+}
+
+/* バリデーションエラーメッセージ */
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
+}
+
+/* 入力欄 */
+.form__input--text input {
+    padding: 10px;
+    width: 100%;
+    height: 56px;
+    border: 1px solid #5F5F5F;
+    border-radius: 3px;
+    margin-bottom: 10px;
+
+    appearance: none;
+}
+
+/* 管理者ログインするボタンのフォーム */
+.form__button {
+    margin-top: 50px;
+    width: 100%;
+    height: 57px;
+    border-radius: 4px;
+}
+
+/* 管理者ログインするボタンの文字など */
+.form__button-submit {
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    background: #000000;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* 会員登録はこちらのフォーム */
+.register__link {
+    margin-top: 32px;
+    text-align: center;
+}
+
+/* 会員登録はこちら */
+.register__button-submit {
+    text-decoration: none;
+    color: #0073CC;
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.alert {
+    color: red;
+}
+
+@media screen and (max-width: 767px) {
+    .form__button {
+        height: 48px;
+    }
+
+    .form__button-submit {
+        font-size: 20px;
+    }
+}

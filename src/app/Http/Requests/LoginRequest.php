@@ -23,6 +23,17 @@ class LoginRequest extends FormRequest
      */
     public function rules()
     {
+        $route = $this->route()->getName(); // ルート名で分岐する
+
+        // もしadmin.がつくルートなら
+        if (str_starts_with($route, 'admin.')) {
+            return [
+                'email' => ['required', 'email', 'exists:managers,email'], // 管理者のメールアドレス
+                'password' => ['required'],
+            ];
+        }
+
+        // スタッフログイン用バリデーション
         return [
             'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8'],

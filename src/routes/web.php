@@ -3,6 +3,8 @@
 use App\Http\Controllers\Staff\AuthController as StaffAuthController;
 use App\Http\Controllers\Staff\AttendanceController as StaffAttendanceController;
 use App\Http\Controllers\Staff\RequestController as StaffRequestController;
+
+use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,4 +64,15 @@ Route::middleware('auth:web')->name('staff.')->group(function () {
 
     //ログアウト機能
     Route::post('/logout', [StaffAuthController::class, 'logout'])->name('logout');
+});
+
+// 管理者用のルーティング
+
+// 未ログイン時（ゲスト）
+Route::middleware('guest:admin')->group(function () {
+
+    // ログイン画面表示
+    Route::get('/admin/login', [AdminAuthController::class, 'index'])->name('login');
+    // ログイン処理
+    Route::post('/admin/login', [AdminAuthController::class, 'login']);
 });

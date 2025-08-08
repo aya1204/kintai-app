@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Request as RequestModel;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Manager extends Model
+class Manager extends Authenticatable
 {
     use HasFactory;
 
