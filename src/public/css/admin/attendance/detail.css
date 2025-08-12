@@ -1,0 +1,482 @@
+/* 【管理者用】勤怠詳細画面のCSSファイル */
+
+body {
+    max-width: 1512px;
+    background-color: #F0EFF2;
+}
+
+/* フラッシュメッセージ */
+.alert-success {
+    color: red;
+    font-size: 20px;
+}
+
+/* 勤怠詳細〜各日にちの詳細までの全体フォーム */
+.attendance-detail-form {
+    width: 900px;
+    height: 732px;
+    margin: 173px auto;
+    font-family: Inter;
+    line-height: 100%;
+    font-weight: 700;
+}
+
+/* 勤怠詳細の「｜」を左寄せ */
+.detail-title-form {
+    padding-left: 0;
+}
+
+/* 勤怠詳細画面のフォーム */
+.detail-title-form li {
+    list-style-type: none;
+    position: relative;
+    padding-left: 10px;
+}
+
+/* 勤怠詳細画面のフォーム：「・」を「｜」に変更 */
+.detail-title-form li::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: black;
+}
+
+/* 「｜」と勤怠詳細のフォーム */
+.detail-title {
+    width: 141px;
+    height: 36px;
+    opacity: 1;
+    font-size: 30px;
+    line-height: 100%;
+    letter-spacing: 0em;
+}
+
+
+/* 名前・日付・出勤・退勤・休憩・備考のフォーム */
+.detail-list-form {
+    background-color: #FFFFFF;
+    margin-top: 46px;
+    color: #737373;
+    width: 900px;
+    max-height: 1506px;
+    height: auto;
+    opacity: 1;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+/* 名前・日付・出勤退勤・休憩１・休憩2〜・備考の各フォーム */
+.name-form,
+.date-form,
+.work-form,
+.break-form,
+.remark-form {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    border-bottom: 3px solid #E1E1E1;
+    justify-content: left;
+    align-items: center;
+    padding-left: 64px;
+}
+
+/* バリデーションメッセージ */
+.error-messages {
+    color: #FF000080;
+    position: absolute;
+    font-size: 10px;
+}
+
+/* 名前フォーム */
+.name-form {
+    height: 79px;
+}
+
+/* 日付フォーム */
+.date-form {
+    height: 89px;
+}
+
+/* 出勤・退勤フォーム */
+.work-form {
+    height: 91px;
+}
+
+/* 休憩フォーム */
+.break-form {
+    height: 95px;
+}
+
+/* 備考のアンダーラインだけなし */
+.remark-form {
+    border-bottom: none;
+    height: 106px;
+}
+
+/* 名前・日付・出勤退勤・休憩１・休憩２〜・備考のタイトル */
+.name-title,
+.date-title,
+.work-title,
+.break-title,
+.remark-title {
+    width: 120px;
+    text-align: left;
+    margin-right: 158px;
+}
+
+/* 名前・出勤時間・退勤時間・休憩時間 */
+.user-name,
+.date-year,
+.date-month-day,
+.work-start-time,
+.work-end-time,
+.take-break-time,
+.break-return-time {
+    width: 103px;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 0.15em;
+    color: #000000;
+    gap: 10px;
+    text-align: center;
+}
+
+/* 出勤・退勤、休憩時間の入力欄 */
+.work-start-time,
+.work-end-time,
+.take-break-time,
+.break-return-time {
+    border: 1px solid #E1E1E1;
+    border-radius: 4px;
+}
+
+/* 〜のフォーム */
+.wavy-line {
+    width: 69px;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 0.15em;
+    color: #000000;
+    gap: 10px;
+    text-align: center;
+}
+
+/* 月日だけ位置調整 */
+.date-month-day {
+    margin-left: 88px;
+}
+
+/* 備考 */
+.remark {
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 0.15em;
+    color: #000000;
+    width: 316px;
+    height: 72px;
+    border: 1px solid #D9D9D9;
+    border-radius: 4px;
+    resize: none;
+}
+
+/* 修正ボタンフォーム */
+.correction-button-form {
+    display: flex;
+    justify-content: end;
+    margin-top: 36px;
+}
+
+/* 修正ボタン */
+.correction-button {
+    font-style: Bold;
+    font-size: 22px;
+    line-height: 100%;
+    letter-spacing: 0.15em;
+    color: #FFFFFF;
+    background-color: #000000;
+    width: 130px;
+    height: 50px;
+    opacity: 1;
+    top: 855px;
+    left: 1075px;
+    border-radius: 5px;
+    border: none;
+    right: 0;
+}
+
+/* *承認待ちのため修正はできません。 */
+.text-danger {
+    display: flex;
+    justify-content: end;
+    font-weight: 800;
+    font-style: Extra Bold;
+    font-size: 18px;
+    letter-spacing: 0.15em;
+    color: #FF000080;
+}
+
+
+
+/* タブレット（768-850px）対応 */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+
+    /* フラッシュメッセージ */
+    .alert-success {
+        font-size: 13px;
+    }
+
+    /* 勤怠詳細〜修正ボタンまでの全体のフォーム */
+    .attendance-detail-form {
+        margin: 94px auto;
+        width: 495px;
+    }
+
+    /* | 勤怠詳細のフォーム */
+    .detail-title-form {
+        width: 495px;
+    }
+
+    /* 「｜」と勤怠詳細のフォーム */
+    .detail-title {
+        font-size: 17px;
+    }
+
+    /* 勤怠詳細の「｜」 */
+    .detail-title-form li::before {
+        height: 55%;
+        width: 2px;
+    }
+
+    /* 名前・日付・出勤・退勤・休憩・備考のフォーム */
+    .detail-list-form {
+        width: 495px;
+        margin-top: 25px;
+        font-size: 8px;
+    }
+
+    /* 勤怠一覧の各タイトル */
+    .name-form,
+    .date-form,
+    .work-form,
+    .break-form,
+    .remark-form {
+        gap: 11px;
+        border-bottom: 2px solid #E1E1E1;
+        margin: 0 6px;
+        padding-left: 23px;
+    }
+
+    /* バリデーションメッセージ */
+    .error-messages {
+        font-size: 5px;
+    }
+
+    /* 名前・日付・出勤退勤・休憩１・休憩２〜・備考のタイトル */
+    .name-title,
+    .date-title,
+    .work-title,
+    .break-title,
+    .remark-title {
+        width: 66px;
+        text-align: left;
+        margin-right: 87px;
+    }
+
+    /* 名前・出勤時間・退勤時間・休憩時間 */
+    .user-name,
+    .date-year,
+    .date-month-day,
+    .work-start-time,
+    .work-end-time,
+    .take-break-time,
+    .break-return-time {
+        width: 57px;
+        font-size: 9px;
+        color: #000000;
+        gap: 6px;
+        text-align: center;
+    }
+
+    /* 出勤・退勤、休憩時間の入力欄 */
+    .work-start-time,
+    .work-end-time,
+    .take-break-time,
+    .break-return-time {
+        border-radius: 2px;
+    }
+
+    /* 〜のフォーム */
+    .wavy-line {
+        width: 38px;
+        font-size: 9px;
+        gap: 6px;
+    }
+
+    /* 月日だけ位置調整 */
+    .date-month-day {
+        margin-left: 49px;
+    }
+
+    /* 備考のフォーム（アンダーラインなし） */
+    .remark-form {
+        border-bottom: none;
+    }
+
+    /* 備考 */
+    .remark {
+        font-size: 8px;
+        width: 174px;
+        height: 40px;
+        border-radius: 2px;
+    }
+
+    /* 修正ボタンフォーム */
+    .correction-button-form {
+        margin-top: 20px;
+    }
+
+    /* 修正ボタン */
+    .correction-button {
+        font-size: 12px;
+        width: 76px;
+        height: 28px;
+        border-radius: 3px;
+    }
+
+    /* *承認待ちのため修正はできません。 */
+    .text-danger {
+        font-size: 10px;
+    }
+}
+
+/* スマホ（767px以下）対応 */
+@media screen and (max-width: 767px) {
+
+    /* フラッシュメッセージ */
+    .alert-success {
+        font-size: 9px;
+    }
+    /* 勤怠詳細〜修正ボタンまでの全体のフォーム */
+    .attendance-detail-form {
+        margin: 73px auto;
+        width: 300px;
+    }
+
+    /* | 勤怠詳細のフォーム */
+    .detail-title-form {
+        width: 300px;
+    }
+
+    /* 「｜」と勤怠詳細のフォーム */
+    .detail-title {
+        font-size: 14px;
+    }
+
+    /* 勤怠詳細の「｜」 */
+    .detail-title-form li::before {
+        height: 40%;
+        width: 2px;
+    }
+
+    /* 名前・日付・出勤・退勤・休憩・備考のフォーム */
+    .detail-list-form {
+        width: 300px;
+        margin-top: 20px;
+        font-size: 6px;
+    }
+
+    /* 勤怠一覧の各タイトル */
+    .name-form,
+    .date-form,
+    .work-form,
+    .break-form,
+    .remark-form {
+        gap: 9px;
+        border-bottom: 2px solid #E1E1E1;
+        margin: 0 5px;
+        padding-left: 18px;
+    }
+
+    /* バリデーションメッセージ */
+    .error-messages {
+        font-size: 3px;
+    }
+
+    /* 名前・日付・出勤退勤・休憩１・休憩２〜・備考のタイトル */
+    .name-title,
+    .date-title,
+    .work-title,
+    .break-title,
+    .remark-title {
+        width: 53px;
+        text-align: left;
+        margin-right: 50px;
+    }
+
+    /* 名前・出勤時間・退勤時間・休憩時間 */
+    .user-name,
+    .date-year,
+    .date-month-day,
+    .work-start-time,
+    .work-end-time,
+    .take-break-time,
+    .break-return-time {
+        width: 46px;
+        font-size: 7px;
+        gap: 5px;
+    }
+
+    /* 出勤・退勤、休憩時間の入力欄 */
+    .work-start-time,
+    .work-end-time,
+    .take-break-time,
+    .break-return-time {
+        border-radius: 2px;
+    }
+
+    /* 〜のフォーム */
+    .wavy-line {
+        width: 30px;
+        font-size: 7px;
+        gap: 5px;
+    }
+
+    /* 月日だけ位置調整 */
+    .date-month-day {
+        margin-left: 39px;
+    }
+
+    /* 備考のフォーム（アンダーラインなし） */
+    .remark-form {
+        border-bottom: none;
+    }
+
+    /* 備考 */
+    .remark {
+        font-size: 6px;
+        width: 139px;
+        height: 32px;
+        border-radius: 2px;
+    }
+
+    /* 修正ボタンフォーム */
+    .correction-button-form {
+        margin-top: 16px;
+    }
+
+    /* 修正ボタン */
+    .correction-button {
+        font-size: 10px;
+        width: 61px;
+        height: 22px;
+        border-radius: 2px;
+    }
+
+    /* *承認待ちのため修正はできません。 */
+    .text-danger {
+        font-size: 6px;
+    }
+}

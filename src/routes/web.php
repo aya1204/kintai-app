@@ -90,6 +90,11 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
     // 勤怠詳細画面表示
     Route::get('/admin/attendances/{work}', [AdminAttendanceController::class, 'show'])->name('attendance.detail');
 
+    // 勤怠修正
+    Route::post('/admin/attendances/{work}/update', [AdminAttendanceController::class, 'update'])->name('attendance.request');
+    // 勤怠データ新規作成（修正画面にて）
+    Route::post('/admin/attendances/create', [AdminAttendanceController::class, 'create'])->name('attendance.create');
+
     // スタッフ一覧画面表示
     Route::get('/admin/users', [AdminUserController::class, 'index'])->name('staff.list');
     // 申請一覧画面表示
