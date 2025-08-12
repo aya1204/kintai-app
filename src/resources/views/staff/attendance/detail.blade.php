@@ -42,13 +42,26 @@
                 <input type="hidden" name="date" value="{{ $workDate->format('Y-m-d') }}">
             </div>
 
+            @php
+            $startTime = '';
+            $endTime = '';
+
+            if ($work) {
+            $startTime = $work->start_time ? \Carbon\Carbon::parse($work->start_time)->format('H:i') : '';
+            $endTime = $work->end_time ? \Carbon\Carbon::parse($work->end_time)->format('H:i') : '';
+            } elseif ($requestWork) {
+            $startTime = $requestWork->start_time ? \Carbon\Carbon::parse($requestWork->start_time)->format('H:i') : '';
+            $endTime = $requestWork->end_time ? \Carbon\Carbon::parse($requestWork->end_time)->format('H:i') : '';
+            }
+            @endphp
+
             {{-- 出勤・退勤時間入力 --}}
             <div class="work-form">
                 <p class="work-title">出勤・退勤</p>
 
                 {{-- 出勤時間 --}}
                 <div class="work-start-time-form">
-                    <input class="work-start-time" type="text" name="start_time" value="{{ old('start_time', $work && $work->start_time ? \Carbon\Carbon::parse($work->start_time)->format('H:i') : '')}}">
+                    <input class="work-start-time" type="text" name="start_time" value="{{ old('start_time', $startTime) }}">
                     @error('start_time')
                     <div class="error-messages">{{ $message }}</div>
                     @enderror
@@ -58,7 +71,7 @@
 
                 {{-- 退勤時間 --}}
                 <div class="work-end-time-form">
-                    <input class="work-end-time" type="text" name="end_time" value="{{ old('end_time', $work && $work->end_time ? \Carbon\Carbon::parse($work->end_time)->format('H:i') : '')}}">
+                    <input class="work-end-time" type="text" name="end_time" value="{{ old('end_time', $endTime) }}">
                     @error('end_time')
                     <div class="error-messages">{{ $message }}</div>
                     @enderror
