@@ -55,12 +55,15 @@ Route::middleware('auth:web')->name('staff.')->group(function () {
     // 勤怠一覧画面表示
     Route::get('/attendance/list', [StaffAttendanceController::class, 'attendance'])->name('attendance.list');
 
+    // 勤怠データ新規作成画面表示（勤怠詳細画面と同じ）
+    Route::get('/attendance/correction', [StaffAttendanceController::class, 'createForm'])->name('attendance.createForm');
+    // 勤怠データ新規作成（修正画面にて）
+    Route::post('/attendance/correction', [StaffAttendanceController::class, 'createCorrection'])->name('attendance.create');
+
     // 勤怠詳細画面表示
     Route::get('/attendance/{work}', [StaffAttendanceController::class, 'show'])->name('attendance.detail');
     // 勤怠修正
     Route::post('/attendance/correction/{work}', [StaffAttendanceController::class, 'requestCorrection'])->name('attendance.request');
-    // 勤怠データ新規作成（修正画面にて）
-    Route::post('/attendance/correction', [StaffAttendanceController::class, 'createCorrection'])->name('attendance.create');
 
     // 申請一覧画面表示
     Route::get('/stamp_correction_request/list', [StaffRequestController::class, 'requestList'])->name('request.list');
@@ -86,6 +89,7 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
     Route::get('/admin/attendances', [AdminAttendanceController::class, 'attendance'])->name('attendance.list');
     // 勤怠詳細画面表示
     Route::get('/admin/attendances/{work}', [AdminAttendanceController::class, 'show'])->name('attendance.detail');
+
     // スタッフ一覧画面表示
     Route::get('/admin/users', [AdminUserController::class, 'index'])->name('staff.list');
     // 申請一覧画面表示
