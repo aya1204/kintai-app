@@ -35,9 +35,9 @@
                 <p class="reason">{{ $request->staff_remarks }}</p>
                 <p class="request-date">{{ $request->created_at->format('Y/m/d') }}</p>
                 @if($request->work_id)
-                    <a class="detail" href="{{ route('staff.attendance.detail', ['work' =>$request->work_id]) }}">詳細</a>
+                <a class="detail" href="{{ route('staff.attendance.detail', ['work' =>$request->work_id]) }}">詳細</a>
                 @else
-                    <a class="detail" href="{{ route('staff.attendance.createForm', ['date' => $request->requestWork->date ?? now()->toDateString()]) }}">詳細</a>
+                <a class="detail" href="{{ route('staff.attendance.createForm', ['date' => $request->requestWork->date ?? now()->toDateString()]) }}">詳細</a>
                 @endif
             </div>
             @endforeach
