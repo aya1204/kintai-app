@@ -33,29 +33,43 @@
 
             @unless ($hideHeaderElements)
 
-            {{-- ナビゲーション --}}
-            @if (isset($status) && $status === 'after_work')
-            {{-- 退勤済みのときだけのヘッダー --}}
-            <div class="header__nav">
-                <a href="{{ route('staff.attendance.list') }}">今月の勤怠一覧</a>
-                <a href="{{ route('staff.request') }}">申請一覧</a>
-                <form action="{{ route('staff.logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="logout-button">ログアウト</button>
-                </form>
-            </div>
-            @else
-            {{-- 通常のヘッダー --}}
-            <div class="header__nav">
-                <a href="{{ route('staff.attendance.index') }}">勤怠</a>
-                <a href="{{ route('staff.attendance.list') }}">勤怠一覧</a>
-                <a href="{{ route('staff.request.list') }}">申請</a>
-                <form action="{{ route('staff.logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="logout-button">ログアウト</button>
-                </form>
-            </div>
-            @endif
+                {{-- 管理者ログイン中ナビゲーション --}}
+                @if(Auth::guard('admin')->check())
+                <div class="header__nav">
+                    <a href="{{ route('admin.attendance.list')}}">勤怠一覧</a>
+                    <a href="{{ route('admin.staff.list') }}">スタッフ一覧</a>
+                    <a action="{{ route('admin.request.list')}}">申請一覧</a>
+                    <form action="{{ route('admin.logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="logout-button">ログアウト</button>
+                    </form>
+                </div>
+
+                {{-- スタッフログイン中ナビゲーション --}}
+                @elseif(Auth::guard('web')->check())
+                    @if (isset($status) && $status === 'after_work')
+                        {{-- 退勤済みのときだけのヘッダー --}}
+                        <div class="header__nav">
+                            <a href="{{ route('staff.attendance.list') }}">今月の勤怠一覧</a>
+                            <a href="{{ route('staff.request.list') }}">申請一覧</a>
+                            <form action="{{ route('staff.logout') }}" method="POST">
+                            @csrf
+                                <button type="submit" class="logout-button">ログアウト</button>
+                            </form>
+                        </div>
+                    @else
+                        {{-- 通常のヘッダー --}}
+                        <div class="header__nav">
+                            <a href="{{ route('staff.attendance.index') }}">勤怠</a>
+                            <a href="{{ route('staff.attendance.list') }}">勤怠一覧</a>
+                            <a href="{{ route('staff.request.list') }}">申請</a>
+                            <form action="{{ route('staff.logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="logout-button">ログアウト</button>
+                            </form>
+                        </div>
+                    @endif
+                @endif
             @endunless
         </div>
     </header>
