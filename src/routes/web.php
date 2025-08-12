@@ -5,6 +5,9 @@ use App\Http\Controllers\Staff\AttendanceController as StaffAttendanceController
 use App\Http\Controllers\Staff\RequestController as StaffRequestController;
 
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\AttendanceController as AdminAttendanceController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\RequestController as AdminRequestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -75,4 +78,19 @@ Route::middleware('guest:admin')->group(function () {
     Route::get('/admin/login', [AdminAuthController::class, 'index'])->name('login');
     // ログイン処理
     Route::post('/admin/login', [AdminAuthController::class, 'login']);
+});
+
+// 認証のみ必要なページ
+Route::middleware('auth:admin')->name('admin.')->group(function () {
+    // 勤怠一覧画面表示
+    Route::get('/admin/attendances', [AdminAttendanceController::class, 'attendance'])->name('attendance.list');
+    // 勤怠詳細画面表示
+    Route::get('/admin/attendances/{work}', [AdminAttendanceController::class, 'show'])->name('attendance.detail');
+    // スタッフ一覧画面表示
+    Route::get('/admin/users', [AdminUserController::class, 'index'])->name('staff.list');
+    // 申請一覧画面表示
+    Route::get('/admin/requests', [AdminRequestController::class, 'applicationList'])->name('request.list');
+
+    //ログアウト機能
+    Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
