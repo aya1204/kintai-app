@@ -29,10 +29,17 @@
             <div class="request-list-item">
                 <p class="status">{{ $request->approved ? '承認済み' : '承認待ち'}}</p>
                 <p class="user-name">
-                    {{ $user->name }}
+                    {{ $request->work->user->name }}
                 </p>
                 <p class="work-date">{{ \Carbon\Carbon::parse($request->requestWork->date)->format('Y/m/d') }}</p>
-                <p class="reason">{{ $request->staff_remarks }}</p>
+                <p class="reason">
+                    @if($request->staff_remarks)
+                    スタッフ理由：{{ $request->staff_remarks }}<br>
+                    @endif
+                    @if($request->admin_remarks)
+                    管理者理由：{{ $request->admin_remarks }}
+                    @endif
+                </p>
                 <p class="request-date">{{ $request->created_at->format('Y/m/d') }}</p>
                 @if($request->work_id)
                 <a class="detail" href="{{ route('staff.attendance.detail', ['work' =>$request->work_id]) }}">詳細</a>
