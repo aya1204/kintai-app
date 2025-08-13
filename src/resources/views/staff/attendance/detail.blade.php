@@ -158,7 +158,7 @@
         {{-- 修正ボタンエリア --}}
         <div class="correction-button-form">
             {{-- 未承認の間は修正ボタンを非表示、コメント表示 --}}
-            @if ($work && $work->request && $work->request->approved !== 1)
+            @if ($approvalWait)
             <p class="text-danger">*承認待ちのため修正はできません。</p>
             @else
             <button class="correction-button" type="submit">修正</button>

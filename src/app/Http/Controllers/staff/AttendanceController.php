@@ -226,7 +226,14 @@ class AttendanceController extends Controller
         $date = $request->input('date', now()->toDateString());
         $work = null;
         $requestWork = null;
-        return view('staff.attendance.detail', compact('user', 'date', 'work', 'requestWork'));
+
+        // 承認待ち申請チェック（新規作成用）
+        $approvalWait = \App\Models\Request::whereHas('requestWork', function ($q) use ($user, $date) {
+            $q->where('user_id', $user->id)
+            ->where('date', $date);
+        })->where('approved', false)->exists();
+
+        return view('staff.attendance.detail', compact('user', 'date', 'work', 'requestWork', 'approvalWait'));
     }
 
     /**
@@ -244,6 +251,11 @@ class AttendanceController extends Controller
         // $workがあればそのuser
         $user = $work->user;
 
+        // 承認待ち申請チェック（新規作成用）
+        $approvalWait = \App\Models\Request::where('work_id', $work->id)
+            ->where('approved', false)
+            ->exists();
+
         $requestModel = RequestModel::where('work_id', $work->id)->first();
 
         $requestWork = null;
@@ -254,7 +266,7 @@ class AttendanceController extends Controller
 
         // 表示用の日付
         $date = $work->date;
-            return view('staff.attendance.detail', compact('work', 'user', 'date', 'requestWork'));
+            return view('staff.attendance.detail', compact('work', 'user', 'date', 'requestWork', 'approvalWait'));
         }
 
     /**
