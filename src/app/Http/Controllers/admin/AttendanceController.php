@@ -60,7 +60,7 @@ class AttendanceController extends Controller
     public function update(AdminAttendanceRequest $request, $workId)
     {
         // Workモデルから休憩情報を含む勤怠データを探す
-        $work = Work::with('breaks')->findOrFail($workId);
+        $work = Work::with('breaks')->find($workId);
 
         if ($request->filled('date')) {
             $work->date = $request->input('date');
@@ -84,7 +84,7 @@ class AttendanceController extends Controller
             }
         }
 
-        $requestRecord = RequestModel::updateOrCreate(
+        RequestModel::updateOrCreate(
             ['work_id' => $work->id],
             [
                 'manager_id' => auth()->id(),
@@ -92,7 +92,7 @@ class AttendanceController extends Controller
                 'admin_remarks' => $request->input('remark'),
                 'staff_remarks' => '',
             ]
-            );
+        );
 
         return redirect()->route('admin.attendance.detail', ['work' => $work->id])->with('success', '勤怠情報を更新しました');
     }
