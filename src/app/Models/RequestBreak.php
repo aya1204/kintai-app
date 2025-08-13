@@ -15,14 +15,12 @@ class RequestBreak extends Model
     ];
 
     // request(休憩修正申請)と多対1の関係
-    public function request()
-    {
+    public function request() {
         return $this->belongsTo(Request::class);
     }
 
     // requestWork(出勤・退勤時間の修正申請)と多対1の関係
-    public function requestWork()
-    {
+    public function requestWork() {
         return $this->belongsTo(RequestWork::class);
     }
 }

@@ -12,8 +12,7 @@ class Manager extends Authenticatable
     use HasFactory;
 
     // requests(修正申請)と１対多の関係
-    public function requests()
-    {
+    public function requests() {
         return $this->hasMany(RequestModel::class, 'manager_id');
     }
 }

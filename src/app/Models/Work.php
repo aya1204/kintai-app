@@ -18,20 +18,17 @@ class Work extends Model
     ];
 
     // user(スタッフ)と多対1の関係
-    public function user()
-    {
+    public function user() {
         return $this->belongsTo(User::class, 'user_id');
     }
 
     // breaks(休憩)と１対多の関係
-    public function breaks()
-    {
+    public function breaks() {
         return $this->hasMany(BreakTime::class, 'work_id');
     }
 
     // requests(修正申請)テーブルと1対1の関係
-    public function request()
-    {
+    public function request() {
         return $this->hasOne(RequestModel::class, 'work_id');
     }
 }

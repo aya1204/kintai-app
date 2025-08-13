@@ -16,8 +16,7 @@ class BreakTime extends Model
     ];
 
     // work(出勤・退勤)と多対1の関係
-    public function work()
-    {
+    public function work() {
         return $this->belongsTo(Work::class, 'work_id');
     }
 }

@@ -18,26 +18,22 @@ class Request extends Model
     ];
 
     // managers(管理者)と多対1の関係
-    public function manager()
-    {
+    public function manager() {
         return $this->belongsTo(Manager::class, 'manager_id');
     }
 
     // works(出勤・退勤)と０または１対１
-    public function work()
-    {
+    public function work() {
         return $this->belongsTo(Work::class);
     }
 
     // requestWorks(出勤・退勤の修正申請)と1対1の関係
-    public function requestWork()
-    {
+    public function requestWork() {
         return $this->belongsTo(RequestWork::class, 'request_work_id');
     }
 
     // requestBreaks(休憩の修正申請)と1対多の関係
-    public function requestBreaks()
-    {
+    public function requestBreaks() {
         return $this->hasMany(RequestBreak::class);
     }
 }

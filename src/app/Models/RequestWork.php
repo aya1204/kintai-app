@@ -18,14 +18,12 @@ class RequestWork extends Model
     ];
 
     // users(スタッフ)と多対1の関係
-    public function user()
-    {
+    public function user() {
         return $this->belongsTo(User::class, 'user_id');
     }
 
     // request(修正申請)と1対1の関係
-    public function request()
-    {
+    public function request() {
         return $this->hasOne(RequestModel::class, 'request_work_id');
     }
 
@@ -35,8 +33,7 @@ class RequestWork extends Model
     }
 
     // work（出勤・退勤）と多対1の関係
-    public function work()
-    {
+    public function work() {
         return $this->belongsTo(Work::class, 'work_id');
     }
 }
