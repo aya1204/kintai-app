@@ -29,9 +29,9 @@
             <div class="request-list-item">
                 <p class="status">{{ $request->approved ? '承認済み' : '承認待ち'}}</p>
                 <p class="user-name">
-                    {{ $request->work->user->name }}
+                    {{ $request->work->user->name ?? $request->requestWork->user->name ?? '不明' }}
                 </p>
-                <p class="work-date">{{ \Carbon\Carbon::parse($request->requestWork->date)->format('Y/m/d') }}</p>
+                <p class="work-date">{{ \Carbon\Carbon::parse($request->work->date ?? $request->requestWork->date ?? now()->toDateString())->format('Y/m/d') }}</p>
                 <p class="reason">
                     @if($request->staff_remarks)
                     スタッフ理由：{{ $request->staff_remarks }}<br>
