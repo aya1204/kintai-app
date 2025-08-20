@@ -100,6 +100,11 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
     // 申請一覧画面表示
     Route::get('/admin/requests', [AdminRequestController::class, 'applicationList'])->name('request.list');
 
+    // スタッフ別勤怠一覧画面
+    Route::get('/admin/users/{user}/attendances', [AdminUserController::class, 'staff'])->name('staff.attendance.list');
+    // CSV出力
+    Route::post('/admin/users/{user}/attendances', [AdminUserController::class, 'csvExport'])->name('csv.export');
+
     //ログアウト機能
     Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
