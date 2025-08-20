@@ -14,7 +14,7 @@
 @endif
 
 <div class="staff-list-page">
-    <ul class="staff-list-page-title">
+    <ul class="staff-list-page-title-form">
         <li class="staff-list-page-title">スタッフ一覧</li>
     </ul>
 
@@ -33,7 +33,7 @@
                 {{ $user->email }}
             </p>
             <p class="detail">
-                <a class="detail-link" href="{{ route('admin.attendance.list', ['user_id' => $user->id]) }}">詳細</a>
+                <a class="detail-link" href="{{ route('admin.staff.attendance.list', ['user' => $user->id]) }}">詳細</a>
             </p>
         </div>
         @endforeach

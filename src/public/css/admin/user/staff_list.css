@@ -20,19 +20,19 @@ body {
 }
 
 /* タイトルの「｜」を左寄せ */
-.staff-list-page-title {
+.staff-list-page-title-form {
     padding-left: 0;
 }
 
 /* 勤怠一覧画面のフォーム */
-.staff-list-page-title li {
+.staff-list-page-title {
     list-style-type: none;
     position: relative;
-    padding-left: 10px;
+    padding-left: 13px;
 }
 
 /* 勤怠一覧画面のフォーム：「・」を「｜」に変更 */
-.staff-list-page-title li::before {
+.staff-list-page-title-form li::before {
     content: "";
     position: absolute;
     top: 0;
@@ -43,7 +43,7 @@ body {
 }
 
 /* 「｜」と「の勤怠」のフォーム */
-.staff-list-page-title {
+.staff-list-page-title-form {
     width: 344px;
     height: 36px;
     opacity: 1;
@@ -108,6 +108,7 @@ body {
     margin: 14px 10px;
     align-items: center;
     justify-content: center;
+    padding-bottom: 20px;
 }
 
 /* 日付のデータ */
