@@ -30,7 +30,7 @@ body {
 .detail-title-form li {
     list-style-type: none;
     position: relative;
-    padding-left: 10px;
+    padding-left: 21px;
 }
 
 /* 勤怠詳細画面のフォーム：「・」を「｜」に変更 */
@@ -39,7 +39,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 4px;
+    width: 8px;
     height: 100%;
     background-color: black;
 }
@@ -240,14 +240,15 @@ body {
     }
 
     /* 「｜」と勤怠詳細のフォーム */
-    .detail-title {
+    .detail-title-form li {
         font-size: 17px;
+        padding-left: 12px;
+        height: 20px;
     }
 
     /* 勤怠詳細の「｜」 */
     .detail-title-form li::before {
-        height: 55%;
-        width: 2px;
+        width: 4px;
     }
 
     /* 名前・日付・出勤・退勤・休憩・備考のフォーム */
@@ -267,6 +268,7 @@ body {
         border-bottom: 2px solid #E1E1E1;
         margin: 0 6px;
         padding-left: 23px;
+        height: 43px;
     }
 
     /* バリデーションメッセージ */
@@ -331,6 +333,7 @@ body {
         width: 174px;
         height: 40px;
         border-radius: 2px;
+        margin-top: 5px;
     }
 
     /* 修正ボタンフォーム */
@@ -371,13 +374,14 @@ body {
     }
 
     /* 「｜」と勤怠詳細のフォーム */
-    .detail-title {
+    .detail-title-form li {
         font-size: 14px;
+        padding-left: 8px;
+        height: 14px;
     }
 
     /* 勤怠詳細の「｜」 */
     .detail-title-form li::before {
-        height: 40%;
         width: 2px;
     }
 
@@ -398,6 +402,7 @@ body {
         border-bottom: 2px solid #E1E1E1;
         margin: 0 5px;
         padding-left: 18px;
+        height: 32px;
     }
 
     /* バリデーションメッセージ */
@@ -458,8 +463,9 @@ body {
     .remark {
         font-size: 6px;
         width: 139px;
-        height: 32px;
+        height: 20px;
         border-radius: 2px;
+        margin-top: 5px;
     }
 
     /* 修正ボタンフォーム */
