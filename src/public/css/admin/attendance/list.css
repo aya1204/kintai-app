@@ -24,27 +24,27 @@ body {
     padding-left: 0;
 }
 
-/* 勤怠一覧画面のフォーム */
-.list-title-form li {
+/* 「⚪︎⚪︎年⚪︎⚪︎月⚪︎⚪︎日の勤怠」のフォーム */
+.list-title {
     list-style-type: none;
     position: relative;
-    padding-left: 10px;
+    padding-left: 21px;
 }
 
-/* 勤怠一覧画面のフォーム：「・」を「｜」に変更 */
-.list-title-form li::before {
+/* 「⚪︎⚪︎年⚪︎⚪︎月⚪︎⚪︎日の勤怠」のフォーム：「・」を「｜」に変更 */
+.list-title::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
-    width: 4px;
+    width: 8px;
     height: 100%;
     background-color: black;
 }
 
 /* 「｜」と「の勤怠」のフォーム */
-.list-title {
-    width: 344px;
+.list-title-form {
+    width: 900px;
     height: 36px;
     opacity: 1;
     font-family: Inter;
@@ -244,17 +244,19 @@ body {
     /* | ⚪︎⚪︎年⚪︎⚪︎月⚪︎⚪︎日の勤怠のフォーム */
     .list-title-form {
         width: 495px;
+        height: 20px;
+        font-size: 17px;
     }
 
     /* 「｜」と「⚪︎⚪︎年⚪︎⚪︎月⚪︎⚪︎日の勤怠」のフォーム */
     .list-title {
         font-size: 17px;
+        padding-left: 12px;
     }
 
     /* タイトルの「｜」 */
-    .list-title-form li::before {
-        height: 55%;
-        width: 2px;
+    .list-title::before {
+        width: 4px;
     }
 
     /* 選択日のフォーム */
@@ -380,128 +382,130 @@ body {
             font-size: 9px;
         }
 
-        /* ⚪︎⚪︎年⚪︎⚪︎月⚪︎⚪︎日の勤怠〜各スタッフの詳細までの全体のフォーム */
-        .attendance-list-form {
-            margin: 66px auto;
-            width: 356px;
-        }
-    
-        /* | ⚪︎⚪︎年⚪︎⚪︎月⚪︎⚪︎日の勤怠のフォーム */
-        .list-title-form {
-            width: 356px;
-        }
-    
-        /* 「｜」と「⚪︎⚪︎年⚪︎⚪︎月⚪︎⚪︎日の勤怠」のフォーム */
-        .list-title {
-            font-size: 13px;
-        }
-    
-        /* タイトルの「｜」 */
-        .list-title-form li::before {
-            height: 40%;
-            width: 2px;
-        }
-    
-        /* 選択日のフォーム */
-        .day-list-form {
-            width: 356px;
-            height: 23px;
-            border-radius: 4px;
-        }
-    
-        /* ←と→ */
-        .left-arrow-icon,
-        .right-arrow-icon {
-            width: 8px;
-            height: 5px;
-            margin: 0 5px;
-        }
-    
-        /* 前日と翌日 */
-        .previous-day,
-        .next-day {
-            height: 7px;
-            font-size: 6px;
-            margin: 0 5px;
-        }
-    
-        /* カレンダーアイコンと選択された日のフォーム */
-        .calender-title {
-            height: 10px;
-        }
-    
-        /* カレンダーアイコン */
-        .calender-icon {
-            width: 10px;
-            height: 10px;
-        }
-    
-        /* 選択された日 */
-        .selected-day {
-            width: 54px;
-            height: 9px;
-            font-size: 8px;
-        }
-    
-        /* 名前・出勤・退勤・休憩・合計・詳細のフォーム */
-        .attendance-date-list-form {
-            width: auto;
-            margin-top: 18px;
-            font-size: 5px;
-            border-radius: 4px;
-        }
-    
-        /* 勤怠一覧の各タイトル */
-        .attendance-date-list-title-form {
-            gap: 8px;
-            border-bottom: 2px solid #E1E1E1;
-            margin: 0 5px;
-        }
-    
-        /* 日付のタイトル */
-        .name-title {
-            width: 48px;
-            padding-left: 5px;
-        }
-    
-        /* 出勤・退勤・休憩・合計のタイトル */
-        .work-start-title,
-        .work-end-title,
-        .breaks-title,
-        .total-title {
-            width: 48px;
-        }
-    
-        /* 詳細のタイトル */
-        .detail-title {
-            width: 40px;
-        }
-    
-        /* 勤怠一覧の各日付ごとのフォーム */
-        .attendance-row {
-            border-bottom: 2px solid #E1E1E1;
-            height: 13px;
-            gap: 8px;
-            margin: 5px 5px;
-            align-items: normal;
-        }
-    
-        /* 日付のデータ */
-        .user-name {
-            width: 48px;
-        }
+    /* ⚪︎⚪︎年⚪︎⚪︎月⚪︎⚪︎日の勤怠〜各スタッフの詳細までの全体のフォーム */
+    .attendance-list-form {
+        margin: 66px auto;
+        width: 356px;
+    }
 
-        /* 退勤・休憩 */
-        .work-start,
-        .work-end,
-        .breaks,
-        .total {
-            width: 48px;
-        }
+    /* | ⚪︎⚪︎年⚪︎⚪︎月⚪︎⚪︎日の勤怠のフォーム */
+    .list-title-form {
+        width: 356px;
+        height: 14px;
+        font-size: 13px;
+    }
 
-        /* 詳細 */
-        .detail {
-            width: 40px;
-            padding-right: 2px;
-        }
+    /* 「｜」と「⚪︎⚪︎年⚪︎⚪︎月⚪︎⚪︎日の勤怠」のフォーム */
+    .list-title {
+        font-size: 13px;
+        padding-left: 8px;
+    }
+
+    /* タイトルの「｜」 */
+    .list-title::before {
+        width: 2px;
+    }
+
+    /* 選択日のフォーム */
+    .day-list-form {
+        width: 356px;
+        height: 23px;
+        border-radius: 4px;
+    }
+
+    /* ←と→ */
+    .left-arrow-icon,
+    .right-arrow-icon {
+        width: 8px;
+        height: 5px;
+        margin: 0 5px;
+    }
+
+    /* 前日と翌日 */
+    .previous-day,
+    .next-day {
+        height: 7px;
+        font-size: 6px;
+        margin: 0 5px;
+    }
+
+    /* カレンダーアイコンと選択された日のフォーム */
+    .calender-title {
+        height: 10px;
+    }
+
+    /* カレンダーアイコン */
+    .calender-icon {
+        width: 10px;
+        height: 10px;
+    }
+
+    /* 選択された日 */
+    .selected-day {
+        width: 54px;
+        height: 9px;
+        font-size: 8px;
+    }
+
+    /* 名前・出勤・退勤・休憩・合計・詳細のフォーム */
+    .attendance-date-list-form {
+        width: auto;
+        margin-top: 18px;
+        font-size: 5px;
+        border-radius: 4px;
+    }
+
+    /* 勤怠一覧の各タイトル */
+    .attendance-date-list-title-form {
+        gap: 8px;
+        border-bottom: 2px solid #E1E1E1;
+        margin: 0 5px;
+    }
+
+    /* 日付のタイトル */
+    .name-title {
+        width: 48px;
+        padding-left: 5px;
+    }
+
+    /* 出勤・退勤・休憩・合計のタイトル */
+    .work-start-title,
+    .work-end-title,
+    .breaks-title,
+    .total-title {
+        width: 48px;
+    }
+
+    /* 詳細のタイトル */
+    .detail-title {
+        width: 40px;
+    }
+
+    /* 勤怠一覧の各日付ごとのフォーム */
+    .attendance-row {
+        border-bottom: 2px solid #E1E1E1;
+        height: 13px;
+        gap: 8px;
+        margin: 5px 5px;
+        align-items: normal;
+    }
+
+    /* 日付のデータ */
+    .user-name {
+        width: 48px;
+    }
+
+    /* 退勤・休憩 */
+    .work-start,
+    .work-end,
+    .breaks,
+    .total {
+        width: 48px;
+    }
+
+    /* 詳細 */
+    .detail {
+        width: 40px;
+        padding-right: 2px;
+    }
 }
