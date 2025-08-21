@@ -42,11 +42,7 @@
                     @endif
                 </p>
                 <p class="request-date">{{ $request->created_at->format('Y/m/d') }}</p>
-                @if($request->work_id)
-                <a class="detail" href="{{ route('admin.attendance.detail', ['work' =>$request->work_id]) }}">詳細</a>
-                @else
-                <a class="detail" href="{{ route('admin.attendance.create', ['date' => $request->requestWork->date ?? now()->toDateString()]) }}">詳細</a>
-                @endif
+                <a class="detail" href="{{ route('admin.fix.requests.approval', ['id' =>$request->id]) }}">詳細</a>
             </div>
             @endforeach
         </div>
