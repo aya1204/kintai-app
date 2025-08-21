@@ -12,7 +12,7 @@ body {
     font-size: 20px;
 }
 
-/* の勤怠〜各日にちの詳細までの全体フォーム */
+/* スタッフ一覧〜各日にちの詳細までの全体フォーム */
 .staff-list-page {
     width: 900px;
     height: 2151px;
@@ -24,27 +24,27 @@ body {
     padding-left: 0;
 }
 
-/* 勤怠一覧画面のフォーム */
+/* スタッフ一覧画面のフォーム */
 .staff-list-page-title {
     list-style-type: none;
     position: relative;
-    padding-left: 13px;
+    padding-left: 21px;
 }
 
-/* 勤怠一覧画面のフォーム：「・」を「｜」に変更 */
+/* スタッフ一覧画面のフォーム：「・」を「｜」に変更 */
 .staff-list-page-title-form li::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
-    width: 4px;
+    width: 8px;
     height: 100%;
     background-color: black;
 }
 
-/* 「｜」と「の勤怠」のフォーム */
+/* 「｜」と「スタッフ一覧」のフォーム */
 .staff-list-page-title-form {
-    width: 344px;
+    width: 900px;
     height: 36px;
     opacity: 1;
     font-family: Inter;
@@ -99,7 +99,7 @@ body {
     width: 100px;
 }
 
-/* 勤怠一覧の各日付ごとのフォーム */
+/* スタッフ一覧の各日付ごとのフォーム */
 .staff-list-row {
     display: flex;
     flex-direction: row;
@@ -161,19 +161,21 @@ body {
     }
 
     /* | スタッフ一覧のフォーム */
-    .staff-list-page-title {
+    .staff-list-page-title-form {
         width: 495px;
+        height: 20px;
+        font-size: 17px;
     }
 
     /* 「｜」と「スタッフ一覧」のフォーム */
     .staff-list-page-title {
         font-size: 17px;
+        padding-left: 12px;
     }
 
     /* タイトルの「｜」 */
-    .staff-list-page-title li::before {
-        height: 55%;
-        width: 2px;
+    .staff-list-page-title-form li::before {
+        width: 4px;
     }
 
     /* 名前・メールアドレス・詳細のフォーム */
@@ -208,7 +210,15 @@ body {
         width: 55px;
     }
 
-    /* 勤怠一覧の各日付ごとのフォーム */
+    /* スタッフ名、メールアドレス、詳細を上下中央に揃える */
+    .user-name,
+    .email,
+    .detail {
+        margin-bottom: 0;
+        margin-top: 13px;
+    }
+
+    /* スタッフ一覧の各スタッフごとのフォーム */
     .staff-list-row {
         border-bottom: 2px solid #E1E1E1;
         height: 18px;
@@ -232,26 +242,28 @@ body {
     }
 
     /* | スタッフ一覧のフォーム */
-    .staff-list-page-title {
+    .staff-list-page-title-form {
         width: 356px;
+        font-size: 13px;
+        height: 14px;
     }
 
     /* 「｜」と「スタッフ一覧」のフォーム */
     .staff-list-page-title {
         font-size: 13px;
+        padding-left: 8px;
     }
 
     /* タイトルの「｜」 */
-    .staff-list-page-title li::before {
-        height: 40%;
-        width: 2px;
+    .staff-list-page-title-form li::before {
+        width: 3px;
     }
 
     /* 名前・メールアドレス・詳細のフォーム */
     .staff-list-form {
         width: auto;
         margin-top: 18px;
-        font-size: 5px;
+        font-size: 8px;
         border-radius: 4px;
     }
 
@@ -279,7 +291,15 @@ body {
         width: 40px;
     }
 
-    /* 勤怠一覧の各日付ごとのフォーム */
+    /* スタッフ名、メールアドレス、詳細を上下中央に揃える */
+    .user-name,
+    .email,
+    .detail {
+        margin-bottom: 0;
+        margin-top: 13px;
+    }
+
+    /* スタッフ一覧の各スタッフごとのフォーム */
     .staff-list-row {
         border-bottom: 2px solid #E1E1E1;
         height: 13px;
