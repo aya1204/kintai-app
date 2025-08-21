@@ -114,7 +114,11 @@
         @endfor
     </div>
     <div class="printing-form">
-        <button class="printing-button" type="submit">CSV出力</button>
+        <form action="{{ route('admin.staff.attendance.csv.export', ['user' => $user->id] )}}" method="POST">
+            @csrf
+            <input type="hidden" name="month" value="{{ $currentMonth}}">
+            <button class="printing-button" type="submit">CSV出力</button>
+        </form>
     </div>
 </div>
 @endsection
