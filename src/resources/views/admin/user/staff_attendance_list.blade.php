@@ -108,7 +108,7 @@
 
             {{-- 詳細ページへのリンク --}}
             <div class="detail">
-                <a href="{{ route('staff.attendance.detail', ['work' => $attendance ? $attendance->id : '0', 'date' => $date->toDateString()]) }}" class="detail-link">詳細</a>
+                <a href="{{ route('admin.attendance.detail', ['work' => $attendance ? $attendance->id : '0', 'date' => $date->toDateString()]) }}" class="detail-link">詳細</a>
             </div>
         </div>
         @endfor
