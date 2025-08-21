@@ -105,6 +105,9 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
     // CSV出力
     Route::post('/admin/users/{user}/attendances', [AdminUserController::class, 'csvExport'])->name('staff.attendance.csv.export');
 
+    // 修正申請承認画面
+    Route::get('/admin/requests/{id}', [AdminRequestController::class, 'fix'])->name('fix.requests.approval');
+
     //ログアウト機能
     Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
