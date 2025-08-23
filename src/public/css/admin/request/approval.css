@@ -144,15 +144,6 @@ body {
     text-align: center;
 }
 
-/* 出勤・退勤、休憩時間の入力欄 */
-.work-start-time,
-.work-end-time,
-.take-break-time,
-.break-return-time {
-    border: 1px solid #E1E1E1;
-    border-radius: 4px;
-}
-
 /* 〜のフォーム */
 .wavy-line {
     width: 69px;
@@ -169,17 +160,20 @@ body {
     margin-left: 88px;
 }
 
+/* 備考のフォーム */
+.remark-text-form {
+    width: 316px;
+    height: 72px;
+}
+
 /* 備考 */
 .remark {
     font-weight: bold;
     font-size: 14px;
     letter-spacing: 0.15em;
     color: #000000;
-    width: 316px;
-    height: 72px;
-    border: 1px solid #D9D9D9;
-    border-radius: 4px;
-    resize: none;
+    margin-top: 25px;
+    align-items: center;
 }
 
 /* 承認ボタンフォーム */
@@ -290,14 +284,6 @@ body {
         text-align: center;
     }
 
-    /* 出勤・退勤、休憩時間の入力欄 */
-    .work-start-time,
-    .work-end-time,
-    .take-break-time,
-    .break-return-time {
-        border-radius: 2px;
-    }
-
     /* 〜のフォーム */
     .wavy-line {
         width: 38px;
@@ -315,13 +301,16 @@ body {
         border-bottom: none;
     }
 
-    /* 備考 */
-    .remark {
-        font-size: 8px;
+    .remark-text-form {
         width: 174px;
         height: 40px;
         border-radius: 2px;
         margin-top: 5px;
+    }
+
+    /* 備考 */
+    .remark {
+        font-size: 8px;
     }
 
     /* 承認ボタンフォーム */
@@ -417,14 +406,6 @@ body {
         gap: 5px;
     }
 
-    /* 出勤・退勤、休憩時間の入力欄 */
-    .work-start-time,
-    .work-end-time,
-    .take-break-time,
-    .break-return-time {
-        border-radius: 2px;
-    }
-
     /* 〜のフォーム */
     .wavy-line {
         width: 30px;
@@ -442,13 +423,16 @@ body {
         border-bottom: none;
     }
 
-    /* 備考 */
-    .remark {
-        font-size: 6px;
+    .remark-text-form{
         width: 139px;
         height: 20px;
         border-radius: 2px;
         margin-top: 5px;
+    }
+
+    /* 備考 */
+    .remark {
+        font-size: 6px;
     }
 
     /* 承認ボタンフォーム */

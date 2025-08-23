@@ -18,7 +18,7 @@
         <li class="detail-title">勤怠詳細</li>
     </ul>
     {{-- 修正申請承認フォーム --}}
-    <form class="approval-form" action="admin.fix.requests.approval" method="POST">
+    <form class="approval-form" action="{{ route('admin.requests.approval', $request->id) }}" method="POST">
         @csrf
         <div class="detail-list-form">
 
@@ -43,19 +43,6 @@
                 <input type="hidden" name="date" value="{{ $workDate->format('Y-m-d') }}">
             </div>
 
-            @php
-            $startTime = '';
-            $endTime = '';
-
-            if ($work) {
-            $startTime = $work->start_time ? \Carbon\Carbon::parse($work->start_time)->format('H:i') : '';
-            $endTime = $work->end_time ? \Carbon\Carbon::parse($work->end_time)->format('H:i') : '';
-            } elseif ($requestWork) {
-            $startTime = $requestWork->start_time ? \Carbon\Carbon::parse($requestWork->start_time)->format('H:i') : '';
-            $endTime = $requestWork->end_time ? \Carbon\Carbon::parse($requestWork->end_time)->format('H:i') : '';
-            }
-            @endphp
-
             {{-- 出勤・退勤 --}}
             @php
             $startTime = ($work && $work->start_time) ? $work->start_time : (($requestWork && $requestWork->start_time) ? $requestWork->start_time : null);
@@ -68,29 +55,22 @@
 
                 {{-- 出勤時間 --}}
                 <div class="work-start-time-form">
-                    <input class="work-start-time" type="text" name="start_time" value="{{ old('start_time', $startTime) }}">
-                    @error('start_time')
-                    <div class="error-messages">{{ $message }}</div>
-                    @enderror
+                    <p class="work-start-time">{{ $startTime ?: '-' }}</p>
                 </div>
 
                 <p class="wavy-line">〜</p>
 
                 {{-- 退勤時間 --}}
                 <div class="work-end-time-form">
-                    <input class="work-end-time" type="text" name="end_time" value="{{ old('end_time', $endTime) }}">
-                    @error('end_time')
-                    <div class="error-messages">{{ $message }}</div>
-                    @enderror
+                    <p class="work-end-time">{{ $endTime ?: '-' }}</p>
                 </div>
             </div>
 
 
             {{-- 休憩時間入力 --}}
             @php
-            $breaks = ($work && $work->breaks) ? $work->breaks: (($requestWork && $requestWork->requestBreaks) ? $requestWork->requestBreaks : collect());
+            $breaks = ($work && $work->breaks) ? $work->breaks: (($requestWork && $requestWork->requestBreaks) ? $requestWork->requestBreaks : collect()); // 勤怠データが存在すれば登録済みの休憩時間を取得、なければ空のコレクションを代入
             $breakIndex = 1; // 何番目の休憩か
-            $breaks = ($work && $work->breaks) ? $work->breaks : (($requestWork && $requestWork->requestBreaks) ? $requestWork->requestBreaks : collect()); // 勤怠データが存在すれば登録済みの休憩時間を取得、なければ空のコレクションを代入
             @endphp
 
             @foreach ($breaks as $break)
@@ -105,20 +85,14 @@
 
                 {{-- 休憩開始 --}}
                 <div class="take-break-time-form">
-                    <input class="take-break-time" type="text" name="breaks[{{ $breakIndex }}][start_time]" value="{{ old('breaks.' . $breakIndex . '.start_time', $start) }}">
-                    @error('breaks.' . $breakIndex . '.start_time')
-                    <div class="error-messages">{{ $message }}</div>
-                    @enderror
+                    <p class="take-break-time">{{ $start }}</p>
                 </div>
 
                 <p class="wavy-line">〜</p>
 
                 {{-- 休憩終了 --}}
                 <div class="break-return-time-form">
-                    <input class="break-return-time" type="text" name="breaks[{{ $breakIndex }}][end_time]" value="{{ old('breaks.' . $breakIndex . '.end_time', $end) }}">
-                    @error('breaks.' . $breakIndex . '.end_time')
-                    <div class="error-messages">{{ $message }}</div>
-                    @enderror
+                    <p class="break-return-time">{{ $end }}</p>
                 </div>
             </div>
             @php
@@ -129,28 +103,17 @@
             {{-- 空の休憩枠を1つ追加 --}}
             <div class="break-form">
                 <p class="break-title">休憩{{ $breakIndex }}</p>
-                <div class="take-break-time-form">
-                    <input class="take-break-time" type="text" name="breaks[{{ $breakIndex }}][start_time]" value="">
-                </div>
-                <p class="wavy-line">〜</p>
-                <div class="break-return-time-form">
-                    <input class="break-return-time" type="text" name="breaks[{{ $breakIndex }}][end_time]" value="">
-                </div>
             </div>
 
             {{-- 備考欄 --}}
-            @php
-            $remark = ($work && $work->remarks) ? $work->remarks : (($requestWork && $requestWork->remark) ? $requestWork->remark : '');
-            @endphp
+            @if($request->staff_remarks)
             <div class="remark-form">
-                <p class="remark-title">備考</p>
-                <div class="remark-input-form">
-                    <textarea class="remark" name="remark">{{ old('remark', $remark)}}</textarea>
-                    @error('remark')
-                    <div class="error-messages">{{ $message }}</div>
-                    @enderror
+                <label class="remark-title">備考</label>
+                <div class="remark-text-form">
+                    <p class="remark">{{ $request->staff_remarks }}</p>
                 </div>
             </div>
+            @endif
         </div>
 
         {{-- 承認ボタンエリア --}}

@@ -59,4 +59,33 @@ class RequestController extends Controller
             'approved' => $approved,
         ]);
     }
+
+    /**
+     * 承認処理
+     */
+    public function approval(Request $request, $id)
+    {
+        $workRequest = WorkRequest::findOrFail($id);
+
+        $workRequest->update([
+            'approved' => true,
+            'admin_remarks' => $request->admin_remarks,
+        ]);
+
+        return redirect()->route('admin.request.list', ['tab' => 'clear'])->with('success', '申請を承認しました');
+        // $workRequest = WorkRequest::with('work', 'requestWork')->findOrFail($id);
+
+        // // フォームから送られてきた入力値を取得
+        // $remark = $request->input('remark');
+        // $startTime = $request->input('start_time');
+        // $endTime = $request->input('end_time');
+        // $breaks = $request->input('breaks', []);
+
+        // // 承認状態に更新
+        // $workRequest->approved = true;
+        // $workRequest->admin_remarks = $request->input('remark', '');
+        // $workRequest->manager_id = Auth::id();
+        // $workRequest->save();
+        // return redirect()->route('admin.request.list', ['tab' => 'clear'])->with('success', '勤怠申請を承認しました。');
+    }
 }
