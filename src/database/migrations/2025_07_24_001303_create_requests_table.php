@@ -22,8 +22,8 @@ class CreateRequestsTable extends Migration
                 $table->foreignId('request_work_id')->nullable()->constrained('request_works')->onDelete('cascade');
                 $table->foreignId('manager_id')->constrained('managers')->onDelete('cascade');
                 $table->boolean('approved');
-                $table->text('staff_remarks');
-                $table->text('admin_remarks');
+                $table->text('staff_remarks')->nullable();
+                $table->text('admin_remarks')->nullable();
                 $table->timestamps();
             }
         );
