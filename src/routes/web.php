@@ -107,6 +107,8 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
 
     // 修正申請承認画面
     Route::get('/admin/requests/{id}', [AdminRequestController::class, 'fix'])->name('fix.requests.approval');
+    // 承認処理
+    Route::post('/admin/requests/{id}', [AdminRequestController::class, 'approval'])->name('requests.approval');
 
     //ログアウト機能
     Route::post('/admin/logout', [AdminAuthController::class, 'logout'])->name('logout');
