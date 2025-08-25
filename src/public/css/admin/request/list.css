@@ -59,6 +59,17 @@ body {
 /* 承認待ち、承認済み */
 .button-submit {
     font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 15%;
+    color: #000000;
+    text-decoration: none;
+    padding: 17px;
+    margin: 0 49px 0 57px;
+}
+
+.button-submit.active {
+    font-size: 16px;
+    font-weight: 700;
     letter-spacing: 15%;
     color: #000000;
     text-decoration: none;
