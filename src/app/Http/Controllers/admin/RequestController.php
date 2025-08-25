@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Request as WorkRequest;
 use App\Models\Request as RequestModel;
+use App\Models\Work;
 
 /**
  * 【管理者用】申請一覧画面表示・
@@ -63,29 +64,61 @@ class RequestController extends Controller
     /**
      * 承認処理
      */
-    public function approval(Request $request, $id)
+    public function approval($id)
     {
-        $workRequest = WorkRequest::findOrFail($id);
+        $approvalRequest = WorkRequest::with('requestWork.requestBreaks')->findOrFail($id);
 
-        $workRequest->update([
-            'approved' => true,
-            'admin_remarks' => $request->admin_remarks,
-        ]);
+        // ステータス更新
+        $approvalRequest->approved = true;
+        $approvalRequest->save();
 
-        return redirect()->route('admin.request.list', ['tab' => 'clear'])->with('success', '申請を承認しました');
-        // $workRequest = WorkRequest::with('work', 'requestWork')->findOrFail($id);
+        $requestWork = $approvalRequest->requestWork;
 
-        // // フォームから送られてきた入力値を取得
-        // $remark = $request->input('remark');
-        // $startTime = $request->input('start_time');
-        // $endTime = $request->input('end_time');
-        // $breaks = $request->input('breaks', []);
+        // work_idがあれば既存勤怠を更新、なければ新規作成
+        if ($requestWork->work_id) {
+            // 既存の勤怠を更新
+            $work = Work::findOrFail($requestWork->work_id);
+            $work->update([
+                'date' => $requestWork->date,
+                'start_time' => $requestWork->start_time,
+                'end_time' => $requestWork->end_time,
+                'remark' => $requestWork->remark,
+            ]);
+        } else {
+            // すでに同じuser_id + dateが存在するか確認
+            $work = Work::where('user_id', $requestWork->user_id)
+            ->where('date', $requestWork->date)
+            ->first();
 
-        // // 承認状態に更新
-        // $workRequest->approved = true;
-        // $workRequest->admin_remarks = $request->input('remark', '');
-        // $workRequest->manager_id = Auth::id();
-        // $workRequest->save();
-        // return redirect()->route('admin.request.list', ['tab' => 'clear'])->with('success', '勤怠申請を承認しました。');
+            if ($work) {
+                $work->update([
+                    'start_time' => $requestWork->start_time,
+                    'end_time' => $requestWork->end_time,
+                    'remark' => $requestWork->remark,
+                ]);
+            } else {
+                $work = Work::create([
+                    'user_id' => $requestWork->user_id,
+                    'date' => $requestWork->date,
+                    'start_time' => $requestWork->start_time,
+                    'end_time' => $requestWork->end_time,
+                    'remark' => $requestWork->remark,
+                ]);
+            }
+
+            // 作成したwork_idをrequest_worksに保存
+            $approvalRequest->update(['work_id' => $work->id]);
+            }
+
+        // 休憩時間を反映
+        $work->breaks()->delete();
+        foreach ($requestWork->requestBreaks as $requestBreak) {
+            $work->breaks()->create([
+                'start_time' => $requestBreak->start_time,
+                'end_time' => $requestBreak->end_time,
+            ]);
+        }
+
+        return redirect()->back()->with('success', '承認しました');
     }
 }
