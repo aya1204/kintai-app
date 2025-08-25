@@ -431,6 +431,7 @@ body {
         margin-right: 8px;
     }
 
+    /* 状態・名前・対象日時・申請理由・申請日時・詳細 */
     .status-title,
     .name-title,
     .work-date-title,
