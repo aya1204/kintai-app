@@ -251,7 +251,8 @@ body {
     }
 
     /* 承認待ち、承認済み */
-    .button-submit {
+    .button-submit,
+    .button-submit.active {
         font-size: 9px;
         letter-spacing: 0.15em;
         padding: 9px;
@@ -312,7 +313,7 @@ body {
     .work-date {
         width: 61px;
         margin-right: 8px;
-        font-size: 8px;
+        font-size: 9px;
     }
 
     /* 申請理由 */
@@ -327,7 +328,7 @@ body {
     .request-date-title,
     .request-date {
         width: 61px;
-        font-size: 8px;
+        font-size: 9px;
     }
 
     /* 詳細 */
@@ -391,7 +392,8 @@ body {
     }
 
     /* 承認待ち、承認済み */
-    .button-submit {
+    .button-submit,
+    .button-submit.active {
         font-size: 6px;
         padding: 7px;
         margin: 0 20px 0 23px;
@@ -427,6 +429,15 @@ body {
         height: 18px;
         margin-left: 4px;
         margin-right: 8px;
+    }
+
+    .status-title,
+    .name-title,
+    .work-date-title,
+    .request-reason-title,
+    .request-date-title,
+    .detail-title {
+        padding-bottom: 6px;
     }
 
     /* 状態 */
