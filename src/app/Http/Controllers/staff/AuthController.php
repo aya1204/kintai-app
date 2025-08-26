@@ -9,6 +9,7 @@ use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 /**
  * 会員登録、ログイン、ログアウト用のコントローラー
@@ -32,7 +33,8 @@ class AuthController extends Controller
 
         Auth::guard('web')->login($user);
 
-        return redirect('/attendance');
+        // 会員登録後勤怠登録画面へ
+        return redirect()->route('verification.notice');
     }
 
     // ログイン画面を表示
@@ -48,6 +50,16 @@ class AuthController extends Controller
 
         if (Auth::guard('web')->attempt($credentials)) {
             $request->session()->regenerate();
+
+            $user = Auth::user();
+
+            // メール認証済みかチェック
+            if ($user instanceof MustVerifyEmail && ! $user->hasVerifiedEmail()) {
+                Auth::logout();
+                return back()->withErrors([
+                    'email' => 'メール認証が完了していません。メールを確認して認証を完了させてください。'
+                ]);
+            }
 
         return redirect('/attendance');
     }
