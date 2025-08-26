@@ -37,44 +37,38 @@ Route::middleware('guest:web')->group(function () {
     Route::post('/login', [StaffAuthController::class, 'login']);
 });
 
+    // ログインとメール認証が必要なページ
+    Route::middleware(['auth:web', 'verified'])->name('staff.')->group(function () {
+        // 出勤登録画面表示
+        Route::get('/attendance', [StaffAttendanceController::class, 'index'])->name('attendance.index');
+        // 出勤登録
+        Route::post('/attendance/work-start', [StaffAttendanceController::class, 'workStart'])->name('attendance.workStart');
+        // 休憩入 登録
+        Route::post('/attendance/take-break', [StaffAttendanceController::class, 'takeBreak'])->name('attendance.takeBreak');
+        // 休憩戻 登録
+        Route::post('/attendance/break-return', [StaffAttendanceController::class, 'breakReturn'])->name('attendance.breakReturn');
+        // 退勤登録
+        Route::post('/attendance/work-end', [StaffAttendanceController::class, 'workEnd'])->name('attendance.workEnd');
 
-// 認証のみ必要なページ
-Route::middleware('auth:web')->name('staff.')->group(function () {
+        // 勤怠一覧画面表示
+        Route::get('/attendance/list', [StaffAttendanceController::class, 'attendance'])->name('attendance.list');
 
-    // 新規登録後、メール認証画面を表示
-    Route::get('/email/verify', [EmailVerificationController::class, 'index'])
-        ->middleware('auth')->name('verification.notice');
+        // 勤怠データ新規作成画面表示（勤怠詳細画面と同じ）
+        Route::get('/attendance/correction', [StaffAttendanceController::class, 'createForm'])->name('attendance.createForm');
+        // 勤怠データ新規作成（修正画面にて）
+        Route::post('/attendance/correction', [StaffAttendanceController::class, 'createCorrection'])->name('attendance.create');
 
-    // 出勤登録画面表示
-    Route::get('/attendance', [StaffAttendanceController::class, 'index'])->name('attendance.index');
-    // 出勤登録
-    Route::post('/attendance/work-start', [StaffAttendanceController::class, 'workStart'])->name('attendance.workStart');
-    // 休憩入 登録
-    Route::post('/attendance/take-break', [StaffAttendanceController::class, 'takeBreak'])->name('attendance.takeBreak');
-    // 休憩戻 登録
-    Route::post('/attendance/break-return', [StaffAttendanceController::class, 'breakReturn'])->name('attendance.breakReturn');
-    // 退勤登録
-    Route::post('/attendance/work-end', [StaffAttendanceController::class, 'workEnd'])->name('attendance.workEnd');
+        // 勤怠詳細画面表示
+        Route::get('/attendance/{work}', [StaffAttendanceController::class, 'show'])->name('attendance.detail');
+        // 勤怠修正
+        Route::post('/attendance/correction/{work}', [StaffAttendanceController::class, 'requestCorrection'])->name('attendance.request');
 
-    // 勤怠一覧画面表示
-    Route::get('/attendance/list', [StaffAttendanceController::class, 'attendance'])->name('attendance.list');
+        // 申請一覧画面表示
+        Route::get('/stamp_correction_request/list', [StaffRequestController::class, 'requestList'])->name('request.list');
 
-    // 勤怠データ新規作成画面表示（勤怠詳細画面と同じ）
-    Route::get('/attendance/correction', [StaffAttendanceController::class, 'createForm'])->name('attendance.createForm');
-    // 勤怠データ新規作成（修正画面にて）
-    Route::post('/attendance/correction', [StaffAttendanceController::class, 'createCorrection'])->name('attendance.create');
-
-    // 勤怠詳細画面表示
-    Route::get('/attendance/{work}', [StaffAttendanceController::class, 'show'])->name('attendance.detail');
-    // 勤怠修正
-    Route::post('/attendance/correction/{work}', [StaffAttendanceController::class, 'requestCorrection'])->name('attendance.request');
-
-    // 申請一覧画面表示
-    Route::get('/stamp_correction_request/list', [StaffRequestController::class, 'requestList'])->name('request.list');
-
-    //ログアウト機能
-    Route::post('/logout', [StaffAuthController::class, 'logout'])->name('logout');
-});
+        //ログアウト機能
+        Route::post('/logout', [StaffAuthController::class, 'logout'])->name('logout');
+    });
 
 // 管理者用のルーティング
 
