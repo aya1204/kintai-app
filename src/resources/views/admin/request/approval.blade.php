@@ -120,7 +120,7 @@
         <div class="approval-button-form">
             {{-- 承認済みは「承認済み」と表示し、ボタンを押せなくする --}}
             @if ($approved)
-            <p class="text-danger">承認済み</p>
+            <p class="approved">承認済み</p>
             @else
             <button class="approval-button" type="submit">承認</button>
             @endif

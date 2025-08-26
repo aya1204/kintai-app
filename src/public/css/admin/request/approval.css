@@ -201,6 +201,22 @@ body {
     right: 0;
 }
 
+/* 承認済み */
+.approved {
+    width: 130px;
+    height: 50px;
+    opacity: 1;
+    border-radius: 5px;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 100%;
+    letter-spacing: 0.15em;
+    color: #FFFFFF;
+    background: #696969;
+    padding-top: 13px;
+}
 
 
 /* タブレット（768-850px）対応 */
@@ -311,6 +327,7 @@ body {
     /* 備考 */
     .remark {
         font-size: 8px;
+        margin-top: 10px;
     }
 
     /* 承認ボタンフォーム */
@@ -324,6 +341,15 @@ body {
         width: 76px;
         height: 28px;
         border-radius: 3px;
+    }
+
+    /* 承認済み */
+    .approved {
+        width: 72px;
+        height: 28px;
+        border-radius: 3px;
+        font-size: 12px;
+        padding-top: 7px;
     }
 }
 
@@ -433,6 +459,7 @@ body {
     /* 備考 */
     .remark {
         font-size: 6px;
+        margin-top: 0;
     }
 
     /* 承認ボタンフォーム */
@@ -451,5 +478,14 @@ body {
     /* *承認待ちのため修正はできません。 */
     .text-danger {
         font-size: 6px;
+    }
+
+    /* 承認済み */
+    .approved {
+        width: 52px;
+        height: 20px;
+        border-radius: 2px;
+        font-size: 9px;
+        padding-top: 5px;
     }
 }

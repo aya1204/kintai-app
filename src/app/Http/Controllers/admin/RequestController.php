@@ -49,7 +49,7 @@ class RequestController extends Controller
 
         // Bladeで参照する変数を揃えて渡す
         $requestWork = $request->requestWork;
-        $approved = $request->status === 'approved';
+        $approved = $request->approved;
 
         return view('admin.request.approval', [
             'request' => $request,
