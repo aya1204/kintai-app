@@ -1,0 +1,63 @@
+/* メール認証画面のCSS */
+
+/* 認証メールを送信しましたのメッセージ */
+.alert {
+    padding: 10px 30px;
+    border-color: #badbcc;
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+/* 認証メールを送りました。メール認証を完了してください。のフォーム */
+.messages {
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    margin: 58px auto;
+}
+
+.message {
+    margin: 10px auto;
+}
+
+/* 認証はこちらからボタンのフォーム */
+.verify-btn {
+    width: 257px;
+    height: 69px;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    background: #D9D9D9;
+    margin: 62px auto;
+}
+
+/* 認証はこちらからボタン */
+.btn_email-verification {
+    font-family: Inter;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    background: none;
+    border: none;
+    margin: 20px 25px;
+}
+
+/* 認証メールを再送するリンク */
+.btn.btn-link {
+    background: none;
+    border: none;
+    color: #0073CC;
+    display: flex;
+    margin: 121px auto;
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+}

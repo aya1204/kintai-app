@@ -3,6 +3,7 @@
 use App\Http\Controllers\Staff\AuthController as StaffAuthController;
 use App\Http\Controllers\Staff\AttendanceController as StaffAttendanceController;
 use App\Http\Controllers\Staff\RequestController as StaffRequestController;
+use App\Http\Controllers\Staff\EmailVerificationController;
 
 use App\Http\Controllers\Admin\AuthController as AdminAuthController;
 use App\Http\Controllers\Admin\AttendanceController as AdminAttendanceController;
@@ -22,7 +23,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 // スタッフ用のルーティング
-
 // 未ログイン時（ゲスト）
 Route::middleware('guest:web')->group(function () {
 
@@ -40,6 +40,10 @@ Route::middleware('guest:web')->group(function () {
 
 // 認証のみ必要なページ
 Route::middleware('auth:web')->name('staff.')->group(function () {
+
+    // 新規登録後、メール認証画面を表示
+    Route::get('/email/verify', [EmailVerificationController::class, 'index'])
+        ->middleware('auth')->name('verification.notice');
 
     // 出勤登録画面表示
     Route::get('/attendance', [StaffAttendanceController::class, 'index'])->name('attendance.index');
