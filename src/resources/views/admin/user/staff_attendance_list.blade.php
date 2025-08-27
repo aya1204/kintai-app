@@ -108,7 +108,11 @@
 
             {{-- 詳細ページへのリンク --}}
             <div class="detail">
-                <a href="{{ route('admin.attendance.detail', ['work' => $attendance ? $attendance->id : '0', 'date' => $date->toDateString()]) }}" class="detail-link">詳細</a>
+                @if ($attendance) {{-- その日の勤怠がある場合 --}}
+                <a class="detail-link" href="{{ route('admin.attendance.detail', ['work' => $attendance->id]) }}">詳細</a>
+                @else {{-- 勤怠がない場合は新規作成 --}}
+                <a class="detail-link" href="{{ route('admin.attendance.createForm', ['user' => $user->id, 'date' => $date->toDateString()]) }}">詳細</a>
+                @endif
             </div>
         </div>
         @endfor
