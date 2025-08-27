@@ -304,8 +304,8 @@ class AttendanceController extends Controller
         // requestsテーブルに保存（承認状態は仮でfalse、備考も記入）
         RequestModel::create([
             'request_work_id' => $requestWork->id,
-            'manager_id' => 1,
-            //todo 'manager_id' => auth()->guard('admin')->id(),
+            // 'manager_id' => 1,
+            'manager_id' => auth()->guard('admin')->id(),
             'approved' => false,
             'staff_remarks' => $request->input('remark'),
             'admin_remarks' => '', // 管理者が後で記入
@@ -359,8 +359,9 @@ class AttendanceController extends Controller
         // requestsテーブルに保存（承認状態は仮でfalse、備考も記入）
         RequestModel::create([
             'work_id' => $work->id,
-            'manager_id' => 1,
-            //todo 'manager_id' => auth()->guard('admin')->id(),
+            'request_work_id' => $requestWork->id,
+            // 'manager_id' => 1,
+            'manager_id' => auth()->guard('admin')->id(),
             'approved' => false,
             'staff_remarks' => $request->input('remark'),
             'admin_remarks' => '', // 管理者が後で記入
