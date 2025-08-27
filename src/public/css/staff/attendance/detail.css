@@ -5,6 +5,12 @@ body {
     background-color: #F0EFF2;
 }
 
+/* フラッシュメッセージ */
+.alert-success {
+    color: red;
+    font-size: 20px;
+}
+
 /* 勤怠詳細〜各日にちの詳細までの全体フォーム */
 .attendance-detail-form {
     width: 900px;
