@@ -33,12 +33,7 @@
                 </p>
                 <p class="work-date">{{ \Carbon\Carbon::parse($request->work->date ?? $request->requestWork->date ?? now()->toDateString())->format('Y/m/d') }}</p>
                 <p class="reason">
-                    @if($request->staff_remarks)
-                    スタッフ理由：{{ $request->staff_remarks }}<br>
-                    @endif
-                    @if($request->admin_remarks)
-                    管理者理由：{{ $request->admin_remarks }}
-                    @endif
+                    {{ $request->staff_remarks }}
                 </p>
                 <p class="request-date">{{ $request->created_at->format('Y/m/d') }}</p>
                 @if($request->work_id)
