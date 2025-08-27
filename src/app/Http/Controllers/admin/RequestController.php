@@ -40,7 +40,12 @@ class RequestController extends Controller
      */
     public function fix($id)
     {
-        $request = RequestModel::with(['work.user', 'requestWork.user'])->findOrFail($id);
+        $request = RequestModel::with([
+            'work.user',
+            'work.breaks',
+            'requestWork.user',
+            'requestWork.requestBreaks',
+        ])->findOrFail($id);
 
         // 勤怠データがある場合はworkから、修正申請だけの場合はrequestWorkから取得
         $work = $request->work;
@@ -48,16 +53,16 @@ class RequestController extends Controller
         $date = $work ? $work->date : $request->requestWork->date;
 
         // Bladeで参照する変数を揃えて渡す
-        $requestWork = $request->requestWork;
-        $approved = $request->approved;
+        // $requestWork = $request->requestWork;
+        // $approved = $request->approved;
 
         return view('admin.request.approval', [
             'request' => $request,
-            'user' => $request->requestWork->user,
+            'user' => $user,
             'work' => $request->work,
             'requestWork' => $request->requestWork,
-            'date' => $request->date,
-            'approved' => $approved,
+            'date' => $date,
+            'approved' => $request->approved,
         ]);
     }
 

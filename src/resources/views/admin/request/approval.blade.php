@@ -45,10 +45,12 @@
 
             {{-- 出勤・退勤 --}}
             @php
-            $startTime = ($work && $work->start_time) ? $work->start_time : (($requestWork && $requestWork->start_time) ? $requestWork->start_time : null);
-            $endTime = ($work && $work->end_time) ? $work->end_time : (($requestWork && $requestWork->end_time) ? $requestWork->end_time : null);
-            $startTime = $startTime ? \Carbon\Carbon::parse($startTime)->format('H:i') : '';
-            $endTime = $endTime ? \Carbon\Carbon::parse($endTime)->format('H:i') : '';
+            $startTime = $requestWork && $requestWork->start_time
+            ? \Carbon\Carbon::parse($requestWork->start_time)->format('H:i')
+            : ($work && $work->start_time ? \Carbon\Carbon::parse($work->start_time)->format('H:i') : '');
+            $endTime = $requestWork && $requestWork->end_time
+            ? \Carbon\Carbon::parse($requestWork->end_time)->format('H:i')
+            : ($work && $work->end_time ? \Carbon\Carbon::parse($work->end_time)->format('H:i') : '');
             @endphp
             <div class="work-form">
                 <p class="work-title">出勤・退勤</p>
@@ -69,7 +71,10 @@
 
             {{-- 休憩時間入力 --}}
             @php
-            $breaks = ($work && $work->breaks) ? $work->breaks: (($requestWork && $requestWork->requestBreaks) ? $requestWork->requestBreaks : collect()); // 勤怠データが存在すれば登録済みの休憩時間を取得、なければ空のコレクションを代入
+            $breaks = ($requestWork && $requestWork->requestBreaks->isNotEmpty())
+            ? $requestWork->requestBreaks
+            : ($work && $work->breaks ? $work->breaks : collect());
+            // 勤怠データが存在すれば登録済みの休憩時間を取得、なければ空のコレクションを代入
             $breakIndex = 1; // 何番目の休憩か
             @endphp
 
@@ -77,7 +82,7 @@
             @php
             // 休憩開始・終了時刻があればH:i(例:13:15)の形式で表示
             $start = $break->start_time ? \Carbon\Carbon::parse($break->start_time)->format('H:i') : null;
-            $end = $break->end_time ? \Carbon\Carbon::parse($break->end_time)->format('H:i') : null;
+            $end = $break->end_time ? \Carbon\Carbon::parse($break->end_time)->format('H:i') : null; //
             @endphp
 
             <div class="break-form">
