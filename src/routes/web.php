@@ -86,9 +86,9 @@ Route::middleware('auth:admin')->name('admin.')->group(function () {
     // 勤怠一覧画面表示
     Route::get('/admin/attendances', [AdminAttendanceController::class, 'attendance'])->name('attendance.list');
 
-    // 勤怠詳細画面表示
+    // 勤怠詳細画面表示（新規作成）
     Route::get('/admin/attendances/create', [AdminAttendanceController::class, 'createForm'])->name('attendance.createForm');
-    // 勤怠詳細画面表示
+    // 勤怠詳細画面表示（既存データあり）
     Route::get('/admin/attendances/{work}', [AdminAttendanceController::class, 'show'])->name('attendance.detail');
 
     // 勤怠修正
