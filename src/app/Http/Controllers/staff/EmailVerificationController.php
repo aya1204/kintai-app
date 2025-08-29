@@ -21,9 +21,11 @@ class EmailVerificationController extends Controller
      */
     public function __invoke(EmailVerificationRequest $request)
     {
+        // ユーザーが認証済みの場合、再認証処理をせず勤怠登録画面へ遷移する
         if ($request->user()->hasVerifiedEmail()) {
-            return redirect('/mypage/profile');
+            return redirect()->route('staff.attendance.index');
         }
+        // 未認証の場合、メール認証をする
         if ($request->user()->markEmailAsVerified()) {
             event(new Verified($request->user()));
         }
