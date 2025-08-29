@@ -68,7 +68,6 @@
                 </div>
             </div>
 
-
             {{-- 休憩時間入力 --}}
             @php
             $breaks = ($requestWork && $requestWork->requestBreaks->isNotEmpty())
