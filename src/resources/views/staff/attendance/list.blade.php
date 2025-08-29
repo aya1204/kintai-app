@@ -29,14 +29,21 @@
 
     {{-- 勤怠一覧：月の切り替え(前月・当月・翌月) --}}
     <div class="month-list-form">
+        {{-- 前月 --}}
         <a class="previous-month" href="{{ route('staff.attendance.list', ['month' => $prevMonth]) }}"><img class="left-arrow-icon" src="{{ asset('storage/images/arrow.png') }}" alt="calender">前月</a>
+
+        {{-- 当月 --}}
         <div class="calender-title">
             <img class="calender-icon" src="{{ asset('storage/images/calender-logo.png') }}" alt="calender">
             <p class="selected-month">{{ $carbonMonth->format('Y/m') }}</p>
         </div>
+
+        {{-- 翌月 --}}
         <a class="next-month" href="{{ route('staff.attendance.list', ['month' => $nextMonth]) }}">翌月<img class="right-arrow-icon" src="{{ asset('storage/images/arrow.png') }}" alt="calender">
         </a>
     </div>
+
+    {{-- 勤怠一覧（各日付のフォーム） --}}
     <div class="attendance-date-list-form">
         <div class="attendance-date-list-title-form">
             <p class="date-title">日付</p>
