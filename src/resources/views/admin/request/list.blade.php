@@ -1,4 +1,3 @@
-{{-- 申請一覧画面を表示するBlade --}}
 {{-- 申請一覧画面のBladeファイル --}}
 @extends('layouts.app')
 
