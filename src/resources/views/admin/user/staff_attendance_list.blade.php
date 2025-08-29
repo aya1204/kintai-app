@@ -29,14 +29,22 @@
 
     {{-- 勤怠一覧：月の切り替え(前月・当月・翌月) --}}
     <div class="month-list-form">
+
+        {{-- 前月 --}}
         <a class="previous-month" href="{{ route('admin.staff.attendance.list', ['user' => $user->id, 'month' => $prevMonth]) }}"><img class="left-arrow-icon" src="{{ asset('storage/images/arrow.png') }}" alt="calender">前月</a>
+
+        {{-- 当月 --}}
         <div class="calender-title">
             <img class="calender-icon" src="{{ asset('storage/images/calender-logo.png') }}" alt="calender">
             <p class="selected-month">{{ $carbonMonth->format('Y/m') }}</p>
         </div>
+
+        {{-- 翌月 --}}
         <a class="next-month" href="{{ route('admin.staff.attendance.list', ['user' => $user->id, 'month' => $nextMonth]) }}">翌月<img class="right-arrow-icon" src="{{ asset('storage/images/arrow.png') }}" alt="calender">
         </a>
     </div>
+
+    {{-- 申請のある勤怠一覧のフォーム --}}
     <div class="attendance-date-list-form">
         <div class="attendance-date-list-title-form">
             <p class="date-title">日付</p>
@@ -46,6 +54,7 @@
             <p class="total-title">合計</p>
             <p class="detail-title">詳細</p>
         </div>
+
         {{-- 勤怠データの表示 --}}
         @php
         // 月の最初の日と最後の日
@@ -117,6 +126,8 @@
         </div>
         @endfor
     </div>
+
+    {{-- CSVでダウンロード --}}
     <div class="printing-form">
         <form action="{{ route('admin.staff.attendance.csv.export', ['user' => $user->id] )}}" method="POST">
             @csrf
