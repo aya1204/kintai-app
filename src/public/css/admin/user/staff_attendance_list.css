@@ -22,6 +22,7 @@ body {
 /* ⚪︎⚪︎さんの勤怠の「｜」を左寄せ */
 .list-title-form {
     padding-left: 0;
+    margin-bottom: 47px;
 }
 
 /* ⚪︎⚪︎さんの勤怠のフォーム */
@@ -280,6 +281,7 @@ body {
         width: 495px;
         height: 20px;
         font-size: 17px;
+        margin-bottom: 26px;
     }
 
     /* 「｜」と⚪︎⚪︎さんの勤怠のフォーム */
@@ -427,6 +429,7 @@ body {
     .list-title-form {
         width: 240px;
         font-size: 16px;
+        margin-bottom: 19px;
     }
 
     /* 「｜」と⚪︎⚪︎さんの勤怠のフォーム */
