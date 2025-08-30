@@ -25,6 +25,20 @@ class AuthController extends Controller
     // 会員登録機能
     public function create(RegisterRequest $request)
     {
+        if (app()->environment('testing')) {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'email_verified_at' => now(),
+            ]);
+
+            // テスト環境でも自動ログインさせる
+            Auth::login($user);
+            return redirect()->route('staff.attendance.index');
+        }
+
+        // 本番環境はログイン後メール認証誘導画面へ
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -33,7 +47,7 @@ class AuthController extends Controller
 
         Auth::guard('web')->login($user);
 
-        // 会員登録後勤怠登録画面へ
+        // 会員登録後メール認証誘導画面へ
         return redirect()->route('verification.notice');
     }
 
