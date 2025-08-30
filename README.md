@@ -25,18 +25,6 @@
     - 申請画面の閲覧・承認
 
 
-## 使用技術（実行環境）
-- PHP 7.4.9 (Dockerコンテナ内)
-- Laravel 8.83.29
-- Composer version 2.8.5
-- MySQL 8.0.26
-
-
-## URL
-- ローカル環境：http://localhost
-- Githubリポジトリ：https://github.com/aya1204/kintai-app.git
-
-
 ## 環境構築
 
 ### Dockerビルド
@@ -96,6 +84,18 @@
     php artisan storage:link
 
 
+## 使用技術（実行環境）
+- PHP 7.4.9 (Dockerコンテナ内)
+- Laravel 8.83.29
+- Mailhog (ローカル環境のメール確認ツール)
+- Composer version 2.8.5
+- MySQL 8.0.26
+
+
+## メール認証について
+本アプリではユーザー登録後、メール認証を行うことでログインが完了します。
+ローカル開発環境では Mailhog を使用し、 http://localhost:8025 で確認可能です。
+
 ## ER図
 - users ↔︎ works：１対多
 - users ↔︎ request_works：１対多
@@ -109,3 +109,16 @@
 ![ER図](docs/kintai-app-er.png)
 
 ※ ER図が表示されない場合は `docs/kintai-app-er.png` を直接開いてください。
+
+## URL
+- ローカル環境：http://localhost
+- Githubリポジトリ：https://github.com/aya1204/kintai-app.git
+- 【スタッフ】会員登録：http://localhost/register
+- 【スタッフ】ログイン：http://localhost/login
+- 【スタッフ】出勤登録画面：http://localhost/attendance
+- 【スタッフ】勤怠一覧画面：http://localhost/attendance/list
+- 【スタッフ】申請一覧画面：http://localhost/stamp_correction_request/list
+- 【管理者】ログイン画面：http://localhost/admin/login
+- 【管理者】勤怠一覧画面：http://localhost/admin/attendances
+- 【管理者】スタッフ一覧画面：http://localhost/admin/users
+- 【管理者】申請一覧画面：http://localhost/admin/requests
