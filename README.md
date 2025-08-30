@@ -84,6 +84,38 @@
     php artisan storage:link
 
 
+## 単体テスト環境構築
+### 1. MySQLにログインする
+    docker-compose exec mysql bash
+    mysql -u root -p
+    root
+
+### 2. MySqlコンテナ内でkintai_app_testデータベースを作成
+    CREATE DATABASE kintai_app_test;
+    SHOW DATABASES;
+    (kintai_app_testが表示されたらOK)
+    exit
+    exit
+
+### 3. PHPコンテナ内で.env.testingファイルを作成
+    docker-compose exec php bash
+    cp .env .env.testing
+
+### 4. 作成できたら編集する
+    APP_ENV=testing
+    APP_KEY=
+    DB_CONNECTION=mysql_test
+    DB_DATABASE=kintai_app_test
+    DB_USERNAME=root
+    DB_PASSWORD=root
+
+### 5. APP_KEYに新たなテスト用のアプリケーションキーを加える
+    php artisan key:generate --env=testing
+
+### 6. キャッシュの削除をする
+    php artisan config:clear
+
+
 ## 使用技術（実行環境）
 - PHP 7.4.9 (Dockerコンテナ内)
 - Laravel 8.83.29
