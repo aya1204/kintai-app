@@ -76,7 +76,7 @@ Route::middleware('guest:web')->group(function () {
 Route::middleware('guest:admin')->group(function () {
 
     // ログイン画面表示
-    Route::get('/admin/login', [AdminAuthController::class, 'index'])->name('login');
+    Route::get('/admin/login', [AdminAuthController::class, 'index'])->name('admin.login');
     // ログイン処理
     Route::post('/admin/login', [AdminAuthController::class, 'login']);
 });
