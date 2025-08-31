@@ -7,6 +7,13 @@
 
 @section('content')
 
+{{-- 「ログイン情報が登録されていません。」だけ上部に表示 --}}
+@if ($errors->has('email') && $errors->first('email') === 'ログイン情報が登録されていません')
+<div class="alert">
+    {{ $errors->first('email') }}
+</div>
+@endif
+
 <div class="login-form__content">
     <div class="login-form__heading">
         <h2>管理者ログイン</h2>
@@ -46,10 +53,6 @@
                     @error('password')
                     {{ $message }}
                     @enderror
-
-                    @if ($errors->has('email') && $errors->first('email') === 'ログイン情報が登録されていません')
-                    {{ $errors->first('email') }}
-                    @endif
                 </div>
             </div>
         </div>
