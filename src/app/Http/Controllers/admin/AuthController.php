@@ -29,9 +29,11 @@ class AuthController extends Controller
             return redirect()->route('admin.attendance.list');
         }
 
-        return back()->withErrors([
-            'email' => 'ログイン情報が登録されていません',
-        ]);
+        return redirect()
+            ->route('admin.login')
+            ->withErrors([
+                'email' => 'ログイン情報が登録されていません',
+            ]);
     }
 
     /**
