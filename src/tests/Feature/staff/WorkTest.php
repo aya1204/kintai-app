@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Work;
 
 class WorkTest extends TestCase
 {
@@ -31,6 +32,11 @@ class WorkTest extends TestCase
         $today = date('Y年m月d日');
         $response->assertSee($today);
     }
+
+
+    /**
+     * ステータス確認機能テスト
+     */
 
     /**
      * 勤務外ステータスが正しく表示されるテスト
@@ -109,8 +115,9 @@ class WorkTest extends TestCase
         $response->assertSee('退勤済');
     }
 
+
     /**
-     * 出勤機能
+     * 出勤機能テスト
      */
 
     /**
@@ -182,5 +189,182 @@ class WorkTest extends TestCase
 
         // 出勤時刻が画面に表示されているか確認
         $response->assertSee(now()->format('H:i'));
+    }
+
+
+    /**
+     * 休憩機能
+     */
+
+    /**
+     * 休憩ボタンが正しく機能するテスト
+     */
+    public function testUserCanStartBreak()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+
+        // 出勤済みのデータを作成
+        $work = Work::factory()->create([
+            'user_id' => $user->id,
+            'date' => now()->toDateString(),
+            'start_time' => now()->format('H:i:s'),
+        ]);
+
+        $this->actingAs($user);
+
+        // ステータス「出勤中」とボタン「休憩入」の確認
+        $this->get(route('staff.attendance.index'))->assertSee('出勤中') // ステータスが「出勤中」と表示
+            ->assertSee('休憩入'); // 「休憩入」ボタン表示
+
+        // 休憩入り処理を実行して、リダイレクト後の画面で「休憩中」と表示される確認
+        $this->followingRedirects()
+            ->post(route('staff.attendance.takeBreak'))
+            ->assertSee('休憩中');
+
+        // DBに休憩開始が記録されていることを確認
+        $this->assertDatabaseHas('breaks', [
+            'work_id' => $work->id,
+            'start_time' => now()->format('H:i:s'),
+        ]);
+    }
+
+    /**
+     * 休憩は一日に何回でもできるテスト
+     */
+    public function testUserCanTakeMultipleBreaks()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+
+        // 出勤済みのデータを作成
+        Work::factory()->create([
+            'user_id' => $user->id,
+            'date' => now()->toDateString(),
+            'start_time' => now()->format('H:i:s')
+        ]);
+
+        $this->actingAs($user);
+
+        // ステータス「出勤中」とボタン「休憩入」の確認
+        $this->get(route('staff.attendance.index'))->assertSee('出勤中') // ステータスが「出勤中」と表示
+            ->assertSee('休憩入'); // 「休憩入」ボタン表示
+
+        // 休憩入りの処理をして「休憩戻」ボタンが表示される
+        $this->followingRedirects()
+            ->post(route('staff.attendance.takeBreak'))
+            ->assertSee('休憩戻');
+
+        // 休憩戻りの処理をして再度「休憩入」ボタンが表示される
+        $this->followingRedirects()
+            ->post(route('staff.attendance.breakReturn'))
+            ->assertSee('休憩入');
+    }
+
+    /**
+     * 休憩戻ボタンが正しく機能するテスト
+     */
+    public function testUserCanEndBreak()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+
+        // 出勤済みのデータを作成
+        $work = Work::factory()->create([
+            'user_id' => $user->id,
+            'date' => now()->toDateString(),
+            'start_time' => now()->format('H:i:s'),
+        ]);
+
+        $this->actingAs($user);
+
+        // ステータスが「出勤中」と表示されるか確認
+        $this->get(route('staff.attendance.index'))->assertSee('出勤中');
+
+        // 休憩入
+        $this->post(route('staff.attendance.takeBreak'));
+
+        // 休憩戻
+        $this->followingRedirects()
+            ->post(route('staff.attendance.breakReturn'))
+            ->assertSee('出勤中');
+
+        $this->assertDatabaseHas('breaks', [
+            'work_id' => $work->id,
+            'start_time' => now()->format('H:i:s'),
+            'end_time' => now()->format('H:i:s'),
+        ]);
+    }
+
+    /**
+     * 休憩戻は一日に何回でもできるテスト
+     */
+    public function testUserCanReturnFromMultipleBreaks()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+
+        // 出勤済みのデータを作成
+        Work::factory()->create([
+            'user_id' => $user->id,
+            'date' => now()->toDateString(),
+            'start_time' => now()->format('H:i:s'),
+        ]);
+
+        $this->actingAs($user);
+
+        // ステータスが「出勤中」と表示されるか確認
+        $this->get(route('staff.attendance.index'))->assertSee('出勤中');
+
+        // 休憩入りの処理をして「休憩戻」ボタンが表示される
+        $this->followingRedirects()
+            ->post(route('staff.attendance.takeBreak'))
+            ->assertSee('休憩戻');
+
+        // 休憩戻りの処理をして「休憩入」ボタンが表示される
+        $this->followingRedirects()
+            ->post(route('staff.attendance.breakReturn'))
+            ->assertSee('休憩入');
+
+            // 2回目の休憩入りの処理をして
+        $this->followingRedirects()
+            ->post(route('staff.attendance.takeBreak'))
+            ->assertSee('休憩戻');
+
+        $this->followingRedirects()
+            ->post(route('staff.attendance.breakReturn'))
+            ->assertSee('休憩入');
+    }
+
+    /**
+     * 休憩時刻が勤怠一覧画面で確認できるテスト
+     */
+    public function testBreakTimeIsShowInAttendanceList()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+
+        // 出勤済みのデータを作成
+        Work::factory()->create([
+            'user_id' => $user->id,
+            'date' => now()->toDateString(),
+            'start_time' => now()->format('H:i:s'),
+        ]);
+
+        $this->actingAs($user);
+
+        $startTime = now()->format('H:i');
+        $endTime = now()->format('H:i');
+
+        // 休憩入・戻処理を実行
+        $this->post(route('staff.attendance.takeBreak'));
+        $this->post(route('staff.attendance.breakReturn'));
+
+        // 勤怠一覧画面を確認
+        $response = $this->get(route('staff.attendance.list', ['month' => now()->format('Y-m')]));
+
+        // 休憩時刻が画面に表示されているか確認
+        $response->assertSee($startTime);
+        $response->assertSee($endTime);
     }
 }
