@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Work;
+use Whoops\Exception\Formatter;
 
 class WorkTest extends TestCase
 {
@@ -366,5 +367,54 @@ class WorkTest extends TestCase
         // 休憩時刻が画面に表示されているか確認
         $response->assertSee($startTime);
         $response->assertSee($endTime);
+    }
+
+
+    /**
+     * 退勤機能
+     */
+
+    /**
+     * 退勤ボタンが正しく機能するテスト
+     * 退勤時刻が勤怠一覧画面で確認するテスト
+     */
+    public function testUserCanWorkEnd()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+
+        $work = Work::factory()->create([
+            'user_id' => $user->id,
+            'date' => now()->toDateString(),
+            'start_time' => now()->format('H:i:s'),
+        ]);
+
+        $this->actingAs($user);
+
+        // ステータスが「出勤中」と表示されるか確認
+        $this->get(route('staff.attendance.index'))
+        ->assertSee('出勤中');
+
+        // 退勤前は「退勤」ボタンが表示
+        $response = $this->get(route('staff.attendance.index'));
+        $response->assertSee('退勤');
+
+        // 退勤処理を実行
+        $response = $this->followingRedirects()
+            ->post(route('staff.attendance.workEnd'))
+            ->assertSee('退勤済');
+
+        // 勤怠一覧画面で退勤時刻を確認
+        $response = $this->get(route('staff.attendance.list', [
+            'month' =>now()->format('Y-m')
+        ]));
+        $response->assertSee(now()->format('H:i'));
+
+        $this->assertDatabaseHas('works', [
+            'user_id' => $user->id,
+            'date' => now()->toDateString(),
+            'start_time' => $work->start_time,
+            'end_time' => now()->format('H:i:s'),
+        ]);
     }
 }
