@@ -190,4 +190,129 @@ class AttendanceTest extends TestCase
         $response->assertSee('12:00');
         $response->assertSee('13:00');
     }
+
+
+    /**
+     * 勤怠詳細情報取得機能テスト
+     */
+
+    /**
+     * 勤怠詳細画面の「名前」がログインユーザーの氏名になっている
+     */
+    public function testAttendanceDetailShowsUserName()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create([
+            'name' => 'テストユーザー',
+        ]
+        );
+
+        // 出勤・退勤データを作成
+        $work = Work::factory()->create([
+            'user_id' => $user->id,
+            'date' => now()->toDateString(),
+            'start_time' => now()->format('H:i:s'),
+            'end_time' => now()->addHours(8)->format('H:i:s'),
+        ]);
+
+        $this->actingAs($user);
+
+        $response = $this->get(route('staff.attendance.detail', $work->id));
+        // テストユーザー」と表示されているか確認する
+        $response->assertSee('テストユーザー');
+    }
+
+    /**
+     * 勤怠詳細画面の「日付」が選択した日付になっている
+     */
+    public function testAttendanceDetailShowsSelectedDate()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+
+        // 出勤・退勤データを作成
+        $work = Work::factory()->create([
+            'user_id' => $user->id,
+            'date' => now()->toDateString(),
+            'start_time' => now()->format('H:i:s'),
+            'end_time' => now()->addHour(8)->format('H:i:s'),
+        ]);
+
+        $this->actingAs($user);
+
+        // 「〇〇年」と「〇月〇日（0なし）」と表示されるか確認
+        $response = $this->get(route('staff.attendance.detail', $work->id));
+        // 「〇〇〇〇年」と表示されるか確認
+        $response->assertSee(now()->format('Y年'));
+        // 「〇月〇日（0なし）」と表示されるか確認
+        $response->assertSee(now()->format('n月j日'));
+    }
+
+    /**
+     * 「出勤・退勤」の時間がログインユーザーの打刻と一致している
+     */
+    public function testAttendanceDetailShowsWorkTimes()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+
+        // 出勤時間を定義
+        $start = now()->setTime(9,0,0);
+        // 退勤時間を定義
+        $end = now()->setTime(18,0,0);
+
+        // 出勤・退勤データを作成
+        $work = Work::factory()->create([
+            'user_id' => $user->id,
+            'date' => now()->toDateString(),
+            'start_time' => $start->format('H:i:s'),
+            'end_time' => $end->format('H:i:s'),
+        ]);
+
+        $this->actingAs($user);
+
+        $response = $this->get(route('staff.attendance.detail', $work->id));
+        // 出勤時間「9:00」が表示されているか確認
+        $response->assertSee($start->format('H:i'));
+        // 退勤時間「18:00」が表示されているか確認
+        $response->assertSee($end->format('H:i'));
+    }
+
+    /**
+     * 「休憩」の時間がログインユーザーの打刻と一致している
+     */
+    public function testAttendanceDetailShowsBreakTimes()
+    {
+        /** @var \App\Models\User $user */
+        $user = User::factory()->create();
+
+        // 出勤・退勤データを作成
+        $work = Work::factory()->create([
+            'user_id' => $user->id,
+            'date' => now()->toDateString(),
+            'start_time' => now()->format('H:i:s'),
+            'end_time' => now()->addHour(8)->format('H:i:s'),
+        ]);
+
+        // 休憩入り時間を定義
+        $start = now()->setTime(12,0,0);
+        // 休憩戻り時間を定義
+        $end = now()->setTime(13,0,0);
+
+        // 休憩入り・休憩戻りデータを作成
+        $break = BreakTime::factory()->create([
+            'work_id' => $work->id,
+            'start_time' => $start->format('H:i:s'),
+            'end_time' => $end->format('H:i:s'),
+        ]);
+
+        $this->actingAs($user);
+
+        $response = $this->get(route('staff.attendance.detail', $work->id));
+
+        // 休憩入り時間「12:00」が表示されているか確認
+        $response->assertSee('12:00');
+        // 休憩戻り時間「13:00」が表示されているか確認
+        $response->assertSee('13:00');
+    }
 }
