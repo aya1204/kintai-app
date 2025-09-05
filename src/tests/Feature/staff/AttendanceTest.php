@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 /**
- * 勤怠一覧・勤怠詳細情報取得のテスト
+ * 【スタッフ用】勤怠一覧・勤怠詳細情報取得のテスト
  */
 class AttendanceTest extends TestCase
 {

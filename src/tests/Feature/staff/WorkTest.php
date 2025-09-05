@@ -10,7 +10,7 @@ use App\Models\Work;
 use Whoops\Exception\Formatter;
 
 /**
- * 日時取得・ステータス確認・出勤・休憩・退勤のテスト
+ * 【スタッフ用】日時取得・ステータス確認・出勤・休憩・退勤のテスト
  */
 class WorkTest extends TestCase
 {
