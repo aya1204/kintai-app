@@ -58,22 +58,36 @@ class AttendanceRequest extends FormRequest
             $workStart = $this->input('start_time');
             $workEnd = $this->input('end_time');
 
+            if ($workStart && $workEnd && $workStart >= $workEnd) {
+                $validator->errors()->add('start_time', '出勤時間もしくは退勤時間が不適切な値です');
+                $validator->errors()->add('end_time', '出勤時間もしくは退勤時間が不適切な値です');
+            }
+
             foreach ($breaks as $index => $break) {
                 $start = $break['start_time'] ?? null;
                 $end = $break['end_time'] ?? null;
 
-                if ($start && $end) {
-                    if ($start > $end) {
-                        $validator->errors()->add("breaks.$index.start_time", "休憩時間が不適切な値です");
-                    }
-                    if ($start < $workStart) {
-                        $validator->errors()->add("breaks.$index.start_time", "休憩時間が不適切な値です");
-                    }
-                    if ($end > $workEnd) {
-                        $validator->errors()->add("breaks.$index.end_time", "休憩時間もしくは退勤時間が不適切な値です");
-                    }
+                // 休憩開始が出勤時間より前の場合
+                if ($start && $workStart && $start < $workStart) {
+                    $validator->errors()->add("breaks.$index.start_time", "休憩時間が不適切な値です");
                 }
 
+                // 休憩開始が退勤時間より後の場合
+                if ($start && $workEnd && $start > $workEnd) {
+                        $validator->errors()->add("breaks.$index.start_time", "休憩時間が不適切な値です");
+                }
+
+                // 休憩終了時間が退勤時間より後の場合
+                if ($end && $workEnd && $end > $workEnd) {
+                        $validator->errors()->add("breaks.$index.end_time", "休憩時間もしくは退勤時間が不適切な値です");
+                }
+
+                // 休憩開始時間が休憩終了時間より後の場合
+                if ($start && $end && $start > $end) {
+                    $validator->errors()->add("breaks.$index.start_time", "休憩時間が不適切な値です");
+                }
+
+                // 休憩開始があるのに終了がない場合
                 if ($start && !$end) {
                     $validator->errors()->add("breaks.$index.end_time", "休憩時間もしくは退勤時間が不適切な値です");
                 }
