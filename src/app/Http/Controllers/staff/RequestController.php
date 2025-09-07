@@ -20,6 +20,7 @@ class RequestController extends Controller
 
         // requestsテーブルから検索し、リレーション経由でrequest_works→userを読み込む
         $requests = WorkRequest::with('requestWork.user')
+        ->whereHas('requestWork', fn ($q) => $q->where('user_id', $user->id))
         ->when($tab === 'wait', fn($q) => $q->where('approved', false))
         ->when($tab === 'clear', fn ($q) => $q->where('approved', true))
         ->orderByDesc('created_at')
