@@ -23,11 +23,6 @@ class AttendanceTest extends TestCase
 
     use RefreshDatabase;
 
-
-    /**
-     * 【管理者用】勤怠一覧情報取得機能テスト
-     */
-
     /**
      * その日になされた全ユーザーの勤怠情報が正確に確認できる
      */
