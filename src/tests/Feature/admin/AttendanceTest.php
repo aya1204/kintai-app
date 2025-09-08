@@ -11,7 +11,7 @@ use PhpParser\Node\Expr\FuncCall;
 use Tests\TestCase;
 
 /**
- * 【管理者用】勤怠一覧・勤怠詳細情報取得のテスト
+ * 【管理者用】勤怠一覧情報取得機能のテスト
  */
 class AttendanceTest extends TestCase
 {
