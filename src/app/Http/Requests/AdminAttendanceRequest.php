@@ -71,10 +71,10 @@ class AdminAttendanceRequest extends FormRequest
 
                 if ($start && $end) {
                     if ($start < $workStart) {
-                        $validator->errors()->add("breaks.$index.start_time", "休憩時間が勤務時間外です");
+                        $validator->errors()->add("breaks.$index.start_time", "休憩時間が不適切な値です");
                     }
                     if ($end > $workEnd) {
-                        $validator->errors()->add("breaks.$index.end_time", "休憩時間が勤務時間外です");
+                        $validator->errors()->add("breaks.$index.end_time", "休憩時間もしくは退勤時間が不適切な値です");
                     }
                     if ($start > $end) {
                         $validator->errors()->add("breaks.$index.start_time", "休憩時間が不適切な値です");
