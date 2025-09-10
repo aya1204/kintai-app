@@ -193,6 +193,7 @@ class UserTest extends TestCase
         /** @var \App\Models\User $user */
         $user = User::factory()->create();
 
+        // 勤怠データを作成
         $work = Work::factory()->create([
             'user_id' => $user->id,
             'date' => now()->toDateString(),
@@ -200,18 +201,21 @@ class UserTest extends TestCase
             'end_time' => '18:00',
         ]);
 
+        // 休憩入り・休憩戻りデータを作成
         $break = BreakTime::factory()->create([
             'work_id' => $work->id,
             'start_time' => '12:00',
             'end_time' => '13:00',
         ]);
 
+        // 勤怠一覧ページから詳細ボタンを押して勤怠詳細ページへ
         $response = $this->actingAs($admin, 'admin')->get(route('admin.attendance.detail', [
             'user' => $user->id,
             'work' => $work->id
         ]));
-
         $response->assertStatus(200);
+
+        // 勤怠データ（出勤・退勤・休憩入り・休憩戻り）が表示されているか確認
         $response->assertSee('09:00');
         $response->assertSee('18:00');
         $response->assertSee('12:00');
