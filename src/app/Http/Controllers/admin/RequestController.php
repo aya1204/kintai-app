@@ -124,6 +124,6 @@ class RequestController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', '承認しました');
+        return redirect()->route('admin.fix.requests.approval', $id)->with('success', '承認しました');
     }
 }
