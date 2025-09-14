@@ -104,6 +104,7 @@ class AuthTest extends TestCase
             'email' => 'test@example.com',
             'password' => 'password',
             'password_confirmation' => 'password',
+            'skip_email_verification' => true,
         ]); // 会員登録処理
 
         // 登録後に勤怠登録画面にリダイレクト

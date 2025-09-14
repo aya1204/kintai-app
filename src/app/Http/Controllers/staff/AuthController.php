@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Auth\Events\Registered;
 
 /**
  * 会員登録、ログイン、ログアウト用のコントローラー
@@ -25,30 +26,33 @@ class AuthController extends Controller
     // 会員登録機能
     public function create(RegisterRequest $request)
     {
-        if (app()->environment('testing')) {
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'email_verified_at' => now(),
-            ]);
-
-            // テスト環境でも自動ログインさせる
-            Auth::login($user);
-            return redirect()->route('staff.attendance.index');
-        }
-
-        // 本番環境はログイン後メール認証誘導画面へ
-        $user = User::create([
+        $userData = [
             'name' => $request->name,
             'email' => $request->email,
-            'password' =>  Hash::make($request->password),
-        ]);
+            'password' => Hash::make($request->password),
+        ];
+
+        // AuthTest用：フラグがついていたらメール認証済みにする
+        if (app()->environment('testing') && request()->has('skip_email_verification')) {
+            // すぐログインして勤怠画面に飛ばす
+            $userData['email_verified_at'] = now();
+        }
+
+        // ユーザー作成
+        $user = User::create($userData);
+
+        // メール未認証→メール認証画面へ
+        event(new Registered($user));
 
         Auth::guard('web')->login($user);
 
-        // 会員登録後メール認証誘導画面へ
-        return redirect()->route('verification.notice');
+        // Authテスト用フラグがあれば勤怠登録画面へ、本番やメール認証テストはメール認証画面へ
+        if (app()->environment('testing') && request()->has('skip_email_verification'))  {
+            return redirect()->route('staff.attendance.index');
+        }
+
+            return redirect()->route('verification.notice');
+
     }
 
     // ログイン画面を表示
