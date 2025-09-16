@@ -31,6 +31,7 @@
     border: 1px solid #000000;
     background: #D9D9D9;
     margin: 62px auto;
+    display: flex;
 }
 
 /* 認証はこちらからボタン */
@@ -43,7 +44,9 @@
     text-align: center;
     background: none;
     border: none;
-    margin: 20px 25px;
+    margin: 20px auto;
+    text-decoration: none;
+    color: #000000;
 }
 
 /* 認証メールを再送するリンク */

@@ -13,18 +13,17 @@
     </div>
     @endif
 
-    {{-- メール認証を送信するフォーム --}}
+    {{-- メール認証を誘導するメッセージ --}}
     <div class="messages">
         <p class="message">登録していただいたメールアドレスに認証メールを送付しました</p>
         <p class="message">メール認証を完了してください。</p>
     </div>
 
-    <form method="POST" action="{{ route('verification.send') }}">
-        @csrf
-        <div class="verify-btn">
-            <button class="btn_email-verification">認証はこちらから</button>
-        </div>
-    </form>
+    {{-- MailHogへ遷移する --}}
+    <div class="verify-btn">
+        <a href="http://localhost:8025" target="_blank" class="btn_email-verification">認証はこちらから
+        </a>
+    </div>
 
     {{-- 再送信のためのフォーム --}}
     <form method="POST" action="{{ route('verification.send') }}">
