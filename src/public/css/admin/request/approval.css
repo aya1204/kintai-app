@@ -7,7 +7,7 @@ body {
 
 /* フラッシュメッセージ */
 .alert-success {
-    color: red;
+    color: #0f5132;
     font-size: 20px;
 }
 
