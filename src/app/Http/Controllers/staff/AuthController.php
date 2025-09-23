@@ -51,7 +51,7 @@ class AuthController extends Controller
             return redirect()->route('staff.attendance.index');
         }
 
-            return redirect()->route('verification.notice');
+        return redirect()->route('verification.notice');
 
     }
 
