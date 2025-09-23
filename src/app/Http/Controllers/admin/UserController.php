@@ -87,7 +87,7 @@ class UserController extends Controller
                 $attendance->start_time ? Carbon::parse($attendance->start_time)->format('H:i') : '', // 出勤
                 $attendance->end_time ? Carbon::parse($attendance->end_time)->format('H:i') : '', // 退勤
                 $breakMinutes > 0 ? floor($breakMinutes/60).':'.str_pad($breakMinutes%60,2,'0',STR_PAD_LEFT) : '', // 休憩時間合計（hh:mm形式）
-                $workMinutes > 0 ? floor($workMinutes / 60) . ':' . str_pad($breakMinutes % 60, 2, '0', STR_PAD_LEFT) : '', // 勤務時間合計（hh:mm形式）
+                $workMinutes > 0 ? floor($workMinutes / 60) . ':' . str_pad($workMinutes % 60, 2, '0', STR_PAD_LEFT) : '', // 勤務時間合計（hh:mm形式）
             ];
         }
 
