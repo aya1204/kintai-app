@@ -11,7 +11,6 @@ use App\Models\BreakTime;
 use App\Models\RequestWork;
 use App\Models\RequestBreak;
 use App\Models\Request as RequestModel;
-use PhpParser\Node\Expr\FuncCall;
 
 /**
  * 出勤・休憩・退勤登録、勤怠一覧、勤怠詳細のコントローラー
@@ -29,7 +28,7 @@ class AttendanceController extends Controller
 
         // 今日すでに出勤済みか確認
         $todayWork = Work::where('user_id', $user->id)
-            ->whereDate('date', today())
+            ->whereDate('date', $today)
             ->latest('start_time')
             ->first();
 
