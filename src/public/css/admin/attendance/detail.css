@@ -191,7 +191,7 @@ body {
 
 /* 修正ボタン */
 .correction-button {
-    font-style: Bold;
+    font-style: bold;
     font-size: 22px;
     line-height: 100%;
     letter-spacing: 0.15em;
@@ -212,7 +212,7 @@ body {
     display: flex;
     justify-content: end;
     font-weight: 800;
-    font-style: Extra Bold;
+    font-style: bold;
     font-size: 18px;
     letter-spacing: 0.15em;
     color: #FF000080;
