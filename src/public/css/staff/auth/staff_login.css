@@ -117,6 +117,7 @@
     color: red;
 }
 
+/* スマホ（767px以下）対応 */
 @media screen and (max-width: 767px) {
     .form__button {
         height: 48px;
