@@ -19,7 +19,7 @@ class ManagerSeeder extends Seeder
             ['email' => 'admin@example.com'],
             [
                 'password' => Hash::make('password')
-            ],
+            ]
         );
     }
 }
