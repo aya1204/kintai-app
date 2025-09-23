@@ -140,7 +140,6 @@ body {
     font-size: 16px;
     letter-spacing: 0.15em;
     color: #000000;
-    gap: 10px;
     text-align: center;
 }
 
@@ -160,7 +159,6 @@ body {
     font-size: 16px;
     letter-spacing: 0.15em;
     color: #000000;
-    gap: 10px;
     text-align: center;
 }
 
@@ -191,7 +189,6 @@ body {
 
 /* 修正ボタン */
 .correction-button {
-    font-style: bold;
     font-size: 22px;
     line-height: 100%;
     letter-spacing: 0.15em;
@@ -200,24 +197,9 @@ body {
     width: 130px;
     height: 50px;
     opacity: 1;
-    top: 855px;
-    left: 1075px;
     border-radius: 5px;
     border: none;
-    right: 0;
 }
-
-/* *承認待ちのため修正はできません。 */
-.text-danger {
-    display: flex;
-    justify-content: end;
-    font-weight: 800;
-    font-style: bold;
-    font-size: 18px;
-    letter-spacing: 0.15em;
-    color: #FF000080;
-}
-
 
 /* タブレット（768-850px）対応 */
 @media screen and (min-width: 768px) and (max-width: 850px) {
@@ -297,7 +279,6 @@ body {
         width: 57px;
         font-size: 9px;
         color: #000000;
-        gap: 6px;
         text-align: center;
     }
 
@@ -313,7 +294,6 @@ body {
     .wavy-line {
         width: 38px;
         font-size: 9px;
-        gap: 6px;
     }
 
     /* 月日だけ位置調整 */
@@ -330,7 +310,7 @@ body {
     .remark {
         font-size: 8px;
         width: 174px;
-        height: 40px;
+        height: 35px;
         border-radius: 2px;
         margin-top: 5px;
     }
@@ -346,11 +326,6 @@ body {
         width: 76px;
         height: 28px;
         border-radius: 3px;
-    }
-
-    /* *承認待ちのため修正はできません。 */
-    .text-danger {
-        font-size: 10px;
     }
 }
 
@@ -431,7 +406,6 @@ body {
     .break-return-time {
         width: 46px;
         font-size: 7px;
-        gap: 5px;
     }
 
     /* 出勤・退勤、休憩時間の入力欄 */
@@ -446,7 +420,6 @@ body {
     .wavy-line {
         width: 30px;
         font-size: 7px;
-        gap: 5px;
     }
 
     /* 月日だけ位置調整 */
@@ -479,10 +452,5 @@ body {
         width: 61px;
         height: 22px;
         border-radius: 2px;
-    }
-
-    /* *承認待ちのため修正はできません。 */
-    .text-danger {
-        font-size: 6px;
     }
 }
