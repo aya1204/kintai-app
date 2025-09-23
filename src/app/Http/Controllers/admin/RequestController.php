@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Request as WorkRequest;
 use App\Models\Request as RequestModel;
 use App\Models\Work;
 
@@ -26,7 +25,7 @@ class RequestController extends Controller
         $tab = $request->input('tab', 'wait');
 
         // requestsテーブルから検索し、リレーション経由でrequest_works→userを読み込む
-        $requests = WorkRequest::with('requestWork.user')
+        $requests = RequestModel::with('requestWork.user')
             ->when($tab === 'wait', fn($q) => $q->where('approved', false))
             ->when($tab === 'clear', fn($q) => $q->where('approved', true))
             ->orderByDesc('created_at')
@@ -71,7 +70,7 @@ class RequestController extends Controller
      */
     public function approval($id)
     {
-        $approvalRequest = WorkRequest::with('requestWork.requestBreaks')->findOrFail($id);
+        $approvalRequest = RequestModel::with('requestWork.requestBreaks')->findOrFail($id);
 
         // ステータス更新
         $approvalRequest->approved = true;
