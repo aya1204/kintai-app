@@ -208,10 +208,10 @@ class AttendanceController extends Controller
         // ユーザーが指定した月の勤務データを取得
         // 勤務ごとの休憩情報もまとめて一緒に読み込み
         $attendances = Work::with('breaks')
-        ->where('user_id', $user->id)
-        ->where('date', 'like', "{$currentMonth}%") // 指定月の全日付にマッチ(8月なら31日、9月なら30日分表示)
-        ->orderBy('date') // 日付順で並べる
-        ->get();
+            ->where('user_id', $user->id)
+            ->where('date', 'like', "{$currentMonth}%") // 指定月の全日付にマッチ(8月なら31日、9月なら30日分表示)
+            ->orderBy('date') // 日付順で並べる
+            ->get();
 
         return view('staff.attendance.list', compact('attendances', 'currentMonth'));
     }
@@ -265,7 +265,7 @@ class AttendanceController extends Controller
 
         // 表示用の日付
         $date = $work->date;
-            return view('staff.attendance.detail', compact('work', 'user', 'date', 'requestWork', 'approvalWait'));
+        return view('staff.attendance.detail', compact('work', 'user', 'date', 'requestWork', 'approvalWait'));
         }
 
     /**

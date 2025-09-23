@@ -27,8 +27,7 @@ class AttendanceController extends Controller
 
         // 「date」という入力があったらそれを使う(例:2025-08-01)
         // 入力がなければ今の日付を自動で設定
-        $currentDate = $request->input('date') ?? now()
-            ->format('Y-m-d');
+        $currentDate = $request->input('date') ?? now()->format('Y-m-d');
 
         // ユーザーの1日ごとの勤務データを取得
         // 勤務ごとの休憩情報もまとめて一緒に読み込み
@@ -68,10 +67,12 @@ class AttendanceController extends Controller
         $user = $userId ? User::find($userId) : null;
         $date = $request->query('date');
 
-        $breaks = collect([ (object) [
-            'start_time' => null,
-            'end_time' => null,
-        ]]);
+        $breaks = collect([
+            (object) [
+                'start_time' => null,
+                'end_time' => null,
+            ]
+        ]);
 
         return view('admin.attendance.detail', [
             'work' => null,
