@@ -31,6 +31,6 @@ class CreateRequestWorksTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('request_works');
     }
 }
