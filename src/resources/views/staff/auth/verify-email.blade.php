@@ -1,4 +1,4 @@
-<!-- メール認証誘導画面 -->
+{{-- メール認証誘導画面 --}}
 @extends('layouts.app')
 
 @section('css')
