@@ -32,12 +32,12 @@ $carbonDate = \Carbon\Carbon::parse($currentDate);
 
     {{-- 勤怠一覧：日付の切り替え(前日・当日・翌日) --}}
     <div class="day-list-form">
-        <a class="previous-day" href="{{ route('admin.attendance.list', ['date' => $prevDate]) }}"><img class="left-arrow-icon" src="{{ asset('storage/images/arrow.png') }}" alt="calender">前日</a>
-        <div class="calender-title">
-            <img class="calender-icon" src="{{ asset('storage/images/calender-logo.png') }}" alt="calender">
+        <a class="previous-day" href="{{ route('admin.attendance.list', ['date' => $prevDate]) }}"><img class="left-arrow-icon" src="{{ asset('storage/images/arrow.png') }}" alt="calendar">前日</a>
+        <div class="calendar-title">
+            <img class="calendar-icon" src="{{ asset('storage/images/calendar-logo.png') }}" alt="calendar">
             <p class="selected-day">{{ $carbonDate->format('Y/m/d') }}</p>
         </div>
-        <a class="next-day" href="{{ route('admin.attendance.list', ['date' => $nextDate]) }}">翌日<img class="right-arrow-icon" src="{{ asset('storage/images/arrow.png') }}" alt="calender">
+        <a class="next-day" href="{{ route('admin.attendance.list', ['date' => $nextDate]) }}">翌日<img class="right-arrow-icon" src="{{ asset('storage/images/arrow.png') }}" alt="calendar">
         </a>
     </div>
     <div class="attendance-date-list-form">
