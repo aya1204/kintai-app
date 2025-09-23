@@ -83,7 +83,7 @@ body {
 }
 
 /* カレンダーと年/月/日のフォーム */
-.calender-title {
+.calendar-title {
     display: flex;
     flex-direction: row;
     width: auto;
@@ -108,7 +108,7 @@ body {
 }
 
 /* カレンダーアイコン */
-.calender-icon {
+.calendar-icon {
     width: 25px;
     height: 25px;
     opacity: 1;
@@ -283,12 +283,12 @@ body {
     }
 
     /* カレンダーアイコンと選択された日のフォーム */
-    .calender-title {
+    .calendar-title {
         height: 14px;
     }
 
     /* カレンダーアイコン */
-    .calender-icon {
+    .calendar-icon {
         width: 14px;
         height: 14px;
     }
@@ -430,12 +430,12 @@ body {
     }
 
     /* カレンダーアイコンと選択された日のフォーム */
-    .calender-title {
+    .calendar-title {
         height: 10px;
     }
 
     /* カレンダーアイコン */
-    .calender-icon {
+    .calendar-icon {
         width: 10px;
         height: 10px;
     }
