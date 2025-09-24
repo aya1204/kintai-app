@@ -11,7 +11,6 @@
 /* ログイン */
 .login-form__heading {
     margin-bottom: 70px;
-    text-align: center;
     font-family: Inter;
     font-weight: 700;
     font-size: 36px;
@@ -36,12 +35,10 @@
 .form__group-title {
     text-align: left;
     margin-bottom: 10px;
-
     font-family: Inter;
     font-weight: 700;
     font-size: 24px;
     line-height: 100%;
-    letter-spacing: 0%;
 }
 
 /* バリデーションエラーメッセージ */
@@ -85,7 +82,6 @@
     font-weight: 700;
     font-size: 26px;
     line-height: 100%;
-    letter-spacing: 0%;
     text-align: center;
     vertical-align: middle;
 }
