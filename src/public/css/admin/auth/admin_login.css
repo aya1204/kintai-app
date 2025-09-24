@@ -111,10 +111,18 @@
 
 /* スマホ（767px以下）対応 */
 @media screen and (max-width: 767px) {
+
+    /* 管理者ログイン */
+    .login-form__heading {
+        font-size: 32px;
+    }
+
+    /* ログインボタンのフォーム */
     .form__button {
         height: 48px;
     }
 
+    /* 管理者ログインする */
     .form__button-submit {
         font-size: 20px;
     }
