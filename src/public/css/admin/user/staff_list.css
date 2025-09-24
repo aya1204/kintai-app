@@ -248,7 +248,7 @@ body {
 
     /* 「｜」と「スタッフ一覧」のフォーム */
     .staff-list-page-title {
-        font-size: 13px;
+        font-size: 11px;
         padding-left: 8px;
     }
 
@@ -261,7 +261,7 @@ body {
     .staff-list-form {
         width: auto;
         margin-top: 18px;
-        font-size: 8px;
+        font-size: 7px;
         border-radius: 4px;
     }
 
