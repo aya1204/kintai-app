@@ -84,7 +84,7 @@ body {
 }
 
 /* カレンダーと年/月のフォーム */
-.calender-title {
+.calendar-title {
     display: flex;
     flex-direction: row;
     width: auto;
@@ -109,7 +109,7 @@ body {
 }
 
 /* カレンダーアイコン */
-.calender-icon {
+.calendar-icon {
     width: 25px;
     height: 25px;
     opacity: 1;
@@ -320,12 +320,12 @@ body {
     }
 
     /* カレンダーアイコンと選択された月のフォーム */
-    .calender-title {
+    .calendar-title {
         height: 14px;
     }
 
     /* カレンダーアイコン */
-    .calender-icon {
+    .calendar-icon {
         width: 14px;
         height: 14px;
     }
@@ -468,12 +468,12 @@ body {
     }
 
     /* カレンダーアイコンと選択された月のフォーム */
-    .calender-title {
+    .calendar-title {
         height: 13px;
     }
 
     /* カレンダーアイコン */
-    .calender-icon {
+    .calendar-icon {
         width: 13px;
         height: 13px;
     }
