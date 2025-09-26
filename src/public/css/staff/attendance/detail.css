@@ -37,7 +37,6 @@ body {
 .detail-title-form li::before {
     content: "";
     position: absolute;
-    top: 0;
     left: 0;
     width: 4px;
     height: 100%;
@@ -140,7 +139,6 @@ body {
     font-size: 16px;
     letter-spacing: 0.15em;
     color: #000000;
-    gap: 10px;
     text-align: center;
 }
 
@@ -160,7 +158,6 @@ body {
     font-size: 16px;
     letter-spacing: 0.15em;
     color: #000000;
-    gap: 10px;
     text-align: center;
 }
 
@@ -212,7 +209,6 @@ body {
     display: flex;
     justify-content: end;
     font-weight: 800;
-    font-style: Extra Bold;
     font-size: 18px;
     letter-spacing: 0.15em;
     color: #FF000080;
@@ -289,7 +285,6 @@ body {
         width: 57px;
         font-size: 9px;
         color: #000000;
-        gap: 6px;
         text-align: center;
     }
 
@@ -305,7 +300,6 @@ body {
     .wavy-line {
         width: 38px;
         font-size: 9px;
-        gap: 6px;
     }
 
     /* 月日だけ位置調整 */
@@ -415,7 +409,6 @@ body {
     .break-return-time {
         width: 46px;
         font-size: 7px;
-        gap: 5px;
     }
 
     /* 出勤・退勤、休憩時間の入力欄 */
@@ -430,7 +423,6 @@ body {
     .wavy-line {
         width: 30px;
         font-size: 7px;
-        gap: 5px;
     }
 
     /* 月日だけ位置調整 */

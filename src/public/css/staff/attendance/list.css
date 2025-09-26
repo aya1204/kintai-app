@@ -35,7 +35,6 @@ body {
 .list-title-form li::before {
     content: "";
     position: absolute;
-    top: 0;
     left: 0;
     width: 4px;
     height: 100%;
@@ -51,7 +50,6 @@ body {
     font-weight: 700;
     font-size: 30px;
     line-height: 100%;
-    letter-spacing: 0%;
 }
 
 /* 月を選択するフォーム */

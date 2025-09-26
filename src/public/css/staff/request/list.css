@@ -11,7 +11,6 @@ body {
     height: 732px;
     margin: 173px auto;
     font-family: Inter;
-    font-style: Bold;
     line-height: 100%;
     font-weight: 700;
 }
@@ -32,7 +31,6 @@ body {
 .list-title-form li::before {
     content: "";
     position: absolute;
-    top: 0;
     left: 0;
     width: 4px;
     height: 100%;
@@ -46,7 +44,6 @@ body {
     opacity: 1;
     font-size: 30px;
     line-height: 100%;
-    letter-spacing: 0%;
 }
 
 /* タブのフォーム */
@@ -60,7 +57,7 @@ body {
 .button-submit {
     font-size: 16px;
     font-weight: 400;
-    letter-spacing: 15%;
+    letter-spacing: 0.15em;
     color: #000000;
     text-decoration: none;
     padding: 17px;
@@ -71,7 +68,7 @@ body {
 .button-submit.active {
     font-size: 16px;
     font-weight: 700;
-    letter-spacing: 15%;
+    letter-spacing: 0.15em;
     color: #000000;
     text-decoration: none;
     padding: 17px;
@@ -81,7 +78,6 @@ body {
 /* 状態・名前・対象日時・申請理由・申請日時・詳細のフォーム */
 .request-list-form {
     background-color: #FFFFFF;
-    margin-top: 45px;
     color: #737373;
     width: 900px;
     max-height: 1506px;
@@ -162,7 +158,6 @@ body {
 }
 /* 対象日時のデータ */
 .work-date {
-    letter-spacing: 0em;
     padding-bottom: 15px;
 }
 
@@ -191,7 +186,6 @@ body {
 }
 /* 申請日時のデータ */
 .request-date {
-    letter-spacing: 0em;
     padding-bottom: 18px;
 }
 
@@ -224,7 +218,6 @@ body {
         height: 403px;
         margin: 95px auto;
     }
-
 
     /* 申請一覧画面のフォーム */
     .list-title-form li {
