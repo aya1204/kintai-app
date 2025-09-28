@@ -7,8 +7,10 @@ body {
 
 /* フラッシュメッセージ */
 .alert-success {
+    padding: 10px 30px;
+    border-color: #badbcc;
+    background-color: #d1e7dd;
     color: #0f5132;
-    font-size: 20px;
 }
 
 /* 勤怠詳細〜各日にちの詳細までの全体フォーム */
@@ -216,6 +218,11 @@ body {
 
 /* タブレット（768-850px）対応 */
 @media screen and (min-width: 768px) and (max-width: 850px) {
+    /* フラッシュメッセージ */
+    .alert-success {
+        font-size: 13px;
+        padding: 6px 17px;
+    }
 
     /* 勤怠詳細〜修正ボタンまでの全体のフォーム */
     .attendance-detail-form {
@@ -341,7 +348,11 @@ body {
 
 /* スマホ（767px以下）対応 */
 @media screen and (max-width: 767px) {
-
+    /* フラッシュメッセージ */
+    .alert-success {
+        font-size: 10px;
+        padding: 4px 12px;
+    }
     /* 勤怠詳細〜修正ボタンまでの全体のフォーム */
     .attendance-detail-form {
         margin: 73px auto;

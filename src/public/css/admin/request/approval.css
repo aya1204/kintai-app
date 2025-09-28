@@ -7,8 +7,10 @@ body {
 
 /* フラッシュメッセージ */
 .alert-success {
+    padding: 10px 30px;
+    border-color: #badbcc;
+    background-color: #d1e7dd;
     color: #0f5132;
-    font-size: 20px;
 }
 
 /* 勤怠詳細〜各日にちの詳細までの全体フォーム */
@@ -219,6 +221,7 @@ body {
     /* フラッシュメッセージ */
     .alert-success {
         font-size: 13px;
+        padding: 6px 17px;
     }
 
     /* 勤怠詳細〜修正ボタンまでの全体のフォーム */
@@ -349,7 +352,8 @@ body {
 @media screen and (max-width: 767px) {
     /* フラッシュメッセージ */
     .alert-success {
-        font-size: 9px;
+        font-size: 10px;
+        padding: 4px 12px;
     }
 
     /* 勤怠詳細〜修正ボタンまでの全体のフォーム */

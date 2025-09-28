@@ -8,8 +8,10 @@ body {
 
 /* フラッシュメッセージ */
 .alert-success {
+    padding: 10px 30px;
+    border-color: #badbcc;
+    background-color: #d1e7dd;
     color: #0f5132;
-    font-size: 20px;
 }
 
 /* 勤怠一覧〜各日にちの詳細までの全体フォーム */
@@ -353,8 +355,8 @@ body {
 @media screen and (max-width: 767px) {
     /* フラッシュメッセージ */
     .alert-success {
-        color: red;
         font-size: 10px;
+        padding: 4px 12px;
     }
     /* 勤怠一覧〜各日にちの詳細までの全体のフォーム */
     .attendance-list-form {
