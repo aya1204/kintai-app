@@ -243,15 +243,8 @@ body {
         height: 21px;
     }
 
-    /* 承認待ち */
-    .button-submit {
-        font-size: 9px;
-        letter-spacing: 0.15em;
-        padding: 9px;
-        margin: 0 27px 0 31px;
-    }
-
-    /* 承認済み */
+    /* 承認待ち、承認済み */
+    .button-submit,
     .button-submit.active {
         font-size: 9px;
         letter-spacing: 0.15em;
@@ -380,17 +373,9 @@ body {
     }
 
     /* 承認待ち、承認済み */
-    .button-submit {
-        font-size: 5px;
-        font-weight: 400;
-        padding: 5px;
-        margin: 0 16px 0 19px;
-    }
-
-    /* 承認済み */
+    .button-submit,
     .button-submit.active {
         font-size: 5px;
-        font-weight: 700;
         padding: 5px;
         margin: 0 16px 0 19px;
     }
