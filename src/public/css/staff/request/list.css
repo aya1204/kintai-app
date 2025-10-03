@@ -24,7 +24,8 @@ body {
 .list-title-form li {
     list-style-type: none;
     position: relative;
-    padding-left: 21px;
+    padding-left: 28px;
+    width: auto;
 }
 
 /* 申請一覧画面のフォーム：「・」を「｜」に変更 */
@@ -32,9 +33,10 @@ body {
     content: "";
     position: absolute;
     left: 0;
-    width: 4px;
+    width: 8px;
     height: 100%;
     background-color: black;
+    margin-right: 13px;
 }
 
 /* 「｜」と申請一覧のフォーム */
@@ -51,6 +53,7 @@ body {
     border-bottom: 1px solid #000000;
     margin: 61px 0 45px 0;
     height: 39px;
+    padding-bottom: 24px;
 }
 
 /* 未選択のタブ（承認待ち、承認済み） */
@@ -370,6 +373,7 @@ body {
         border-bottom: 0.5px solid #000000;
         margin: 20px 0 15px 0;
         height: 17px;
+        padding-bottom: 20px;
     }
 
     /* 承認待ち、承認済み */
