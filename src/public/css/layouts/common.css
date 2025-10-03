@@ -131,6 +131,9 @@
 
 /* タブレット (768-850px)対応 */
 @media screen and (min-width: 768px) and (max-width: 850px) {
+    .header {
+        height: 55%;
+    }
 
     /* 商品一覧（おすすめやマイリスト）・詳細・購入・、支払い、送付先住所変更、プロフィール・プロフィール編集、出品のヘッダー */
     .header__container {
@@ -191,7 +194,9 @@
 
 /* スマホ（767px以下）対応 */
 @media screen and (max-width: 767px) {
-
+    .header {
+        height: 40%;
+    }
     /* 商品一覧（おすすめやマイリスト）・詳細・購入・、支払い、送付先住所変更、プロフィール・プロフィール編集、出品のヘッダー */
     .header__container {
         width: 100%;
