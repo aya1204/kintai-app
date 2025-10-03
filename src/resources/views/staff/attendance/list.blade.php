@@ -15,7 +15,9 @@
 
 <div class="attendance-list-form">
     <ul class="list-title-form">
-        <li class="list-title">勤怠一覧</li>
+        <li class="list-title">
+            <p class="page-title">勤怠一覧</p>
+        </li>
     </ul>
     {{-- 月の切り替え処理 --}}
     @php
