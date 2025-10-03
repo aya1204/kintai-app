@@ -30,7 +30,8 @@ body {
 .list-title-form li {
     list-style-type: none;
     position: relative;
-    padding-left: 10px;
+    padding-left: 28px;
+    width: auto;
 }
 
 /* 勤怠一覧画面のフォーム：「・」を「｜」に変更 */
@@ -38,7 +39,7 @@ body {
     content: "";
     position: absolute;
     left: 0;
-    width: 4px;
+    width: 8px;
     height: 100%;
     background-color: black;
 }
@@ -242,6 +243,11 @@ body {
         width: 495px;
     }
 
+    /* 勤怠一覧画面のフォーム */
+    .list-title-form li {
+        padding-left: 15px;
+    }
+
     /* 「｜」と勤怠一覧のフォーム */
     .list-title {
         font-size: 17px;
@@ -250,7 +256,7 @@ body {
     /* 勤怠一覧の「｜」 */
     .list-title-form li::before {
         height: 55%;
-        width: 2px;
+        width: 4px;
     }
 
     /* 選択月のフォーム */
@@ -291,6 +297,7 @@ body {
         width: 68px;
         height: 13px;
         font-size: 11px;
+        margin-top: 2px;
     }
 
     /* 日付・出勤・退勤・休憩・合計・詳細のフォーム */
@@ -369,6 +376,11 @@ body {
         width: 240px;
     }
 
+    /* 勤怠一覧画面のフォーム */
+    .list-title-form li {
+        padding-left: 11px;
+    }
+
     /* 「｜」と勤怠一覧のフォーム */
     .list-title {
         font-size: 16px;
@@ -377,7 +389,7 @@ body {
     /* 勤怠一覧の「｜」 */
     .list-title-form li::before {
         height: 53%;
-        width: 2px;
+        width: 3px;
     }
 
     /* 選択月のフォーム */
@@ -399,7 +411,7 @@ body {
     .previous-month,
     .next-month {
         height: 10px;
-        font-size: 9px;
+        font-size: 6px;
         margin: 0 6px;
     }
 
@@ -410,15 +422,16 @@ body {
 
     /* カレンダーアイコン */
     .calendar-icon {
-        width: 13px;
-        height: 13px;
+        width: 10px;
+        height: 10px;
     }
 
     /* 選択された月 */
     .selected-month {
         width: 50px;
         height: 8px;
-        font-size: 10px;
+        font-size: 8px;
+        margin-top: 1px;
     }
 
     /* 日付・出勤・退勤・休憩・合計・詳細のフォーム */
