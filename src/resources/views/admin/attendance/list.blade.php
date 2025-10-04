@@ -20,7 +20,9 @@ $carbonDate = \Carbon\Carbon::parse($currentDate);
 
 <div class="attendance-list-form">
     <ul class="list-title-form">
-        <li class="list-title">{{ $carbonDate->format('Y年n月j日')}}の勤怠</li>
+        <li class="list-title">
+            <p class="list-title-text">{{ $carbonDate->format('Y年n月j日')}}の勤怠</p>
+        </li>
     </ul>
     {{-- 月の切り替え処理 --}}
     @php
@@ -76,9 +78,9 @@ $carbonDate = \Carbon\Carbon::parse($currentDate);
         {{-- 月末日を判定して月末日だけクラス名をつける --}}
         <div class="attendance-row">
 
-            {{-- 日付と曜日 --}}
+            {{-- スタッフの名前 --}}
             <div class="user-name">
-                {{ $attendance->user->name}}
+                <p class="user-name-text">{{ $attendance->user->name}}</p>
             </div>
 
             {{-- 出勤時間 --}}
