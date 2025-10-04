@@ -32,28 +32,32 @@ body {
 .detail-title-form li {
     list-style-type: none;
     position: relative;
-    padding-left: 21px;
+    padding-left: 13px;
 }
 
 /* 勤怠詳細画面のフォーム：「・」を「｜」に変更 */
 .detail-title-form li::before {
     content: "";
     position: absolute;
-    top: 0;
     left: 0;
     width: 8px;
-    height: 100%;
+    height: 40px;
     background-color: black;
 }
 
 /* 「｜」と勤怠詳細のフォーム */
 .detail-title {
-    width: 141px;
+    width: auto;
     height: 36px;
+}
+
+/* 勤怠詳細 */
+.detail-page-title {
     opacity: 1;
     font-size: 30px;
     line-height: 100%;
-    letter-spacing: 0em;
+    margin-left: 13px;
+    padding-top: 3px;
 }
 
 
@@ -180,6 +184,7 @@ body {
     border: 1px solid #D9D9D9;
     border-radius: 4px;
     resize: none;
+    margin: 13px 0 9px 0;
 }
 
 /* 修正ボタンフォーム */
@@ -224,14 +229,25 @@ body {
 
     /* 「｜」と勤怠詳細のフォーム */
     .detail-title-form li {
-        font-size: 17px;
-        padding-left: 12px;
-        height: 20px;
+        padding-left: 7px;
     }
 
     /* 勤怠詳細の「｜」 */
     .detail-title-form li::before {
         width: 4px;
+        height: 22px;
+    }
+
+    /* 「｜」と勤怠詳細のフォーム */
+    .detail-title {
+        height: 20px;
+    }
+
+    /* 勤怠詳細 */
+    .detail-page-title {
+        font-size: 17px;
+        margin-left: 7px;
+        padding-top: 2px;
     }
 
     /* 名前・日付・出勤・退勤・休憩・備考のフォーム */
@@ -239,6 +255,7 @@ body {
         width: 495px;
         margin-top: 25px;
         font-size: 8px;
+        border-radius: 6px;
     }
 
     /* 勤怠一覧の各タイトル */
@@ -312,9 +329,8 @@ body {
     .remark {
         font-size: 8px;
         width: 174px;
-        height: 35px;
+        height: 24px;
         border-radius: 2px;
-        margin-top: 5px;
     }
 
     /* 修正ボタンフォーム */
@@ -353,14 +369,25 @@ body {
 
     /* 「｜」と勤怠詳細のフォーム */
     .detail-title-form li {
-        font-size: 14px;
-        padding-left: 8px;
-        height: 14px;
+        padding-left: 5px;
     }
 
     /* 勤怠詳細の「｜」 */
     .detail-title-form li::before {
-        width: 2px;
+        width: 3px;
+        height: 16px;
+    }
+
+    /* 「｜」と勤怠詳細のフォーム */
+    .detail-title {
+        height: 14px;
+    }
+
+    /* 勤怠詳細 */
+    .detail-page-title {
+        font-size: 12px;
+        margin-left: 5px;
+        padding-top: 2px;
     }
 
     /* 名前・日付・出勤・退勤・休憩・備考のフォーム */
@@ -368,6 +395,7 @@ body {
         width: 300px;
         margin-top: 20px;
         font-size: 6px;
+        border-radius: 4px;
     }
 
     /* 勤怠一覧の各タイトル */
@@ -441,7 +469,6 @@ body {
         width: 139px;
         height: 20px;
         border-radius: 2px;
-        margin-top: 5px;
     }
 
     /* 修正ボタンフォーム */
