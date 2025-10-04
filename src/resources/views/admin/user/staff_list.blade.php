@@ -15,7 +15,9 @@
 
 <div class="staff-list-page">
     <ul class="staff-list-page-title-form">
-        <li class="staff-list-page-title">スタッフ一覧</li>
+        <li class="staff-list-page-title">
+            <p class="staff-list-title">スタッフ一覧</p>
+        </li>
     </ul>
 
     <div class="staff-list-form">

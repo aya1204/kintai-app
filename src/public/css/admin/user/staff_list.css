@@ -30,17 +30,16 @@ body {
 .staff-list-page-title {
     list-style-type: none;
     position: relative;
-    padding-left: 21px;
+    padding-left: 13px;
 }
 
 /* スタッフ一覧画面のフォーム：「・」を「｜」に変更 */
 .staff-list-page-title-form li::before {
     content: "";
     position: absolute;
-    top: 0;
     left: 0;
     width: 8px;
-    height: 100%;
+    height: 40px;
     background-color: black;
 }
 
@@ -48,17 +47,23 @@ body {
 .staff-list-page-title-form {
     width: 900px;
     height: 36px;
+}
+
+/* スタッフ一覧 */
+.staff-list-title {
     opacity: 1;
     font-family: Inter;
     font-weight: 700;
     font-size: 30px;
     line-height: 100%;
+    padding-top: 4px;
+    margin-left: 13px;
 }
 
 /* 名前・メールアドレス・詳細のフォーム */
 .staff-list-form {
     background-color: #FFFFFF;
-    margin-top: 46px;
+    margin-top: 96px;
     color: #737373;
     width: 900px;
     max-height: 1506px;
@@ -170,18 +175,26 @@ body {
     /* 「｜」と「スタッフ一覧」のフォーム */
     .staff-list-page-title {
         font-size: 17px;
-        padding-left: 12px;
+        padding-left: 7px;
     }
 
     /* タイトルの「｜」 */
     .staff-list-page-title-form li::before {
         width: 4px;
+        height: 22px;
+    }
+
+    /* スタッフ一覧 */
+    .staff-list-title {
+        font-size: 17px;
+        padding-top: 2px;
+        margin-left: 7px;
     }
 
     /* 名前・メールアドレス・詳細のフォーム */
     .staff-list-form {
         width: 495px;
-        margin-top: 25px;
+        margin-top: 53px;
         font-size: 8px;
         border-radius: 6px;
     }
@@ -251,18 +264,26 @@ body {
     /* 「｜」と「スタッフ一覧」のフォーム */
     .staff-list-page-title {
         font-size: 11px;
-        padding-left: 8px;
+        padding-left: 5px;
     }
 
     /* タイトルの「｜」 */
     .staff-list-page-title-form li::before {
         width: 3px;
+        height: 16px;
+    }
+
+    /* スタッフ一覧 */
+    .staff-list-title {
+        font-size: 12px;
+        padding-top: 2px;
+        margin-left: 5px;
     }
 
     /* 名前・メールアドレス・詳細のフォーム */
     .staff-list-form {
         width: auto;
-        margin-top: 18px;
+        margin-top: 38px;
         font-size: 7px;
         border-radius: 4px;
     }
