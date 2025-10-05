@@ -428,7 +428,7 @@ body {
     .remark-title {
         width: 53px;
         text-align: left;
-        margin-right: 50px;
+        margin-right: 14px;
     }
 
     /* 名前・出勤時間・退勤時間・休憩時間 */
@@ -440,7 +440,7 @@ body {
     .take-break-time,
     .break-return-time {
         width: 46px;
-        font-size: 7px;
+        font-size: 6px;
     }
 
     /* 〜のフォーム */
@@ -479,9 +479,9 @@ body {
 
     /* 承認ボタン */
     .approval-button {
-        font-size: 10px;
-        width: 61px;
-        height: 22px;
+        font-size: 8px;
+        width: 47px;
+        height: 20px;
         border-radius: 2px;
     }
 
