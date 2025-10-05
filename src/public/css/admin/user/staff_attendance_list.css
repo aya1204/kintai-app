@@ -58,7 +58,7 @@ body {
     font-size: 30px;
     line-height: 100%;
     padding-top: 4px;
-    margin-left: 13px;
+    margin-left: 10px;
 }
 
 /* 月を選択するフォーム */
@@ -309,7 +309,7 @@ body {
     .staff-attendance-list-title {
         font-size: 17px;
         padding-top: 2px;
-        margin-left: 7px;
+        margin-left: 3px;
     }
 
     /* 選択月のフォーム */
@@ -415,16 +415,16 @@ body {
 
     /* CSV出力ボタンフォーム */
     .printing-form {
-        margin: 33px 0 0 auto;
+        margin: 31px 0 0 auto;
         width: 101px;
     }
 
     /* CSV出力ボタン */
     .printing-button {
-        width: 101px;
-        height: 28px;
+        width: 102px;
+        height: 27px;
         border-radius: 3px;
-        font-size: 12px;
+        font-size: 11px;
     }
 }
 
@@ -466,7 +466,7 @@ body {
     .staff-attendance-list-title {
         font-size: 12px;
         padding-top: 2px;
-        margin-left: 5px;
+        margin-left: 3px;
     }
 
     /* 選択月のフォーム */
@@ -571,15 +571,15 @@ body {
 
     /* CSV出力ボタンのフォーム */
     .printing-form {
-        margin: 24px 0 0 auto;
-        width: 74px;
+        margin: 12px 0 0 auto;
+        width: 53px;
     }
 
     /* CSV出力ボタン */
     .printing-button {
-        width: 74px;
-        height: 20px;
+        width: 53px;
+        height: 15px;
         border-radius: 2px;
-        font-size: 9px;
+        font-size: 6px;
     }
 }
