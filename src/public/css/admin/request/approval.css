@@ -47,12 +47,13 @@ body {
     padding-left: 21px;
 }
 
+/* 勤怠詳細 */
 .detail-title-text {
     opacity: 1;
     font-size: 30px;
     line-height: 100%;
-    margin-left: 13px;
-    padding-top: 5px;
+    margin-left: 9px;
+    padding-top: 4px;
 }
 
 /* 名前・日付・出勤・退勤・休憩・備考のフォーム */
@@ -178,7 +179,7 @@ body {
 .approval-button-form {
     display: flex;
     justify-content: end;
-    margin-top: 36px;
+    margin-top: 58px;
 }
 
 /* 承認ボタン */
@@ -249,8 +250,8 @@ body {
     /* 勤怠詳細 */
     .detail-title-text {
         font-size: 17px;
-        margin-left: 6px;
-        padding-top: 2px;
+        margin-left: 4px;
+        padding-top: 1px;
     }
 
     /* 名前・日付・出勤・退勤・休憩・備考のフォーム */
@@ -334,7 +335,7 @@ body {
 
     /* 承認ボタンフォーム */
     .approval-button-form {
-        margin-top: 20px;
+        margin-top: 28px;
     }
 
     /* 承認ボタン */
@@ -473,7 +474,7 @@ body {
 
     /* 承認ボタンフォーム */
     .approval-button-form {
-        margin-top: 16px;
+        margin-top: 22px;
     }
 
     /* 承認ボタン */
