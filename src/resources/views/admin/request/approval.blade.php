@@ -15,7 +15,9 @@
 
 <div class="attendance-detail-form">
     <ul class="detail-title-form">
-        <li class="detail-title">勤怠詳細</li>
+        <li class="detail-title">
+            <p class="detail-title-text">勤怠詳細</p>
+        </li>
     </ul>
     {{-- 修正申請承認フォーム --}}
     <form class="approval-form" action="{{ route('admin.requests.approval', $request->id) }}" method="POST">
