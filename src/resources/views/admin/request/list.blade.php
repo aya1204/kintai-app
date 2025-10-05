@@ -8,11 +8,13 @@
 @section('content')
 <div class="request-form">
     <ul class="list-title-form">
-        <li class="list-title">申請一覧</li>
+        <li class="list-title">
+            <p class="list-title-text">申請一覧</p>
+        </li>
     </ul>
     <div class="tab-buttons">
-        <a href="{{ route('staff.request.list', ['tab' => 'wait'])}}" class="button-submit {{ $tab === 'wait' ? 'active' : '' }}">承認待ち</a>
-        <a href="{{ route('staff.request.list', ['tab' => 'clear'])}}" class="button-submit {{ $tab === 'clear' ? 'active' : '' }}">承認済み</a>
+        <a href="{{ route('admin.request.list', ['tab' => 'wait'])}}" class="button-submit {{ $tab === 'wait' ? 'active' : '' }}">承認待ち</a>
+        <a href="{{ route('admin.request.list', ['tab' => 'clear'])}}" class="button-submit {{ $tab === 'clear' ? 'active' : '' }}">承認済み</a>
     </div>
 
     <div class="request-list-form">
